@@ -40,7 +40,6 @@
 .typography {
   font-size: 1.2rem;
   font-weight: bold;
-  font-family: Geist, sans-serif;
   text-transform: uppercase;
 }
 
@@ -76,20 +75,30 @@
 
 .small{
   text-transform: uppercase;
-  font-size: 14.4rem;
-  line-height: 14.4rem;
+  font-size: 7.2rem;
+  line-height: 7.2rem;
   color: var(--color-white-100);
+  font-family: "Teko", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .large{
   text-transform: uppercase;
-  font-size: 28.8rem;
-  line-height: 28.8rem;
+  font-size: 14.4rem;
+  line-height: 14.4rem;
   color: var(--color-black-900);
+  font-family: "Teko", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+
 }
 
 .photo-container{
   aspect-ratio: 1/1;
+  width: var(--grid-4-col);
 }
 
 .photo{

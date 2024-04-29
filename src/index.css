@@ -1,3 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
+
+@font-face {
+    font-family: 'Geist';
+    src: url('/fonts/GeistVF.woff2') format('woff2-variations');
+    src: url('/fonts/GeistVF.woff2') format('woff2') tech('variations');
+    font-weight: 100 1000;
+    font-stretch: 25% 151%;
+}
+
+@font-face {
+    font-family: 'GeistMono';
+    src: url('/fonts/GeistMonoVF.woff2') format('woff2-variations');
+    src: url('/fonts/GeistMonoVF.woff2') format('woff2') tech('variations');
+    font-weight: 100 1000;
+    font-stretch: 25% 151%;
+}
+
+@font-face {
+    font-family: 'PP-Editorial';
+    src: url('/fonts/PPEditorialNew-Regular.otf') format('opentype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP-Editorial';
+    src: url('/fonts/PPEditorialNew-Italic.otf') format('opentype');
+    font-style: italic;
+}
+
 :root {
   color-scheme: light dark;
 
@@ -10,6 +40,21 @@
   --color-sand-500: #F5E8D8;
   --color-orange-500: #D84E30;
   --color-black-900: #1E1E1E;
+
+  --grid-full: 100dvw;
+  --grid-12-col: calc(100dvw - 40px - 40px);
+  --grid-1-col: calc(((var(--grid-12-col) - (40px * 11)) / 12));
+
+  --grid-11-col: calc((var(--grid-1-col) * 11) + (40px * 10));
+  --grid-10-col: calc((var(--grid-1-col) * 10) + (40px * 9));
+  --grid-9-col: calc((var(--grid-1-col) * 9) + (40px * 8));
+  --grid-8-col: calc((var(--grid-1-col) * 8) + (40px * 7));
+  --grid-7-col: calc((var(--grid-1-col) * 7) + (40px * 6));
+  --grid-6-col: calc((var(--grid-1-col) * 6) + (40px * 5));
+  --grid-5-col: calc((var(--grid-1-col) * 5) + (40px * 4));
+  --grid-4-col: calc((var(--grid-1-col) * 4) + (40px * 3));
+  --grid-3-col: calc((var(--grid-1-col) * 3) + (40px * 2));
+  --grid-2-col: calc((var(--grid-1-col) * 2) + (40px * 1));
 }
 
 *,*:before,*:after{
@@ -23,7 +68,7 @@ html {
 }
 
 body {
-  font-family: Geist, sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 1.4rem;
   background-color: var(--color-white-100);
   color: var(--color-black-900);
@@ -33,15 +78,16 @@ body {
 
 h2{
   font-size: 3.6rem;
-  line-height: 2.4rem;
+  line-height: 3.6rem;
   color: var(--color-block-900);
-  font-family: 'PP Editorial', serif;
+  font-family: 'PP-Editorial', serif;
   margin-block-end: 3.2rem;
+  font-weight: normal;
 
   & span{
     font-style: italic;
     position: relative;
-    
+
     &:after{
       background-color: var(--color-sand-500);
       content: '';
@@ -54,4 +100,8 @@ h2{
 
 p{
   font-size: 1.4rem;
+}
+
+pre {
+  font-family: 'GeistMono', monospace;
 }
