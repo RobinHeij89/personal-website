@@ -70,7 +70,9 @@ export const Blog = () => {
         ))}
       </ul>
       <div className={grid.grid}>
-        <button>More</button>
+        <div className={style['button-container']}>
+          <button>More</button>
+        </div>
       </div>
     </div>
   )
