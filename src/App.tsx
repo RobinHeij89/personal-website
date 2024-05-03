@@ -1,4 +1,4 @@
-import { Blog, Clients, Header, Mission } from "./components"
+import { Blog, Clients, Header, Mission, Footer } from "./components"
 
 function App() {
   return (
@@ -9,8 +9,9 @@ function App() {
         <Mission />
         <Clients />
         <Blog />
-
       </main>
+
+      <Footer />
       {/* <footer>
         <img src='https://placekitten.com/200/300' alt="Photo" />
         <ul>

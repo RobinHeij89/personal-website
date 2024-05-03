@@ -1,0 +1,40 @@
+.footer{
+  margin-block: 60px;
+  color: var(--color-black-900);
+  width: 100dhv;
+  position: relative;
+}
+
+.name{
+  grid-column: 2 / span 3;
+}
+.role{
+  grid-column: 5 / span 3;
+}
+
+.location {
+  grid-column: 8 / span 3;
+}
+.copyright {
+  grid-column: 12 / span 3;
+}
+
+.typography {
+  font-size: calc((12 / 16) * 1rem);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.image-container{
+  height: 100px;
+  width: 100px;
+  margin: 0 auto 60px;
+  
+  & img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+  }
+}
