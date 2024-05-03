@@ -38,7 +38,7 @@
 }
 
 .typography {
-  font-size: 1.2rem;
+  font-size: calc((12 / 16) * 1rem);
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -75,8 +75,8 @@
 
 .small{
   text-transform: uppercase;
-  font-size: 7.2rem;
-  line-height: 7.2rem;
+  font-size: calc((72 / 16) * 1rem);
+  line-height: calc((72 / 16) * 1rem);
   color: var(--color-white-100);
   font-family: "Teko", sans-serif;
   font-optical-sizing: auto;
@@ -86,8 +86,8 @@
 
 .large{
   text-transform: uppercase;
-  font-size: 14.4rem;
-  line-height: 14.4rem;
+  font-size: calc((144 / 16) * 1rem);
+  line-height: calc((144 / 16) * 1rem);
   color: var(--color-black-900);
   font-family: "Teko", sans-serif;
   font-optical-sizing: auto;

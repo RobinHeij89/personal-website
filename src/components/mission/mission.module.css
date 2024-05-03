@@ -5,10 +5,36 @@
 
 .tag{
   grid-column: 3 / span 4;
+  align-self: start;
+
+  h2{
+    font-size: calc((72 / 16) * 1rem);
+    line-height: calc((72 / 16) * 1rem);
+
+    span{
+      display: block;
+      &:after{
+        content: none;
+      }
+    }
+  }
 }
 .gfx{
   grid-column: 7 / span 2;
+  aspect-ratio: 2 / 3;
+  border-radius: calc(var(--grid-2-col) / 2);
+  align-self: stretch;
+  overflow: hidden;
+
+  & img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
+
 .tail{
   grid-column: 9 / span 4;
+  align-self: end;
 }

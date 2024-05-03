@@ -9,10 +9,10 @@ export const Mission = () => {
     <div className={clsx(grid.grid, style.wrapper)}>
       <div className={style.tag}>
         <h2>
+          Levering my skills
           <span>
-            Levering my skills
+            for positive change.
           </span>
-          for positive change.
         </h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis dapibus sapien. Duis ac erat ac ligula facilisis convallis ac et ante. Mauris nec leo nibh.
