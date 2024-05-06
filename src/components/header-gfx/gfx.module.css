@@ -1,6 +1,6 @@
 .canvas{
-  background: blue;
-  border: 2px solid red;
+  background: var(--color-sand-500);
+  border: 2px solid var(--color-black-900);
   position: fixed;
   inset-block-start: 0;
   inset-inline-start: 0;

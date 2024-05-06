@@ -35,7 +35,7 @@ export const Header = () => {
         </p>
       </div>
 
-      <HeaderGfx />
+      {/* <HeaderGfx /> */}
 
       <div className={style.large}>
         Robinheij.dev

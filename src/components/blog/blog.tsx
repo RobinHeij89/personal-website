@@ -30,6 +30,12 @@ export const Blog = () => {
     }
   ];
 
+  type BlogItem = {
+    id: string;
+    title: string;
+    category: Category;
+  }
+
   const returnClass = (category: Category) => {
     switch (category) {
       case Category.CSS:
@@ -43,6 +49,32 @@ export const Blog = () => {
     }
   }
 
+  const Card = ({ item }: { item: BlogItem }) => {
+    return (
+      <div className={clsx(style['reworked-thumbnail'], returnClass(item.category))}>
+        <div className={style['reworked-layout']}>
+          <div className={style['reworked-gfx-container']}>
+            <div className={style['reworked-caption-layout']}>
+              <p className={style.caption}>
+                <span>{item.category}</span>
+                <div className={clsx(style['aligner'], style['caption-aligner'], style['top-aligner'])} />
+                <div className={clsx(style['aligner'], style['caption-aligner'], style['bottom-aligner'])} />
+              </p>
+            </div>
+            <div className={style['reworked-gfx']} />
+          </div>
+        </div>
+        <div className={style["title-container"]}>
+          <div className={clsx(style['aligner'], style['title-aligner'], style['top-aligner'])} />
+          <div className={clsx(style['aligner'], style['title-aligner'], style['bottom-aligner'])} />
+          <h3 className={style.title}>
+            {item.title}
+          </h3>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={style.wrapper}>
       <div className={grid.grid}>
@@ -51,21 +83,7 @@ export const Blog = () => {
       <ul className={grid.grid}>
         {data.map((item) => (
           <li key={item.id}>
-            <div className={clsx(style.thumbnail, returnClass(item.category))}>
-              <div className={style['caption-layout']}>
-                <p className={style.caption}><span>{item.category}</span></p> <span className={style.filler} />
-              </div>
-              <div className={style.layout}>
-                <div className={style.gfx} />
-                <div className={style["title-container"]}>
-                  <h3 className={style.title}>
-                    <span>
-                      {item.title}
-                    </span>
-                  </h3>
-                </div>
-              </div>
-            </div>
+            <Card item={item} />
           </li>
         ))}
       </ul>

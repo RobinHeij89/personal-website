@@ -14,7 +14,7 @@ function Box(props: ThreeElements['mesh']) {
       scale={1}
     >
       <boxGeometry args={[3, 3, 3]} />
-      <meshStandardMaterial color='orange' />
+      <meshToonMaterial color='#D84E30' />
     </mesh>
   )
 }
