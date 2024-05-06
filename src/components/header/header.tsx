@@ -3,6 +3,8 @@ import { Logo } from '../logo'
 import grid from '../grid/grid.module.css'
 import style from './header.module.css';
 import clsx from 'clsx';
+import HeaderGfx from '../header-gfx/gfx';
+
 
 export const Header = () => {
   return (
@@ -33,9 +35,7 @@ export const Header = () => {
         </p>
       </div>
 
-      <canvas className={style.canvas}>
-        Your browser does not support the HTML5 canvas tag.
-      </canvas>
+      <HeaderGfx />
 
       <div className={style.large}>
         Robinheij.dev
@@ -48,6 +48,8 @@ export const Header = () => {
       <div className={style['photo-container']}>
         <img src='./robin.jpg' alt="Robin Heij" className={style.photo} />
       </div>
+
+
     </header>
   )
 }
