@@ -7,6 +7,7 @@ import clsx from 'clsx';
 export const Header = () => {
   return (
     <header className={clsx(grid.grid, style.header)}>
+      <div className={style['scroll-watcher']} />
       <div className={clsx(grid.grid, style['top-line'])}>
         <div className={style.logo}>
           <Logo />
@@ -45,7 +46,7 @@ export const Header = () => {
       </div>
 
       <div className={style['photo-container']}>
-        <img src='https://placekitten.com/200/300' alt="Photo" className={style.photo} />
+        <img src='./robin.jpg' alt="Robin Heij" className={style.photo} />
       </div>
     </header>
   )
