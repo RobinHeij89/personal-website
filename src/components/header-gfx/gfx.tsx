@@ -6,6 +6,25 @@ import { EffectComposer, ASCII, Noise, TiltShift2 } from '@react-three/postproce
 
 import { SVGLoader } from "three/examples/jsm/Addons.js";
 
+// import { noise } from "./perlin";
+
+function Terrain() {
+  return (
+    <mesh>
+      {/*
+        The thing that gives the mesh its shape
+        In this case the shape is a flat plane
+      */}
+      <planeGeometry />
+      {/*
+        The material gives a mesh its texture or look.
+        In this case, it is just a uniform green
+      */}
+      <meshBasicMaterial color="green" side={THREE.DoubleSide} />
+    </mesh>
+  );
+};
+
 function Logo() {
   const svgData = useLoader(SVGLoader, "logo.svg");
   const shapes = useMemo(() => {
@@ -57,8 +76,8 @@ function HeaderGfx() {
         <ambientLight />
         <spotLight position={[10, 10, 10]} angle={0.25} penumbra={1} decay={0} intensity={Math.PI} />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        {/* <Box position={[0, 0, 0]} /> */}
         <Logo />
+        <Terrain />
         <EffectComposer multisampling={4}>
           <Noise premultiply blendFunction={THREE.AdditiveBlending} />
 
