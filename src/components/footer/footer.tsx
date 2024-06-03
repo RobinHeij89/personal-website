@@ -1,5 +1,3 @@
-import React from 'react'
-import { Logo } from '../logo'
 import grid from '../grid/grid.module.css'
 import style from './footer.module.css';
 import clsx from 'clsx';

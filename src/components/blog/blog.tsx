@@ -1,4 +1,3 @@
-import React from 'react'
 import grid from '../grid/grid.module.css'
 import style from './blog.module.css';
 import clsx from 'clsx';

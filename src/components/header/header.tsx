@@ -1,4 +1,3 @@
-import React from 'react'
 import { Logo } from '../logo'
 import grid from '../grid/grid.module.css'
 import style from './header.module.css';

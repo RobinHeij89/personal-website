@@ -1,6 +1,6 @@
 import style from './gfx.module.css';
 import * as THREE from 'three'
-import React, { useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { EffectComposer, ASCII, Noise, TiltShift2 } from '@react-three/postprocessing'
 
@@ -32,7 +32,7 @@ function Logo() {
   }, [svgData]);
 
   const ref = useRef<THREE.Group>(null!)
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     ref.current.rotation.y = Math.sin(state.clock.getElapsedTime()) * 0.4
   })
 
