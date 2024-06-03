@@ -8,19 +8,37 @@ import { SVGLoader } from "three/examples/jsm/Addons.js";
 
 // import { noise } from "./perlin";
 
+import vertexShader from "!!raw-loader!./vertexShader.glsl";
+import fragmentShader from "!!raw-loader!./fragmentShader.glsl";
+
+
 function Terrain() {
+  // This reference will give us direct access to the mesh
+  const mesh = useRef<THREE.Mesh>();
+
+  const uniforms = useMemo(
+    () => ({
+      u_time: {
+        value: 0.0,
+      },
+      u_colorA: { value: new THREE.Color("#FFE486") },
+      u_colorB: { value: new THREE.Color("#FEB3D9") },
+    }), []
+  );
+
+  useFrame(({ clock }) => {
+    mesh.current.material.uniforms.u_time.value = clock.getElapsedTime();
+  });
+
   return (
-    <mesh>
-      {/*
-        The thing that gives the mesh its shape
-        In this case the shape is a flat plane
-      */}
-      <planeGeometry />
-      {/*
-        The material gives a mesh its texture or look.
-        In this case, it is just a uniform green
-      */}
-      <meshBasicMaterial color="green" side={THREE.DoubleSide} />
+    <mesh ref={mesh} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={1.5}>
+      <planeGeometry args={[1, 1, 16, 16]} />
+      <shaderMaterial
+        fragmentShader={fragmentShader}
+        vertexShader={vertexShader}
+        uniforms={uniforms}
+        wireframe={false}
+      />
     </mesh>
   );
 };
@@ -32,8 +50,8 @@ function Logo() {
   }, [svgData]);
 
   const ref = useRef<THREE.Group>(null!)
-  useFrame((state, _delta) => {
-    ref.current.rotation.y = Math.sin(state.clock.getElapsedTime()) * 0.4
+  useFrame(() => {
+    ref.current.rotation.y = Math.sin((window.scrollY / 500))
   })
 
   const scale = 1.5;
@@ -61,7 +79,7 @@ function Logo() {
           />
         ))}
         <meshPhongMaterial
-          color="#D84E30"
+          color="#ffffff"
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -79,10 +97,10 @@ function HeaderGfx() {
         <Logo />
         <Terrain />
         <EffectComposer multisampling={4}>
-          <Noise premultiply blendFunction={THREE.AdditiveBlending} />
+          {/* <Noise premultiply blendFunction={THREE.AdditiveBlending} /> */}
 
-          <TiltShift2 blur={0.5} />
-          <ASCII />
+          {/* <TiltShift2 blur={0.5} /> */}
+          {/* <ASCII /> */}
         </EffectComposer>
       </Canvas>
     </div>
