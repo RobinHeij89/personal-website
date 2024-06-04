@@ -34,7 +34,11 @@ export const Header = () => {
         </p>
       </div>
 
-      <HeaderGfx />
+      <div className={style['gfx-block']}>
+        <HeaderGfx />
+      </div>
+
+
 
       <div className={style.large}>
         Robinheij.dev

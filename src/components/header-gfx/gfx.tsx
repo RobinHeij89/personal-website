@@ -8,30 +8,57 @@ import { SVGLoader } from "three/examples/jsm/Addons.js";
 
 // import { noise } from "./perlin";
 
-import vertexShader from "!!raw-loader!./vertexShader.glsl";
-import fragmentShader from "!!raw-loader!./fragmentShader.glsl";
+const vertexShader = `uniform float u_time;
 
+varying float vZ;
+
+void main() {
+  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+  
+  modelPosition.y += sin(modelPosition.x * 5.0 + u_time * 3.0) * 0.1;
+  modelPosition.y += sin(modelPosition.z * 6.0 + u_time * 2.0) * 0.1;
+  
+  vZ = modelPosition.y;
+
+  vec4 viewPosition = viewMatrix * modelPosition;
+  vec4 projectedPosition = projectionMatrix * viewPosition;
+
+  gl_Position = projectedPosition;
+}
+`
+const fragmentShader = `uniform vec3 u_colorA;
+uniform vec3 u_colorB;
+varying float vZ;
+
+
+void main() {
+  vec3 color = mix(u_colorA, u_colorB, vZ * 2.0 + 0.5); 
+  gl_FragColor = vec4(color, 1.0);
+}
+`
 
 function Terrain() {
-  // This reference will give us direct access to the mesh
-  const mesh = useRef<THREE.Mesh>();
+  const mesh = useRef<THREE.Mesh>(null);
 
   const uniforms = useMemo(
     () => ({
       u_time: {
         value: 0.0,
       },
-      u_colorA: { value: new THREE.Color("#FFE486") },
-      u_colorB: { value: new THREE.Color("#FEB3D9") },
+      u_colorA: { value: new THREE.Color("#999999") },
+      u_colorB: { value: new THREE.Color("#ffffff") },
     }), []
   );
 
-  useFrame(({ clock }) => {
-    mesh.current.material.uniforms.u_time.value = clock.getElapsedTime();
+
+  useFrame((state) => {
+    const { clock } = state;
+    (mesh.current!.material as THREE.ShaderMaterial).uniforms.u_time.value = clock.getElapsedTime();
   });
 
+
   return (
-    <mesh ref={mesh} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={1.5}>
+    <mesh ref={mesh} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={10}>
       <planeGeometry args={[1, 1, 16, 16]} />
       <shaderMaterial
         fragmentShader={fragmentShader}
@@ -79,7 +106,7 @@ function Logo() {
           />
         ))}
         <meshPhongMaterial
-          color="#ffffff"
+          color="#000000"
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -90,18 +117,25 @@ function Logo() {
 function HeaderGfx() {
   return (
     <div className={style.canvas}>
-      <Canvas>
+      <Canvas camera={{}} style={{ position: 'absolute', zIndex: 2 }}>
         <ambientLight />
         <spotLight position={[10, 10, 10]} angle={0.25} penumbra={1} decay={0} intensity={Math.PI} />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
         <Logo />
-        <Terrain />
         <EffectComposer multisampling={4}>
           {/* <Noise premultiply blendFunction={THREE.AdditiveBlending} /> */}
 
           {/* <TiltShift2 blur={0.5} /> */}
-          {/* <ASCII /> */}
         </EffectComposer>
+      </Canvas>
+
+
+      <Canvas camera={{ position: [0, 2.0, 0] }} style={{ position: 'absolute', zIndex: 1 }}>
+        <ambientLight />
+        <spotLight position={[10, 10, 10]} angle={0.25} penumbra={1} decay={0} intensity={Math.PI} />
+        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+        <Terrain />
+
       </Canvas>
     </div>
   );

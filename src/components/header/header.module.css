@@ -30,7 +30,7 @@
   align-items: center;
   position: absolute;
   inset-block-start: 120px;
-  z-index: 2;
+  z-index: 3;
 
   & svg {
     width: 48px;
@@ -66,12 +66,12 @@
 .text-block{
   grid-column: 1 / span 6;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 40px 80px 40px 40px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-
+  grid-row: 1;
 
   & .background {
     z-index: -1;
@@ -83,6 +83,14 @@
     background-color: var(--color-white-100);
     border-bottom-right-radius: 32px;
   }
+}
+.gfx-block{
+  z-index: 1;
+  grid-column: 5 / -1;
+  grid-row: 1;
+  position: relative;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
 }
 
 .small{
@@ -100,6 +108,8 @@
   animation: paralax_text_small linear forwards;
   animation-timeline: view();
   transform: translateX(-50px);
+  z-index: 2;
+
 }
 
 @keyframes paralax_text_small {
@@ -122,6 +132,7 @@
   left: var(--grid-6-col);
   animation: paralax_text_large linear forwards;
   animation-timeline: view();
+  z-index: 2;
   transform: translateX(100px);
 }
 
@@ -135,6 +146,7 @@
   aspect-ratio: 1/1;
   width: var(--grid-4-col);
   position: absolute;
+  z-index: 2;
   right: var(--grid-1-col);
   bottom: 0;
   opacity:0.8;
