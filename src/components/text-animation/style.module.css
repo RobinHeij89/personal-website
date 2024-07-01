@@ -1,0 +1,20 @@
+.container{
+  overflow: hidden;
+  padding: 5px;
+
+  span {
+    display: inline-block;
+    transform: translateY(100%) rotate(-2deg);
+    will-change: transform;
+      animation: 1s ease-out 0s 1 textAnimation forwards;
+  }
+}
+
+@keyframes textAnimation {
+  from{
+      transform: translateY(100%) rotate(-2deg);
+  }
+  to {
+    transform: translateY(0) rotate(0deg);
+  }
+}

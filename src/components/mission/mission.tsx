@@ -1,4 +1,5 @@
 import grid from '../grid/grid.module.css'
+import { TextAnimation } from '../text-animation';
 import style from './mission.module.css';
 import clsx from 'clsx';
 
@@ -6,12 +7,15 @@ export const Mission = () => {
   return (
     <div className={clsx(grid.grid, style.wrapper)}>
       <div className={style.tag}>
-        <h2>
-          Levering my skills
-          <span>
-            for positive change.
-          </span>
-        </h2>
+        <TextAnimation>
+          <h2>
+            Levering my skills
+            <span>
+              for positive change.
+            </span>
+          </h2>
+        </TextAnimation>
+
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis dapibus sapien. Duis ac erat ac ligula facilisis convallis ac et ante. Mauris nec leo nibh.
         </p>

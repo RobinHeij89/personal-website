@@ -3,6 +3,7 @@ import grid from '../grid/grid.module.css'
 import style from './header.module.css';
 import clsx from 'clsx';
 import HeaderGfx from '../header-gfx/gfx';
+import { TextAnimation } from '../text-animation';
 
 
 export const Header = () => {
@@ -24,11 +25,13 @@ export const Header = () => {
 
       <div className={style['text-block']}>
         <div className={style.background}></div>
-        <h2>
-          <span>
-            Conscious
-          </span> Creative Developer
-        </h2>
+        <TextAnimation>
+          <h2>
+            <span>
+              Conscious
+            </span> Creative Developer
+          </h2>
+        </TextAnimation>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis dapibus sapien. Duis ac erat ac ligula facilisis convallis ac et ante. Mauris nec leo nibh. Aliquam erat volutpat.
         </p>
