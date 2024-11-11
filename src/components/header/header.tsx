@@ -2,7 +2,6 @@ import { Logo } from '../logo'
 import grid from '../grid/grid.module.css'
 import style from './header.module.css';
 import clsx from 'clsx';
-import HeaderGfx from '../header-gfx/gfx';
 import { TextAnimation } from '../text-animation';
 
 
@@ -36,26 +35,6 @@ export const Header = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis dapibus sapien. Duis ac erat ac ligula facilisis convallis ac et ante. Mauris nec leo nibh. Aliquam erat volutpat.
         </p>
       </div>
-
-      <div className={style['gfx-block']}>
-        <HeaderGfx />
-      </div>
-
-
-
-      <div className={style.large}>
-        Robinheij.dev
-      </div>
-
-      <div className={style.small}>
-        Robinheij.dev
-      </div>
-
-      <div className={style['photo-container']}>
-        <img src='./robin.jpg' alt="Robin Heij" className={style.photo} />
-      </div>
-
-
     </header>
   )
 }

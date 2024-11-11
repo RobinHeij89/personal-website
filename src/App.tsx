@@ -1,4 +1,4 @@
-import { Blog, Clients, Header, Mission, Footer } from "./components"
+import { Clients, Header, Mission, Footer } from "./components"
 
 function App() {
   return (
@@ -8,30 +8,9 @@ function App() {
       <main>
         <Mission />
         <Clients />
-        <Blog />
       </main>
 
       <Footer />
-      {/* <footer>
-        <img src='https://placekitten.com/200/300' alt="Photo" />
-        <ul>
-          <li>
-            <p>Robin Heij</p>
-          </li>
-
-          <li>
-            <p>Freelance Developer</p>
-          </li>
-
-          <li>
-            <p>Based in Rotterdam, the Netherlands</p>
-          </li>
-
-          <li>
-            <p>Copyright</p>
-          </li>
-        </ul>
-      </footer> */}
     </>
   )
 }
