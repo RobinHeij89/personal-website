@@ -4,13 +4,13 @@ function App() {
   return (
     <>
       <Header />
-
+{/* 
       <main>
         <Mission />
         <Clients />
       </main>
 
-      <Footer />
+      <Footer /> */}
     </>
   )
 }
