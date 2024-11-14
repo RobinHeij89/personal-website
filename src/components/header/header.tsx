@@ -18,8 +18,23 @@ export const Header = () => {
         </h1>
 
         <p className={clsx(style.location, style.typography)}>Based in Rotterdam, the Netherlands</p>
+        <div className={style.divider} />
       </div>
-      <div className={style.divider} />
+
+      <div className={clsx(grid.grid, style['headshot-wrapper'])}>
+        <div className={style.headshot}>
+          <div className={style['image-wrapper']}>
+            <img src="/robin.jpg" alt="Robin Heij" />
+          </div>
+        </div>
+      </div>
+
+      <div className={clsx(grid.grid, style['introduction-wrapper'])}>
+        <div className={style.introduction}>
+          <p>Hello, my name is Robin, and I love</p>
+          <h2>Building digital products, brands and experiences</h2>
+        </div>
+      </div>
     </header>
   )
 }
