@@ -2,49 +2,4 @@
   width: 100vw;
   padding: 180px 0;
   position: relative;
-  &:before{
-    content: '';
-    inset: 0 0 0 0;
-    position: absolute;
-    background-color: var(--color-sand-500);
-    opacity: 0.2;
-    z-index: -1;
-  }
-}
-
-.tag{
-  grid-column: 3 / span 4;
-  align-self: start;
-
-  h2{
-    font-size: calc((72 / 16) * 1rem);
-    line-height: calc((72 / 16) * 1rem);
-
-    span{
-      display: block;
-      &:after{
-        content: none;
-      }
-    }
-  }
-}
-.gfx{
-  grid-column: 7 / span 2;
-  aspect-ratio: 2 / 3;
-  border-radius: calc(var(--grid-2-col) / 2);
-  align-self: stretch;
-  overflow: hidden;
-  width: 100%;
-
-  & img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-}
-
-.tail{
-  grid-column: 9 / span 4;
-  align-self: end;
 }
