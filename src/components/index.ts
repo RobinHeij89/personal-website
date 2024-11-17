@@ -1,6 +1,5 @@
 export * from './logo'
 export * from './header'
-export * from './mission'
+export * from './expertise'
 export * from './clients'
-export * from './blog'
 export * from './footer'

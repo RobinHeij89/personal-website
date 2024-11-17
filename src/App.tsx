@@ -1,16 +1,14 @@
-import { Clients, Header, Mission, Footer } from "./components"
+import { Clients, Header, Footer, Expertise } from "./components"
 
 function App() {
   return (
     <>
       <Header />
-{/* 
       <main>
-        <Mission />
         <Clients />
+        <Expertise />
       </main>
-
-      <Footer /> */}
+      <Footer />
     </>
   )
 }

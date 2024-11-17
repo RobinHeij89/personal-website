@@ -1,6 +1,6 @@
 .wrapper{
   width: 100vw;
-  background-color: var(--color-sand-500);
+  background-color: var(--color-grey-700);
   padding: 60px 0;
   
   .image-container{

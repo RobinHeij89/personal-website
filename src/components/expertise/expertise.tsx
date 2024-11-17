@@ -1,9 +1,9 @@
 import grid from '../grid/grid.module.css'
 import { TextAnimation } from '../text-animation';
-import style from './mission.module.css';
+import style from './expertise.module.css';
 import clsx from 'clsx';
 
-export const Mission = () => {
+export const Expertise = () => {
   return (
     <div className={clsx(grid.grid, style.wrapper)}>
       <div className={style.tag}>
