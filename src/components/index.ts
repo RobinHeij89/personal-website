@@ -1,5 +1,0 @@
-export * from './logo'
-export * from './header'
-export * from './expertise'
-export * from './clients'
-export * from './footer'
