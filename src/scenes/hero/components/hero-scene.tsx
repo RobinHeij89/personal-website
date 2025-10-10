@@ -41,7 +41,7 @@ export const HeroScene: React.FC = () => {
         position={[0, 0, 0]} 
         rotation={[-0.1, 0, 0.15]}
         scale={3}
-        colors={["#FAF8F1", "#FAEAB1", "#34656D", "#334443", "#2A3A3B"]}
+        colors={["#F38181", "#FCE38A", "#EAFFD0", "#95E1D3", "#18322d"]}
       />
     </>
   );

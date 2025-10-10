@@ -66,17 +66,13 @@ export const AnimatedPlane: React.FC<AnimatedPlaneProps> = ({
   useFrame((state) => {
     if (meshRef.current && shaderMaterial.uniforms) {
       const time = state.clock.elapsedTime;
-      shaderMaterial.uniforms.time.value = time/10;
-      shaderMaterial.uniforms.progress.value = (Math.sin(time * 0.2) + 1) / 2; // 0 to 1 oscillation
+      shaderMaterial.uniforms.time.value = time/25;
+      shaderMaterial.uniforms.progress.value = (Math.sin(time * 0.4) + 1) / 2; // 0 to 1 oscillation
       
       // Update resolution for responsive behavior
       const { width, height } = state.size;
       shaderMaterial.uniforms.resolution.value.set(width, height, width / height, height / width);
       shaderMaterial.uniforms.pixels.value.set(width, height);
-      
-      // Scale the mesh based on time - oscillates between base scale and 2x base scale
-      const scaleFactor = scale * (1 + 0.05 * Math.sin(time * 0.1));
-      meshRef.current.scale.setScalar(scaleFactor);
     }
   });
 
