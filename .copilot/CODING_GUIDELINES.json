@@ -1,0 +1,494 @@
+{
+    "_comment": "Machine-parseable coding guidelines for AI assistants and automated tooling",
+    "version": 1,
+    "aiCoDeveloperRole": {
+        "purpose": "AI co-developer that enforces and teaches coding standards for Robin Heij's portfolio website",
+        "responsibilities": {
+            "fullComponentGeneration": "When asked to generate a complete component, follow ALL guidelines: create .tsx + .module.css files with proper structure, naming, and documentation. Tests only when explicitly requested.",
+            "problemSolving": "When helping with specific file problems, solve the immediate issue while also advising on guideline compliance",
+            "guidanceApproach": "Proactively suggest improvements when code doesn't meet guidelines, but prioritize solving the human developer's immediate need first",
+            "teaching": "Explain WHY guidelines exist when suggesting changes, helping developers understand the reasoning"
+        },
+        "behaviorRules": {
+            "alwaysEnforce": [
+                "File structure and naming conventions",
+                "TypeScript naming conventions",
+                "CSS modules with BEM methodology",
+                "Component documentation structure",
+                "Three.js and React Three Fiber best practices"
+            ],
+            "gentlyAdvise": [
+                "Code style improvements",
+                "Better architectural patterns",
+                "Performance optimizations for 3D content",
+                "Accessibility considerations"
+            ],
+            "challengeGuidanceViolations": {
+                "when": "Human requests something that directly contradicts established coding guidelines",
+                "action": "Ask if this is intentional and if guidelines need updating",
+                "examples": [
+                    "Request to create styled-components instead of CSS modules",
+                    "Request to create barrel files (index.ts exports)",
+                    "Request to skip component documentation",
+                    "Request to ignore Three.js performance best practices"
+                ],
+                "response": "I notice this request goes against our coding guidelines which require [specific guideline]. Is this intentional? Should we update the guidelines, or would you like me to implement it following the current standards?"
+            },
+            "balancePriorities": "Address immediate developer needs first, then suggest guideline improvements as secondary advice"
+        }
+    },
+    "project": {
+        "name": "Robin Heij Portfolio Website",
+        "description": "Personal portfolio website showcasing frontend/UI/UX design work using Three.js and React Three Fiber",
+        "references": {
+            "bulletproofReact": "https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md",
+            "reactThreeFiber": "https://docs.pmnd.rs/react-three-fiber/getting-started/introduction",
+            "threejs": "https://threejs.org/docs/"
+        },
+        "context": {
+            "application": "Personal portfolio website for Robin Heij - showcasing frontend development and UI/UX design skills",
+            "deployment": "Static website deployment (Vercel, Netlify, or similar)",
+            "architecture": "Single-page React application with Three.js 3D scenes and interactive elements",
+            "audience": "Potential employers, clients, and collaborators in web development and design",
+            "considerations": [
+                "Performance optimization for 3D content",
+                "Mobile-responsive 3D experiences",
+                "Accessibility for users who may have issues with 3D motion",
+                "Fast loading times for portfolio showcase",
+                "SEO optimization for portfolio visibility"
+            ]
+        }
+    },
+    "architecture": {
+        "structure": {
+            "root": [
+                "configuration files (package.json, tsconfig.json, vite.config.ts, etc.)",
+                "build outputs (dist/)",
+                "development tools (.copilot/)",
+                "static assets (public/)",
+                "source code (src/)"
+            ],
+            "src": [
+                "assets/ - static resources, textures, models, and media files",
+                "components/ - reusable UI and 3D components",
+                "scenes/ - Three.js scenes and 3D environments",
+                "hooks/ - custom React hooks for 3D interactions and state",
+                "lib/ - configured third-party libraries and Three.js utilities",
+                "types/ - shared TypeScript types and interfaces",
+                "utils/ - utility functions for math, animations, and helpers",
+                "styles/ - global styles and CSS modules",
+                "app entry points and configuration (App.tsx, main.tsx)"
+            ],
+            "components": [
+                "ui/ - 2D UI components (buttons, navigation, overlays)",
+                "three/ - 3D components using React Three Fiber",
+                "layout/ - page layout and structure components"
+            ],
+            "scenes": [
+                "Each scene should be self-contained:",
+                "components/ - scene-specific 3D objects and groups",
+                "hooks/ - scene-specific interaction hooks",
+                "utils/ - scene-specific calculations and helpers",
+                "types/ - scene-specific type definitions"
+            ],
+            "testStructure": [
+                "Optional unit tests - {ComponentName}.test.tsx alongside components when needed",
+                "Focus on testing utility functions and complex logic rather than 3D rendering"
+            ]
+        },
+        "rules": {
+            "bulletproofStructure": {
+                "scenes": "Scene-based organization where each 3D scene is self-contained",
+                "components": "Separate 2D UI components from 3D Three.js components",
+                "unidirectional": "Code flows from shared -> scenes -> app level",
+                "noBarrelFiles": "Import files directly, avoid index.ts barrel exports for performance"
+            },
+            "dependencyBoundaries": {
+                "scenes": "Scenes can only import from shared modules (components, hooks, lib, utils, types). No cross-scene imports.",
+                "shared": "Shared modules (components, hooks, lib, utils, types) cannot import from scenes or app",
+                "app": "App level can import from scenes and shared modules",
+                "noCrossSceneInternals": true,
+                "noBarrelFiles": true
+            },
+            "sceneStructure": {
+                "selfContained": "Each scene should contain everything it needs: components/, hooks/, utils/, types/",
+                "isolation": "Scenes should not import from other scenes directly",
+                "composition": "Compose scenes at the application level"
+            },
+            "importOrder": [
+                "external libraries (React, Three.js, @react-three/fiber, etc.)",
+                "@/ absolute imports (internal modules)",
+                "relative imports (./component, ../utils)",
+                "CSS modules (always last)"
+            ],
+            "importExamples": {
+                "correct": [
+                    "import React from 'react';",
+                    "import * as THREE from 'three';",
+                    "import { Canvas, useFrame } from '@react-three/fiber';",
+                    "import { OrbitControls } from '@react-three/drei';",
+                    "import { Button } from '@/components/ui/button';",
+                    "import { useAnimation } from '../hooks/useAnimation';",
+                    "import styles from './component.module.css';"
+                ]
+            },
+            "components": {
+                "organization": "Separate 2D UI components from 3D Three.js components",
+                "location": "UI components in src/components/ui/, 3D components in src/components/three/, scene-specific in src/scenes/{scene}/components/",
+                "requiredFiles": [
+                    "{ComponentName}.tsx",
+                    "{ComponentName}.module.css"
+                ],
+                "optionalFiles": [
+                    "{ComponentName}.test.tsx (only when complex logic needs testing)"
+                ],
+                "noBarrelFiles": "Do not create index.ts files - import components directly from their .tsx files",
+                "exportStyle": "named",
+                "documentationComment": {
+                    "required": true,
+                    "format": "markdown",
+                    "headerPrefix": "## Component: {ComponentName}",
+                    "sections": [
+                        {
+                            "title": "Purpose",
+                            "type": "description",
+                            "description": "Brief description of what this component does and its role in the portfolio."
+                        },
+                        {
+                            "title": "Props",
+                            "type": "list", 
+                            "description": "List all component props with types and optional flags."
+                        },
+                        {
+                            "title": "Example",
+                            "type": "code",
+                            "language": "tsx",
+                            "description": "Provide a single minimal example of correct usage."
+                        }
+                    ],
+                    "exampleTemplate": [
+                        "## Component: AnimatedSphere",
+                        "",
+                        "### Purpose:",
+                        "A floating sphere with rotation animation for the hero section background",
+                        "",
+                        "### Props:",
+                        "- `position?: [number, number, number]`",
+                        "- `color?: string`",
+                        "- `speed?: number`",
+                        "",
+                        "### Example:",
+                        "<AnimatedSphere position={[0, 0, 0]} color=\"#ff6b6b\" speed={0.01} />"
+                    ]
+                }
+            }
+        }
+    },
+    "typescript": {
+        "namingConventions": {
+            "locals": "camelCase",
+            "booleans": "is/has/can/should + PascalCase",
+            "constants": "UPPER_CASE",
+            "functions": "camelCase",
+            "types": "PascalCase",
+            "components": "PascalCase",
+            "propTypes": "ComponentNameProps",
+            "callbacks": {
+                "propPrefix": "on",
+                "handlerPrefix": "handle"
+            }
+        },
+        "exports": "named",
+        "typeInference": {
+            "preferInference": true,
+            "preferNarrowTypes": true,
+            "allowExplicitTypesWhenClarifying": true
+        },
+        "constAssertion": true,
+        "preferUnionOverFlags": true
+    },
+    "react": {
+        "useEffectPolicy": "avoid-listeners",
+        "useEffectAllowedCases": [
+            "event listeners",
+            "Three.js scene setup and cleanup",
+            "browser side-effects",
+            "animation loops with useFrame"
+        ],
+        "reactThreeFiber": {
+            "useFrame": "Prefer useFrame from @react-three/fiber for animation loops instead of useEffect",
+            "refs": "Use useRef for accessing Three.js objects directly",
+            "performance": "Use React.memo for components that don't need frequent re-renders",
+            "suspense": "Use React.Suspense for loading 3D assets and models"
+        }
+    },
+    "styling": {
+        "approach": "CSS Modules with custom properties for theming",
+        "cssModules": {
+            "naming": "kebab-case with BEM modifiers",
+            "examples": {
+                "base": ".container",
+                "modifier": ".container--hidden, .container--large",
+                "element": ".container__header, .container__footer",
+                "state": ".container--is-active, .container--is-disabled"
+            },
+            "conditionalClasses": "Use clsx package for conditional styling",
+            "preferClassNames": "Always prefer CSS modules className over inline styles for better maintainability and performance"
+        },
+        "customProperties": {
+            "colors": {
+                "primary": "--color-primary",
+                "secondary": "--color-secondary", 
+                "accent": "--color-accent",
+                "background": "--color-background",
+                "text": "--color-text"
+            },
+            "spacing": {
+                "prefix": "--space-",
+                "scale": "xs, sm, md, lg, xl, 2xl"
+            },
+            "typography": {
+                "sizes": "--font-size-sm, --font-size-base, --font-size-lg, --font-size-xl",
+                "weights": "--font-weight-normal, --font-weight-medium, --font-weight-bold"
+            },
+            "animations": {
+                "duration": "--duration-fast, --duration-normal, --duration-slow",
+                "easing": "--ease-in, --ease-out, --ease-in-out"
+            }
+        },
+        "threeJsStyling": {
+            "materials": "Define material properties as constants for reusability",
+            "colors": "Use consistent color palette across 2D and 3D elements",
+            "responsiveDesign": "Adjust camera settings and object scales for different screen sizes"
+        }
+    },
+    "testing": {
+        "philosophy": "Test only when it adds value - focus on complex logic, utilities, and critical user interactions",
+        "types": {
+            "unit": "Jest tests for utility functions and complex component logic (*.test.tsx)",
+            "manual": "Manual testing for 3D interactions and visual elements"
+        },
+        "whenToTest": [
+            "Complex utility functions (math calculations, data transformations)",
+            "Custom hooks with complex logic",
+            "Components with important business logic",
+            "Critical user interaction flows"
+        ],
+        "whenNotToTest": [
+            "Simple presentational components",
+            "Three.js rendering (test manually)",
+            "CSS styling and layout",
+            "Basic prop passing"
+        ],
+        "optionalFiles": [
+            "{ComponentName}.test.tsx (only when complex logic justifies testing)"
+        ],
+        "testUtils": {
+            "customRender": "Create custom render function with necessary providers when needed",
+            "factories": "Use simple factory functions for creating test data",
+            "imports": "Import render, screen, fireEvent, waitFor from '@testing-library/react'",
+            "asyncTesting": "Use waitFor for async operations, renderHook for testing custom hooks"
+        },
+        "mockingStrategy": {
+            "external": "Mock external dependencies and complex Three.js objects",
+            "jest": "Use jest.mock() for module mocking when necessary",
+            "components": "Mock complex child components when testing parent components"
+        },
+        "patterns": {
+            "testStructure": "Use describe() for test grouping, it() for individual tests",
+            "selectors": "Use data-testid attributes for critical test queries",
+            "setup": "Set up mocks in beforeEach blocks when needed",
+            "cleanup": "Clear mocks with jest.clearAllMocks() in afterEach when needed"
+        },
+        "testSelectors": "Use data-testid attributes sparingly - only for components that will be tested",
+        "performance": {
+            "threeJs": "Don't test Three.js rendering performance in unit tests",
+            "focus": "Focus tests on logic that affects user experience or data integrity"
+        }
+    },
+    "accessibility": {
+        "standard": "WCAG 2.1 Level AA",
+        "importance": "Critical for portfolio website - demonstrates professional understanding of inclusive design",
+        "requirements": {
+            "keyboard": "All interactive elements must be keyboard accessible",
+            "screenReader": "Proper semantic HTML and ARIA labels for screen readers",
+            "colorContrast": "Minimum 4.5:1 contrast ratio for normal text, 3:1 for large text",
+            "focus": "Visible focus indicators on all interactive elements",
+            "motion": "Respect prefers-reduced-motion for users with vestibular disorders - crucial for 3D content",
+            "language": "Set proper lang attributes for content language",
+            "landmarks": "Use semantic HTML5 elements and ARIA landmarks"
+        },
+        "threeJsSpecific": {
+            "motionSensitivity": {
+                "reducedMotion": "Provide static or greatly reduced animation alternatives",
+                "userControl": "Allow users to pause, stop, or control animation speed",
+                "implementation": "Check prefers-reduced-motion CSS media query and provide fallbacks"
+            },
+            "alternatives": {
+                "textDescriptions": "Provide text descriptions for complex 3D scenes",
+                "fallbacks": "Offer 2D alternatives for essential information displayed in 3D",
+                "skipOptions": "Allow users to skip purely decorative 3D content"
+            },
+            "performance": {
+                "loadingStates": "Provide clear loading indicators for 3D content",
+                "errorStates": "Graceful fallbacks when WebGL is not supported",
+                "batteryAware": "Consider reducing 3D complexity on battery-powered devices"
+            }
+        },
+        "automation": {
+            "linting": {
+                "tool": "eslint-plugin-jsx-a11y",
+                "purpose": "Catch accessibility issues during development",
+                "integration": "Integrate in ESLint configuration"
+            },
+            "testing": {
+                "tool": "@testing-library/jest-dom",
+                "purpose": "Test accessibility attributes in unit tests",
+                "usage": "Use toHaveAttribute, toBeVisible, toHaveFocus matchers when testing"
+            }
+        },
+        "patterns": {
+            "focusManagement": "Use useRef and focus() for managing focus after interactions",
+            "announcements": "Use aria-live regions for dynamic content changes",
+            "labels": "Associate labels with form controls using htmlFor or aria-labelledby",
+            "descriptions": "Use aria-describedby for additional help text",
+            "states": "Use aria-expanded, aria-selected for interactive component states",
+            "skipLinks": "Provide skip links for users to bypass decorative 3D content"
+        }
+    },
+    "dependencies": {
+        "circularDependencies": {
+            "prohibited": true,
+            "prevention": {
+                "architecture": "Use unidirectional data flow and proper layered architecture",
+                "imports": "Never import parent modules from child modules",
+                "utilities": "Extract shared utilities to separate modules",
+                "types": "Use separate type definition files to avoid circular type imports"
+            },
+            "resolution": {
+                "extract": "Extract shared code to a common module",
+                "invert": "Use dependency inversion principle", 
+                "refactor": "Restructure components to eliminate circular references"
+            }
+        },
+        "threeJsSpecific": {
+            "core": "@react-three/fiber - React renderer for Three.js",
+            "helpers": "@react-three/drei - Useful helpers and abstractions",
+            "performance": "@react-three/postprocessing - Post-processing effects",
+            "physics": "@react-three/cannon or @react-three/rapier - Physics engines (when needed)",
+            "assets": "@react-three/assets - Asset loading utilities"
+        },
+        "management": {
+            "bundleSize": "Monitor bundle size carefully - Three.js can be large",
+            "treeshaking": "Ensure proper tree-shaking for Three.js modules",
+            "updates": "Regular dependency updates, especially for Three.js ecosystem",
+            "security": "Use package audit tools for security vulnerability checks"
+        }
+    },
+    "performance": {
+        "threeJs": {
+            "optimization": [
+                "Use instancedMesh for repeated geometries",
+                "Implement frustum culling for off-screen objects",
+                "Use LOD (Level of Detail) for complex models",
+                "Optimize texture sizes and formats",
+                "Dispose of geometries and materials when not needed"
+            ],
+            "reactThreeFiber": [
+                "Use React.memo for components that don't need frequent updates",
+                "Leverage useFrame for animation loops instead of useEffect",
+                "Minimize state changes that trigger re-renders",
+                "Use refs to access Three.js objects directly when needed"
+            ],
+            "mobile": [
+                "Reduce polygon count for mobile devices",
+                "Use simpler shaders on mobile",
+                "Implement adaptive quality based on device capabilities",
+                "Consider battery usage for animations"
+            ]
+        },
+        "web": {
+            "codesplitting": "Implement route-based code splitting",
+            "lazyLoading": "Lazy load 3D scenes and heavy components",
+            "caching": "Implement proper caching strategies for 3D assets",
+            "compression": "Use compressed texture formats when possible"
+        }
+    },
+    "codeQuality": {
+        "requiredCommands": {
+            "linting": {
+                "command": "npm run lint (or pnpm run lint)",
+                "purpose": "Check code style and catch potential issues",
+                "requirement": "Must pass without errors before code submission",
+                "includes": "ESLint + Prettier formatting"
+            }
+        },
+        "optionalCommands": {
+            "testing": {
+                "command": "npm test (or pnpm test)",
+                "purpose": "Run unit tests for utilities and complex components",
+                "requirement": "Tests should pass when they exist",
+                "scope": "Only test complex logic, not simple presentational components"
+            },
+            "build": {
+                "command": "npm run build (or pnpm build)",
+                "purpose": "Verify production build works correctly",
+                "requirement": "Should build without errors",
+                "checks": "Bundle size, Three.js compatibility, asset loading"
+            }
+        },
+        "cicd": {
+            "preCommit": "Run linting before committing code",
+            "deployment": "Ensure production build passes before deployment",
+            "bundleSize": "Monitor bundle size changes in CI/CD"
+        }
+    },
+    "errorHandling": {
+        "strategy": "Fail fast with descriptive error messages",
+        "boundaries": "Use React Error Boundaries for component trees",
+        "logging": "Log errors with context for debugging",
+        "userFeedback": "Provide meaningful feedback to users",
+        "threeJsSpecific": {
+            "webglSupport": "Graceful fallback when WebGL is not supported",
+            "assetLoading": "Handle failed texture/model loading gracefully",
+            "performance": "Detect and respond to poor performance on lower-end devices"
+        }
+    },
+    "style": {
+        "functionalProgramming": true,
+        "singleResponsibility": true,
+        "flatControlFlow": true,
+        "preferDescriptiveNames": true,
+        "machineReadableComments": true,
+        "avoidComments": false,
+        "commentPolicy": "Comments must follow structured, machine-parseable markdown headers per component file."
+    },
+    "git": {
+        "commitConventions": "conventional-commits",
+        "requireDescriptiveMessages": true,
+        "branchStrategy": "Simple feature branches for portfolio iterations"
+    },
+    "copilot": {
+        "priorityRules": [
+            "When generating a component, include a structured markdown comment header with 'Purpose', 'Props', and 'Example'.",
+            "Follow scene-based organization: each 3D scene is self-contained with its own components, hooks, and utilities.",
+            "Generate component and CSS module files together. Only create test files when complex logic justifies testing.",
+            "Do not create index.ts barrel files - import components directly from .tsx files.",
+            "Separate 2D UI components (src/components/ui/) from 3D components (src/components/three/).",
+            "Scenes should be self-contained: no cross-scene imports, compose at app level.",
+            "Follow unidirectional architecture: shared -> scenes -> app.",
+            "Prefer functional components with early returns.",
+            "Use named exports and explicit imports (no barrels).",
+            "Use CSS modules with custom properties for theming instead of design system.",
+            "Follow import order: external libraries (React, Three.js, R3F), @/ imports, relative imports, CSS modules last.",
+            "Use TypeScript naming conventions: camelCase for variables, PascalCase for types/components.",
+            "Prioritize accessibility: WCAG 2.1 Level AA compliance, motion sensitivity for 3D content, keyboard navigation.",
+            "Use React Three Fiber best practices: useFrame for animations, React.memo for performance, Suspense for loading.",
+            "Implement proper Three.js performance optimizations: instancing, LOD, frustum culling, disposal.",
+            "Test only complex logic and utilities - not simple presentational components or 3D rendering.",
+            "Prevent circular dependencies: use unidirectional imports, extract shared utilities.",
+            "Handle WebGL gracefully: fallbacks for unsupported devices, error boundaries for 3D content.",
+            "Respect prefers-reduced-motion: provide static alternatives for users with vestibular disorders."
+        ]
+    }
+}

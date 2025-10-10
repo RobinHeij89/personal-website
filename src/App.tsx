@@ -1,41 +1,38 @@
-import { Logo } from "./components/logo/logo";
-import * as THREE from "three";
+/**
+ * ## Component: App
+ * 
+ * ### Purpose:
+ * Main application component that orchestrates the 3D portfolio experience.
+ * Provides the layout structure and renders the hero scene.
+ * 
+ * ### Props:
+ * None - root application component
+ * 
+ * ### Example:
+ * ```tsx
+ * <App />
+ * ```
+ */
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight);
-const renderer = new THREE.WebGLRenderer();
+import React from 'react';
+import { Scene3D } from '@/components/three/scene-3d';
+import { HeroScene } from '@/scenes/hero/components/hero-scene';
+import styles from './app.module.css';
 
-const addSphere = () => {
-  const geometry = new THREE.SphereGeometry(1, 32, 32);
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
+export const App: React.FC = () => {
+  return (
+    <main className={styles.main}>
+      <section className={styles.hero} aria-label="Hero section with 3D animation">
+        <div className={styles.heroContent}>
+          <h1 className={styles.title}>Robin Heij</h1>
+          <p className={styles.subtitle}>Frontend Developer & UI/UX Designer</p>
+        </div>
+        <Scene3D className={styles.scene}>
+          <HeroScene />
+        </Scene3D>
+      </section>
+    </main>
+  );
 };
-
-const renderScene = () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  camera.position.z = 4;
-  renderer.render(scene, camera);
-};
-
-
-const onResize = () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.render(scene, camera);
-}
-
-window.addEventListener("resize", onResize);
-
-
-addSphere();
-renderScene();
-
-function App() {
-  return <main></main>;
-}
 
 export default App;

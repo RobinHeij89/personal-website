@@ -1,0 +1,37 @@
+{
+  "hash": "f94f443f",
+  "configHash": "2c172ec2",
+  "lockfileHash": "8a11fbb7",
+  "browserHash": "b55b8051",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/.pnpm/react@19.2.0/node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "f7ab8394",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/.pnpm/react@19.2.0/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "1456e3e5",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/.pnpm/react-dom@19.2.0_react@19.2.0/node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "63bc7672",
+      "needsInterop": true
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/.pnpm/@react-three+fiber@9.3.0_@types+react@19.2.2_react-dom@19.2.0_react@19.2.0__react@19.2.0_three@0.180.0/node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "15e04f1b",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-LP2LJI2U": {
+      "file": "chunk-LP2LJI2U.js"
+    }
+  }
+}
