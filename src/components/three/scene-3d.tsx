@@ -30,7 +30,7 @@ interface Scene3DProps {
 
 export const Scene3D: React.FC<Scene3DProps> = ({
   children,
-  camera = { position: [0, 0, 5], fov: 75 },
+  camera = { position: [0, 0, 0], fov: 75 },
   className
 }) => {
   const containerClasses = className 
@@ -44,7 +44,8 @@ export const Scene3D: React.FC<Scene3DProps> = ({
         dpr={[1, 2]}
         className={styles.canvas}
         role="img"
-        aria-label="Interactive 3D scene"
+        aria-label="Interactive 3D scene with flowing surface animation"
+        gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={null}>
           {children}
