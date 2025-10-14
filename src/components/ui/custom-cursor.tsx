@@ -23,6 +23,8 @@ export const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorText, setCursorText] = useState('');
+  const [cursorType, setCursorType] = useState('');
+  const [logoPosition, setLogoPosition] = useState({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -36,7 +38,17 @@ export const CustomCursor: React.FC = () => {
 
     // Use requestAnimationFrame for smoother updates
     rafRef.current = requestAnimationFrame(() => {
-      cursor.style.transform = `translate(${mousePosition.x - 20}px, ${mousePosition.y - 20}px)`;
+      if (cursorType === 'logo') {
+        // Position cursor exactly at logo center
+        cursor.style.left = `${logoPosition.x}px`;
+        cursor.style.top = `${logoPosition.y}px`;
+        cursor.style.transform = `translate(-50%, -50%)`;
+      } else {
+        // Normal mouse following behavior
+        cursor.style.left = `${mousePosition.x}px`;
+        cursor.style.top = `${mousePosition.y}px`;
+        cursor.style.transform = `translate(-50%, -50%)`;
+      }
     });
 
     return () => {
@@ -44,7 +56,7 @@ export const CustomCursor: React.FC = () => {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [mousePosition]);
+  }, [mousePosition, cursorType, logoPosition]);
 
   useEffect(() => {
     // Add cursor hover effects to interactive elements
@@ -55,12 +67,24 @@ export const CustomCursor: React.FC = () => {
       setIsHovering(true);
       
       const cursorText = target.getAttribute('data-cursor') || 'CLICK';
+      const cursorType = target.getAttribute('data-cursor-type') || '';
       setCursorText(cursorText);
+      setCursorType(cursorType);
+
+      // If hovering over logo, get its position
+      if (cursorType === 'logo') {
+        const rect = target.getBoundingClientRect();
+        setLogoPosition({
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        });
+      }
     };
 
     const handleMouseLeave = () => {
       setIsHovering(false);
       setCursorText('');
+      setCursorType('');
     };
 
     interactiveElements.forEach(element => {
@@ -79,12 +103,18 @@ export const CustomCursor: React.FC = () => {
   return (
     <div 
       ref={cursorRef}
-      className={`${styles.cursor} ${isHovering ? styles['cursor--hover'] : ''}`}
+      className={`${styles.cursor} ${isHovering ? styles['cursor--hover'] : ''} ${cursorType === 'logo' ? styles['cursor--logo'] : ''}`}
     >
       <div className={styles.cursor__inner}>
-        {cursorText && (
+        {cursorType === 'logo' ? (
+          <img 
+            src="/logo.svg" 
+            alt="Robin Heij Logo"
+            className={styles.cursor__logo}
+          />
+        ) : cursorText ? (
           <span className={styles.cursor__text}>{cursorText}</span>
-        )}
+        ) : null}
       </div>
     </div>
   );

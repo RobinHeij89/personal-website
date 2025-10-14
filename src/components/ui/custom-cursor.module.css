@@ -6,12 +6,13 @@
   left: 0;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: var(--cursor-z-index);
-  will-change: transform;
+  will-change: transform, left, top;
   transition: width var(--duration-normal) var(--ease-out), 
-              height var(--duration-normal) var(--ease-out);
+              height var(--duration-normal) var(--ease-out),
+              left var(--duration-normal) var(--ease-out),
+              top var(--duration-normal) var(--ease-out);
 }
 
 .cursor__inner {
@@ -57,6 +58,35 @@
 
 .cursor--hover .cursor__text {
   opacity: 1;
+}
+
+/* Logo hover state - special orange circle morph */
+.cursor--logo {
+  width: 60px;
+  height: 60px;
+}
+
+.cursor--logo .cursor__inner {
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%; /* Make it a perfect circle */
+  transform: scale(1);
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.cursor--logo .cursor__text {
+  opacity: 1;
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.cursor__logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Make logo white */
 }
 
 /* Hide default cursor on desktop */

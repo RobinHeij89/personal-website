@@ -307,11 +307,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
   z-index: 2; /* Behind the work item content */
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s var(--ease-out);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   height: 200%; /* 200% of the work item height */
   aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
   background: white;
@@ -325,11 +325,17 @@
   height: 100%;
   object-fit: cover;
   border-radius: var(--border-radius-md);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* CSS-only hover trigger */
+/* Enhanced CSS-only hover trigger */
 .work-section__item:hover .work-section__item-hover-image {
   opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.work-section__item:hover .work-section__hover-img {
+  transform: scale(1.05);
 }
 
 /* Hover Image Functionality - Legacy (can be removed) */

@@ -34,10 +34,22 @@
   align-items: center;
 }
 
+.navigation__logo-button {
+  background: none;
+  border: none;
+  padding: var(--space-sm);
+  cursor: pointer;
+  border-radius: var(--border-radius-full);
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+}
+
 .navigation__logo {
   height: var(--nav-logo-height);
   width: auto;
   transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  z-index: 1;
 }
 
 .navigation--scrolled .navigation__logo {

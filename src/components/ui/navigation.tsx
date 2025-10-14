@@ -28,12 +28,19 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
   }, []);
 
   const smoothScrollTo = (elementId: string) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+    if (elementId === 'top') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
+    } else {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
     }
     setIsMobileMenuOpen(false);
   };
@@ -52,7 +59,14 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
         <div className={styles["navigation__container"]}>
           {/* Logo */}
           <div className={styles["navigation__logo-container"]}>
-            <Logo className={styles["navigation__logo"]} />
+            <button
+              onClick={() => smoothScrollTo('top')}
+              className={styles["navigation__logo-button"]}
+              data-cursor="HOME"
+              data-cursor-type="logo"
+            >
+              <Logo className={styles["navigation__logo"]} />
+            </button>
           </div>
 
           {/* Desktop Navigation */}
