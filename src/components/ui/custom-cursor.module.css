@@ -6,6 +6,7 @@
   left: 0;
   width: var(--cursor-size);
   height: var(--cursor-size);
+  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: var(--cursor-z-index);
   will-change: transform;
@@ -41,10 +42,8 @@
 
 /* Hover state modifier */
 .cursor--hover {
-  width: auto;
-  height: auto;
-  min-width: var(--cursor-size-hover-min-width);
-  min-height: var(--cursor-size-hover-height);
+  width: var(--cursor-size-hover-min-width);
+  height: var(--cursor-size-hover-height);
 }
 
 .cursor--hover .cursor__inner {

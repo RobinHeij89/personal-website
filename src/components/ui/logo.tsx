@@ -26,12 +26,14 @@ export const Logo: React.FC<LogoProps> = ({
   size = 'md',
   className = ''
 }) => {
+  const sizeModifier = size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large';
+  
   return (
-    <div className={`${styles.logo} ${styles[size]} ${className}`}>
+    <div className={`${styles.logo} ${styles[`logo--${sizeModifier}`]} ${className}`}>
       <img 
         src="/logo.svg" 
         alt="Robin Heij Logo"
-        className={styles.image}
+        className={styles["logo__image"]}
       />
     </div>
   );

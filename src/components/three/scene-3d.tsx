@@ -34,15 +34,15 @@ export const Scene3D: React.FC<Scene3DProps> = ({
   className
 }) => {
   const containerClasses = className 
-    ? `${styles.container} ${className}` 
-    : styles.container;
+    ? `${styles["scene-3d"]} ${className}` 
+    : styles["scene-3d"];
 
   return (
     <div className={containerClasses}>
       <Canvas
         camera={camera}
         dpr={[1, 2]}
-        className={styles.canvas}
+        className={styles["scene-3d__canvas"]}
         role="img"
         aria-label="Interactive 3D scene with flowing surface animation"
         gl={{ antialias: true, alpha: true }}

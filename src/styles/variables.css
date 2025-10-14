@@ -5,6 +5,7 @@
   --color-accent: #FFFFFF;      /* Pure white for high contrast */
   --color-accent-secondary: #FFA500; /* Bright orange for highlights */
   --color-background: #130705;  /* Very dark brown background */
+  --color-background-overlay: rgba(19, 7, 5, 0.95); /* Background with opacity for navigation */
   --color-surface: #1E1E1E;     /* Dark gray surface */
   --color-surface-light: #2A2A2A; /* Lighter surface for contrast */
   --color-text: #FFFFFF;        /* Pure white for maximum contrast */
@@ -51,9 +52,9 @@
   --line-height-loose: 2;
 
   /* Animations */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
+  --duration-fast: 300ms;
+  --duration-normal: 500ms;
+  --duration-slow: 700ms;
 
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -79,6 +80,79 @@
   --cursor-padding: var(--space-sm) var(--space-md);
   --cursor-backdrop-blur: blur(5px);
   --cursor-z-index: 9999;
+
+  /* Layout & Grid */
+  --max-width-content: 1400px;
+  --max-width-narrow: 1200px;
+  --max-width-hero-content: 800px;
+  --grid-gap-small: var(--space-md);
+  --grid-gap-medium: var(--space-xl);
+  --grid-gap-large: var(--space-2xl);
+
+  /* Components */
+  --header-height: 80px;
+  --header-height-scrolled: 64px;
+  --section-padding-vertical: var(--space-5xl);
+  --section-padding-horizontal: var(--space-lg);
+  
+  /* Hero Section */
+  --hero-min-height: calc(100vh - var(--header-height));
+  --hero-content-max-width: var(--max-width-hero-content);
+  
+  /* Contact Section */
+  --contact-content-max-width: var(--max-width-hero-content);
+  --contact-icon-size: 48px;
+  --contact-icon-size-mobile: 40px;
+  --contact-icon-inner-size: 24px;
+  --contact-icon-inner-size-mobile: 20px;
+  --contact-controller-width: 120px;
+  
+  /* Work Section */
+  --work-item-padding: var(--space-2xl) 0;
+  --work-number-width: 80px;
+  --work-logo-width: 160px;
+  
+  /* About Section */
+  --about-image-max-width: 280px;
+  
+  /* Navigation */
+  --nav-logo-height: 40px;
+  --nav-logo-height-scrolled: 32px;
+  --nav-backdrop-blur: blur(20px);
+  --nav-z-index: 1000;
+  
+  /* Logo Sizes */
+  --logo-size-small: 32px;
+  --logo-size-medium: 48px;
+  --logo-size-large: 64px;
+  --logo-size-small-mobile: 28px;
+  --logo-size-medium-mobile: 40px;
+  --logo-size-large-mobile: 48px;
+  
+  /* Backdrop Effects */
+  --backdrop-blur-light: blur(5px);
+  --backdrop-blur-medium: blur(10px);
+  --backdrop-blur-heavy: blur(20px);
+  
+  /* Opacity Values */
+  --opacity-disabled: 0.6;
+  --opacity-muted: 0.8;
+  --opacity-subtle: 0.9;
+  --opacity-overlay: 0.95;
+  
+  /* Border Styles */
+  --border-width-thin: 1px;
+  --border-width-normal: 2px;
+  --border-width-thick: 3px;
+  --border-color-light: rgba(255, 255, 255, 0.1);
+  --border-color-medium: rgba(255, 255, 255, 0.2);
+  --border-color-strong: rgba(255, 255, 255, 0.3);
+  
+  /* Breakpoints */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1200px;
+  --breakpoint-wide: 1400px;
 }
 
 /* Reduced motion preferences */

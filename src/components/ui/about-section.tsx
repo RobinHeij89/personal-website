@@ -46,31 +46,31 @@ export const AboutSection: React.FC = () => {
   return (
     <section 
       ref={sectionRef} 
-      className={`${styles.container} ${isVisible ? styles.visible : ''}`} 
+      className={`${styles["about-section"]} ${isVisible ? styles["about-section--visible"] : ''}`} 
       id="about"
     >
-      <div className={styles.content}>
-        <div className={styles.imageContainer}>
+      <div className={styles["about-section__content"]}>
+        <div className={styles["about-section__image-container"]}>
           <img 
             ref={magneticRef}
             src="/rose.png" 
             alt="Rose decorative element" 
-            className={styles.decorativeImage}
+            className={styles["about-section__decorative-image"]}
           />
         </div>
-        <div className={styles.textContent}>
-          <div className={styles.decorativeHeader}>
-            <span className={styles.symbol}>×</span>
-            <span className={styles.subtitle}>CREATIVE FRONTEND DEVELOPER</span>
-            <span className={styles.symbol}>×</span>
+        <div className={styles["about-section__text-content"]}>
+          <div className={styles["about-section__decorative-header"]}>
+            <span className={styles["about-section__symbol"]}>×</span>
+            <span className={styles["about-section__subtitle"]}>CREATIVE FRONTEND DEVELOPER</span>
+            <span className={styles["about-section__symbol"]}>×</span>
           </div>
           
-          <h2 className={styles.title}>
-            HI THERE <span className={styles.sparkle}>✦</span>
+          <h2 className={styles["about-section__title"]}>
+            HI THERE <span className={styles["about-section__sparkle"]}>✦</span>
           </h2>
           
-          <div className={styles.description}>
-            <p className={styles.intro}>
+          <div className={styles["about-section__description"]}>
+            <p className={styles["about-section__intro"]}>
               I'm a <strong>Frontend Developer & Design Enthusiast</strong> passionate about crafting 
               beautiful digital experiences that users actually love using.
             </p>
@@ -82,20 +82,20 @@ export const AboutSection: React.FC = () => {
             <p>
               Based in Rotterdam, Netherlands. Available for freelance work, one day a week.
             </p>
-            <p className={styles.highlight}>
+            <p className={styles["about-section__highlight"]}>
               With a background in design and a passion for interactive experiences, I approach 
               every project with creativity and attention to detail.
             </p>
           </div>
           
-          <div className={styles.socialSection}>
-            <p className={styles.connectText}>LET'S CONNECT! ☟</p>
-            <div className={styles.socialLinks}>
+          <div className={styles["about-section__social-section"]}>
+            <p className={styles["about-section__connect-text"]}>LET'S CONNECT! ☟</p>
+            <div className={styles["about-section__social-links"]}>
               <a 
                 href="https://www.linkedin.com/in/robinheij89/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={styles.socialLink}
+                className={styles["about-section__social-link"]}
                 aria-label="LinkedIn Profile"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -106,7 +106,7 @@ export const AboutSection: React.FC = () => {
                 href="https://www.instagram.com/rooobiin89/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={styles.socialLink}
+                className={styles["about-section__social-link"]}
                 aria-label="Instagram Profile"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -115,7 +115,7 @@ export const AboutSection: React.FC = () => {
               </a>
               <a 
                 href="mailto:info@robinheij.nl"
-                className={styles.socialLink}
+                className={styles["about-section__social-link"]}
                 aria-label="Send Email"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

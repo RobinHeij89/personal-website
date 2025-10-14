@@ -30,7 +30,7 @@ import '@/styles/animations.css';
 
 export const App: React.FC = () => {
   return (
-    <main className={styles.main}>
+    <main className={styles["app"]}>
       {/* Custom Cursor */}
       <CustomCursor />
       
@@ -41,42 +41,42 @@ export const App: React.FC = () => {
       <Navigation />
 
       {/* Hero Section with 3D Animation */}
-      <section id="hero" className={styles.hero} aria-label="Hero section with 3D animation">
-        <div className={styles.heroContent}>
-          <div className={`${styles.logoContainer} floating`}>
-            <Logo size="lg" className={styles.heroLogo} />
+      <section id="hero" className={styles["app__hero"]} aria-label="Hero section with 3D animation">
+        <div className={styles["app__hero-content"]}>
+          <div className={`${styles["app__logo-container"]} floating`}>
+            <Logo size="lg" className={styles["app__hero-logo"]} />
           </div>
-          <h1 className={`${styles.title} text-glow`}>Robin Heij</h1>
-          <p className={styles.subtitle}>Creative Frontend Wizard</p>
-          <p className={styles.tagline}>
+          <h1 className={`${styles["app__title"]} text-glow`}>Robin Heij</h1>
+          <p className={styles["app__subtitle"]}>Creative Frontend Wizard</p>
+          <p className={styles["app__tagline"]}>
             Building digital experiences that make people go "whoa!" 
             <br />
-            <span className={styles.funText}>Dad by day, code ninja by night 🥷</span>
+            <span className={styles["app__fun-text"]}>Dad by day, code ninja by night 🥷</span>
           </p>
-          <div className={styles.heroActions}>
+          <div className={styles["app__hero-actions"]}>
             <button 
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-              className={`${styles.heroButton} shimmer`}
+              className={`${styles["app__hero-button"]} shimmer`}
               data-cursor="SEE MAGIC"
             >
               See My Magic
             </button>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className={styles.heroButtonSecondary}
+              className={styles["app__hero-button--secondary"]}
               data-cursor="LET'S TALK"
             >
               Let's Chat
             </button>
           </div>
         </div>
-        <Scene3D className={styles.scene}>
+        <Scene3D className={styles["app__scene"]}>
           <HeroScene />
         </Scene3D>
       </section>
 
       {/* Content that scrolls over the fluid surface */}
-      <div className={styles.content}>
+      <div className={styles["app__content"]}>
         <div id="about">
           <AboutSection />
         </div>
@@ -90,28 +90,28 @@ export const App: React.FC = () => {
           <TestimonialsSection />
         </div>
         {/* Contact Section */}
-        <section id="contact" className={styles.contactSection}>
-          <div className={styles.contactContent}>
-            <div className={styles.contactHeader}>
+        <section id="contact" className={styles["app__contact-section"]}>
+          <div className={styles["app__contact-content"]}>
+            <div className={styles["app__contact-header"]}>
               <h2>Let's Create Something Amazing</h2>
               <p>Ready to bring your ideas to life? Let's chat over coffee and pixels.</p>
             </div>
             
-            <div className={styles.contactInfo}>
-              <a href="mailto:hello@robinheij.dev" className={styles.contactLink}>
+            <div className={styles["app__contact-info"]}>
+              <a href="mailto:hello@robinheij.dev" className={styles["app__contact-link"]}>
                 hello@robinheij.dev
               </a>
             </div>
             
-            <div className={styles.contactFooter}>
-              <div className={styles.socialSection}>
-                <h3 className={styles.socialTitle}>Let's Connect</h3>
-                <div className={styles.socialLinks}>
+            <div className={styles["app__contact-footer"]}>
+              <div className={styles["app__social-section"]}>
+                <h3 className={styles["app__social-title"]}>Let's Connect</h3>
+                <div className={styles["app__social-links"]}>
                   <a 
                     href="https://www.linkedin.com/in/robinheij89/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={styles.socialLink}
+                    className={styles["app__social-link"]}
                     aria-label="LinkedIn Profile"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -122,7 +122,7 @@ export const App: React.FC = () => {
                     href="https://www.instagram.com/rooobiin89/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={styles.socialLink}
+                    className={styles["app__social-link"]}
                     aria-label="Instagram Profile"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -131,7 +131,7 @@ export const App: React.FC = () => {
                   </a>
                   <a 
                     href="mailto:info@robinheij.nl"
-                    className={styles.socialLink}
+                    className={styles["app__social-link"]}
                     aria-label="Send Email"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -142,7 +142,7 @@ export const App: React.FC = () => {
                     href="https://wa.link/6zxss5" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={styles.socialLink}
+                    className={styles["app__social-link"]}
                     aria-label="WhatsApp Contact"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -155,9 +155,9 @@ export const App: React.FC = () => {
               <img 
                 src="/ps5-controller.svg" 
                 alt="PS5 Controller" 
-                className={styles.controllerIcon}
+                className={styles["app__controller-icon"]}
               />
-              <p className={styles.footerText}>
+              <p className={styles["app__footer-text"]}>
                 Always up for a gaming session between coding sprints! 🎮
               </p>
             </div>

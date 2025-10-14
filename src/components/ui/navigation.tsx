@@ -48,20 +48,20 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
   return (
     <>
-      <nav className={`${styles.navigation} ${isScrolled ? styles.scrolled : ''} ${className || ''}`}>
-        <div className={styles.container}>
+      <nav className={`${styles.navigation} ${isScrolled ? styles["navigation--scrolled"] : ''} ${className || ''}`}>
+        <div className={styles["navigation__container"]}>
           {/* Logo */}
-          <div className={styles.logoContainer}>
-            <Logo className={styles.logo} />
+          <div className={styles["navigation__logo-container"]}>
+            <Logo className={styles["navigation__logo"]} />
           </div>
 
           {/* Desktop Navigation */}
-          <ul className={styles.navItems}>
+          <ul className={styles["navigation__nav-items"]}>
             {navigationItems.map((item) => (
-              <li key={item.id} className={styles.navItem}>
+              <li key={item.id} className={styles["navigation__nav-item"]}>
                 <button
                   onClick={() => smoothScrollTo(item.id)}
-                  className={styles.navLink}
+                  className={styles["navigation__nav-link"]}
                 >
                   {item.label}
                 </button>
@@ -70,23 +70,23 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
           </ul>
 
           {/* Contact CTA */}
-          <div className={styles.ctaContainer}>
+          <div className={styles["navigation__cta-container"]}>
             <button
               ref={ctaRef}
               onClick={() => smoothScrollTo('contact')}
-              className={styles.ctaButton}
+              className={styles["navigation__cta-button"]}
             >
               Let's Talk
             </button>
-            <div className={styles.availability}>
-              <div className={styles.statusDot}></div>
-              <span className={styles.statusText}>Available</span>
+            <div className={styles["navigation__availability"]}>
+              <div className={styles["navigation__status-dot"]}></div>
+              <span className={styles["navigation__status-text"]}>Available</span>
             </div>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className={`${styles.mobileToggle} ${isMobileMenuOpen ? styles.active : ''}`}
+            className={`${styles["navigation__mobile-toggle"]} ${isMobileMenuOpen ? styles["navigation__mobile-toggle--active"] : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -97,30 +97,30 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
         </div>
 
         {/* Scroll Progress Bar */}
-        <div className={styles.progressBar}>
+        <div className={styles["navigation__progress-bar"]}>
           <div 
-            className={styles.progressFill}
+            className={styles["navigation__progress-fill"]}
             style={{ width: `${scrollProgress}%` }}
           ></div>
         </div>
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}>
-        <div className={styles.mobileMenuContent}>
-          <div className={styles.mobileNavItems}>
+      <div className={`${styles["navigation__mobile-menu"]} ${isMobileMenuOpen ? styles["navigation__mobile-menu--open"] : ''}`}>
+        <div className={styles["navigation__mobile-menu-content"]}>
+          <div className={styles["navigation__mobile-nav-items"]}>
             {navigationItems.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => smoothScrollTo(item.id)}
-                className={styles.mobileNavLink}
+                className={styles["navigation__mobile-nav-link"]}
                 style={{ 
                   transitionDelay: `${index * 0.1}s`,
                   transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-100px)',
                   opacity: isMobileMenuOpen ? 1 : 0
                 }}
               >
-                <span className={styles.mobileNavNumber}>
+                <span className={styles["navigation__mobile-nav-number"]}>
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 {item.label}
@@ -128,15 +128,15 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
             ))}
           </div>
 
-          <div className={styles.mobileMenuFooter}>
+          <div className={styles["navigation__mobile-menu-footer"]}>
             <button
               onClick={() => smoothScrollTo('contact')}
-              className={styles.mobileCta}
+              className={styles["navigation__mobile-cta"]}
             >
               Let's Talk
             </button>
-            <div className={styles.mobileAvailability}>
-              <div className={styles.statusDot}></div>
+            <div className={styles["navigation__mobile-availability"]}>
+              <div className={styles["navigation__status-dot"]}></div>
               <span>Available for new projects</span>
             </div>
           </div>
@@ -146,7 +146,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
       {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && (
         <div 
-          className={styles.mobileBackdrop}
+          className={styles["navigation__mobile-backdrop"]}
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}

@@ -138,7 +138,7 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({ count = 50
   return (
     <canvas 
       ref={canvasRef}
-      className={styles.particlesCanvas}
+      className={styles["floating-particles"]}
     />
   );
 };

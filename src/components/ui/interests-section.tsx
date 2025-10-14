@@ -90,51 +90,51 @@ export const InterestsSection: React.FC = () => {
   return (
     <section 
       ref={sectionRef} 
-      className={`${styles.container} scroll-reveal ${isVisible ? 'visible' : ''}`} 
+      className={`${styles["interests-section"]} scroll-reveal ${isVisible ? 'visible' : ''}`} 
       id="interests"
     >
-      <div className={styles.content}>
-        <div className={styles.headerSection}>
-          <div className={styles.decorativeHeader}>
-            <span className={styles.symbol}>×</span>
-            <span className={styles.subtitle}>WHEN I'M NOT CODING</span>
-            <span className={styles.symbol}>×</span>
+      <div className={styles["interests-section__content"]}>
+        <div className={styles["interests-section__header"]}>
+          <div className={styles["interests-section__decorative-header"]}>
+            <span className={styles["interests-section__symbol"]}>×</span>
+            <span className={styles["interests-section__subtitle"]}>WHEN I'M NOT CODING</span>
+            <span className={styles["interests-section__symbol"]}>×</span>
           </div>
           
-          <h2 className={`${styles.title} text-glow`}>
+          <h2 className={`${styles["interests-section__title"]} text-glow`}>
             INTERESTS & HOBBIES
           </h2>
           
-          <p className={styles.intro}>
+          <p className={styles["interests-section__intro"]}>
             Life's too short to only write code. Here's what keeps me inspired and creative 
             outside the world of pixels and algorithms.
           </p>
         </div>
         
-        <div className={`${styles.interestsGrid} stagger-animation ${isVisible ? 'visible' : ''}`}>
+        <div className={`${styles["interests-section__grid"]} stagger-animation ${isVisible ? 'visible' : ''}`}>
           {interests.map((interest, index) => (
-            <div key={index} className={`${styles.interestCard} animate-child`}>
-              <div className={styles.cardHeader}>
-                <span className={styles.icon}>{interest.icon}</span>
-                <span className={styles.category}>{interest.category.toUpperCase()}</span>
+            <div key={index} className={`${styles["interests-section__card"]} animate-child`}>
+              <div className={styles["interests-section__card-header"]}>
+                <span className={styles["interests-section__icon"]}>{interest.icon}</span>
+                <span className={styles["interests-section__category"]}>{interest.category.toUpperCase()}</span>
               </div>
               
-              <h3 className={styles.interestTitle}>{interest.title}</h3>
+              <h3 className={styles["interests-section__interest-title"]}>{interest.title}</h3>
               
-              <p className={styles.interestDescription}>
+              <p className={styles["interests-section__interest-description"]}>
                 {interest.description}
               </p>
               
-              <div className={styles.cardFooter}>
-                <div className={styles.decorativeLine}></div>
+              <div className={styles["interests-section__card-footer"]}>
+                <div className={styles["interests-section__decorative-line"]}></div>
               </div>
             </div>
           ))}
         </div>
         
-        <div className={styles.calloutSection}>
-          <div className={`${styles.callout} pulse`}>
-            <p className={styles.calloutText}>
+        <div className={styles["interests-section__callout-section"]}>
+          <div className={`${styles["interests-section__callout"]} pulse`}>
+            <p className={styles["interests-section__callout-text"]}>
               <strong>Always up for:</strong> Game design discussions, tech deep-dives, 
               co-op gaming sessions, or just nerding out about the latest trends! 🚀
             </p>

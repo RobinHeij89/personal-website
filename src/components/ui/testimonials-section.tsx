@@ -51,33 +51,33 @@ const testimonials: Testimonial[] = [
 
 export const TestimonialsSection: React.FC = () => {
   return (
-    <section className={styles.container} id="testimonials">
-      <div className={styles.content}>
-        <div className={styles.headerSection}>
-          <div className={styles.decorativeHeader}>
-            <span className={styles.symbol}>×</span>
-            <span className={styles.subtitle}>TESTIMONIALS</span>
-            <span className={styles.symbol}>×</span>
+    <section className={styles["testimonials-section"]} id="testimonials">
+      <div className={styles["testimonials-section__content"]}>
+        <div className={styles["testimonials-section__header"]}>
+          <div className={styles["testimonials-section__decorative-header"]}>
+            <span className={styles["testimonials-section__symbol"]}>×</span>
+            <span className={styles["testimonials-section__subtitle"]}>TESTIMONIALS</span>
+            <span className={styles["testimonials-section__symbol"]}>×</span>
           </div>
           
-          <h2 className={styles.title}>
-            WHAT OTHERS SAY <span className={styles.highlight}>⁂</span>
+          <h2 className={styles["testimonials-section__title"]}>
+            WHAT OTHERS SAY <span className={styles["testimonials-section__title-highlight"]}>⁂</span>
           </h2>
         </div>
         
-        <div className={styles.testimonialsGrid}>
+        <div className={styles["testimonials-section__grid"]}>
           {testimonials.map((testimonial, index) => (
-            <div key={index} className={styles.testimonial}>
-              <div className={styles.quote}>
-                <p className={styles.highlight}>"{testimonial.highlight}"</p>
-                <p className={styles.content}>{testimonial.content}</p>
+            <div key={index} className={styles["testimonials-section__item"]}>
+              <div className={styles["testimonials-section__quote"]}>
+                <p className={styles["testimonials-section__quote-highlight"]}>"{testimonial.highlight}"</p>
+                <p className={styles["testimonials-section__quote-content"]}>{testimonial.content}</p>
               </div>
               
-              <div className={styles.author}>
-                <div className={styles.authorInfo}>
-                  <h4 className={styles.name}>{testimonial.name}</h4>
-                  <p className={styles.role}>{testimonial.role}</p>
-                  <p className={styles.company}>{testimonial.company}</p>
+              <div className={styles["testimonials-section__author"]}>
+                <div className={styles["testimonials-section__author-info"]}>
+                  <h4 className={styles["testimonials-section__author-name"]}>{testimonial.name}</h4>
+                  <p className={styles["testimonials-section__author-role"]}>{testimonial.role}</p>
+                  <p className={styles["testimonials-section__author-company"]}>{testimonial.company}</p>
                 </div>
               </div>
             </div>
