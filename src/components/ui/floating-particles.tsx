@@ -14,7 +14,7 @@
  * ```
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 import { useCursorTracker } from '@/hooks/useAdvancedAnimations';
 import styles from './floating-particles.module.css';
 
@@ -36,7 +36,31 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({ count = 50
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const mousePosition = useCursorTracker();
+  const mousePositionRef = useRef(mousePosition);
   const animationRef = useRef<number | null>(null);
+
+  // Update mouse position ref without causing re-renders
+  useEffect(() => {
+    mousePositionRef.current = mousePosition;
+  }, [mousePosition]);
+
+  // Memoize colors array to prevent recreation on every render
+  const colors = useMemo(() => ['#EA401E', '#B4A890', '#B3B3B3', '#FFFFFF'], []);
+
+  // Memoize particle initialization to prevent recreation on mouse move
+  const initializeParticles = useCallback((canvas: HTMLCanvasElement) => {
+    if (particlesRef.current.length === count) return; // Only initialize if not already done
+    
+    particlesRef.current = Array.from({ length: count }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      size: Math.random() * 3 + 1,
+      opacity: Math.random() * 0.5 + 0.1,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    }));
+  }, [count, colors]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -49,30 +73,23 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({ count = 50
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // Re-initialize particles only on resize, not on mouse move
+      initializeParticles(canvas);
     };
     
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles
-    const colors = ['#EA401E', '#B4A890', '#B3B3B3', '#FFFFFF'];
-    particlesRef.current = Array.from({ length: count }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      size: Math.random() * 3 + 1,
-      opacity: Math.random() * 0.5 + 0.1,
-      color: colors[Math.floor(Math.random() * colors.length)]
-    }));
+    // Initialize particles only once
+    initializeParticles(canvas);
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particlesRef.current.forEach((particle, index) => {
-        // Mouse interaction
-        const dx = mousePosition.x - particle.x;
-        const dy = mousePosition.y - particle.y;
+        // Mouse interaction using ref to avoid re-creating effect
+        const dx = mousePositionRef.current.x - particle.x;
+        const dy = mousePositionRef.current.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
         if (distance < 100) {
@@ -133,7 +150,7 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({ count = 50
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [count, mousePosition]);
+  }, [count, initializeParticles]);
 
   return (
     <canvas 

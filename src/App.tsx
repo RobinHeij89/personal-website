@@ -17,11 +17,11 @@
 import React from 'react';
 import { Scene3D } from '@/components/three/scene-3d';
 import { HeroScene } from '@/scenes/hero/components/hero-scene';
+import { HeroContent } from '@/components/ui/hero-content';
 import { AboutSection } from '@/components/ui/about-section';
 import { WorkSection } from '@/components/ui/work-section';
 import { InterestsSection } from '@/components/ui/interests-section';
 import { TestimonialsSection } from '@/components/ui/testimonials-section';
-import { Logo } from '@/components/ui/logo';
 import { CustomCursor } from '@/components/ui/custom-cursor';
 import { FloatingParticles } from '@/components/ui/floating-particles';
 import Navigation from '@/components/ui/navigation';
@@ -42,34 +42,7 @@ export const App: React.FC = () => {
 
       {/* Hero Section with 3D Animation */}
       <section id="hero" className={styles["app__hero"]} aria-label="Hero section with 3D animation">
-        <div className={styles["app__hero-content"]}>
-          <div className={`${styles["app__logo-container"]} floating`}>
-            <Logo size="lg" className={styles["app__hero-logo"]} />
-          </div>
-          <h1 className={`${styles["app__title"]} text-glow`}>Robin Heij</h1>
-          <p className={styles["app__subtitle"]}>Creative Frontend Wizard</p>
-          <p className={styles["app__tagline"]}>
-            Building digital experiences that make people go "whoa!" 
-            <br />
-            <span className={styles["app__fun-text"]}>Dad by day, code ninja by night 🥷</span>
-          </p>
-          <div className={styles["app__hero-actions"]}>
-            <button 
-              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-              className={`${styles["app__hero-button"]} shimmer`}
-              data-cursor="SEE MAGIC"
-            >
-              See My Magic
-            </button>
-            <button 
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className={styles["app__hero-button--secondary"]}
-              data-cursor="LET'S TALK"
-            >
-              Let's Chat
-            </button>
-          </div>
-        </div>
+        <HeroContent />
         <Scene3D className={styles["app__scene"]}>
           <HeroScene />
         </Scene3D>

@@ -115,6 +115,10 @@
   /* About Section */
   --about-image-max-width: 280px;
   
+  /* Z-Index Layers */
+  --hero-z-index: 10;
+  --particles-z-index: 2;
+
   /* Navigation */
   --nav-logo-height: 40px;
   --nav-logo-height-scrolled: 32px;
