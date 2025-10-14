@@ -1,0 +1,75 @@
+/* Custom Cursor Component - BEM Structure */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  pointer-events: none;
+  z-index: var(--cursor-z-index);
+  will-change: transform;
+  transition: width var(--duration-normal) var(--ease-out), 
+              height var(--duration-normal) var(--ease-out);
+}
+
+.cursor__inner {
+  width: 100%;
+  height: 100%;
+  border: var(--cursor-border-width) solid var(--color-accent);
+  border-radius: var(--cursor-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(234, 64, 30, 0.1);
+  backdrop-filter: var(--cursor-backdrop-blur);
+  transition: all var(--duration-normal) var(--ease-out);
+  min-width: var(--cursor-size);
+  min-height: var(--cursor-size);
+}
+
+.cursor__text {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-background);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  text-transform: uppercase;
+}
+
+/* Hover state modifier */
+.cursor--hover {
+  width: auto;
+  height: auto;
+  min-width: var(--cursor-size-hover-min-width);
+  min-height: var(--cursor-size-hover-height);
+}
+
+.cursor--hover .cursor__inner {
+  transform: scale(1);
+  background: var(--color-accent);
+  border-color: var(--color-background);
+  border-radius: var(--cursor-border-radius);
+  padding: var(--cursor-padding);
+  white-space: nowrap;
+}
+
+.cursor--hover .cursor__text {
+  opacity: 1;
+}
+
+/* Hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Show default cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}

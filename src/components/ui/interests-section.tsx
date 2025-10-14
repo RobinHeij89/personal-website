@@ -35,7 +35,7 @@
  */
 
 import React from 'react';
-import { useScrollAnimation } from '@/hooks/useAnimations';
+import { useScrollTriggerAnimation } from '@/hooks/useAdvancedAnimations';
 import styles from './interests-section.module.css';
 
 interface Interest {
@@ -85,12 +85,12 @@ const interests: Interest[] = [
 ];
 
 export const InterestsSection: React.FC = () => {
-  const { ref: sectionRef, isVisible } = useScrollAnimation();
+  const { ref: sectionRef, isVisible } = useScrollTriggerAnimation();
   
   return (
     <section 
       ref={sectionRef} 
-      className={`${styles.container} ${isVisible ? styles.visible : ''}`} 
+      className={`${styles.container} scroll-reveal ${isVisible ? 'visible' : ''}`} 
       id="interests"
     >
       <div className={styles.content}>
@@ -101,7 +101,7 @@ export const InterestsSection: React.FC = () => {
             <span className={styles.symbol}>×</span>
           </div>
           
-          <h2 className={styles.title}>
+          <h2 className={`${styles.title} text-glow`}>
             INTERESTS & HOBBIES
           </h2>
           
@@ -111,9 +111,9 @@ export const InterestsSection: React.FC = () => {
           </p>
         </div>
         
-        <div className={styles.interestsGrid}>
+        <div className={`${styles.interestsGrid} stagger-animation ${isVisible ? 'visible' : ''}`}>
           {interests.map((interest, index) => (
-            <div key={index} className={styles.interestCard}>
+            <div key={index} className={`${styles.interestCard} animate-child`}>
               <div className={styles.cardHeader}>
                 <span className={styles.icon}>{interest.icon}</span>
                 <span className={styles.category}>{interest.category.toUpperCase()}</span>
@@ -133,7 +133,7 @@ export const InterestsSection: React.FC = () => {
         </div>
         
         <div className={styles.calloutSection}>
-          <div className={styles.callout}>
+          <div className={`${styles.callout} pulse`}>
             <p className={styles.calloutText}>
               <strong>Always up for:</strong> Game design discussions, tech deep-dives, 
               co-op gaming sessions, or just nerding out about the latest trends! 🚀

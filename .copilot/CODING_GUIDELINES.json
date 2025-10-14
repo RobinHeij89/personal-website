@@ -12,8 +12,9 @@
         "behaviorRules": {
             "alwaysEnforce": [
                 "File structure and naming conventions",
-                "TypeScript naming conventions",
+                "TypeScript naming conventions", 
                 "CSS modules with BEM methodology",
+                "CSS custom properties (variables) over hardcoded values",
                 "Component documentation structure",
                 "Three.js and React Three Fiber best practices"
             ],
@@ -30,7 +31,9 @@
                     "Request to create styled-components instead of CSS modules",
                     "Request to create barrel files (index.ts exports)",
                     "Request to skip component documentation",
-                    "Request to ignore Three.js performance best practices"
+                    "Request to ignore Three.js performance best practices",
+                    "Request to use hardcoded CSS values instead of CSS variables",
+                    "Request to use non-BEM class naming conventions"
                 ],
                 "response": "I notice this request goes against our coding guidelines which require [specific guideline]. Is this intentional? Should we update the guidelines, or would you like me to implement it following the current standards?"
             },
@@ -223,43 +226,112 @@
         }
     },
     "styling": {
-        "approach": "CSS Modules with custom properties for theming",
-        "cssModules": {
-            "naming": "kebab-case with BEM modifiers",
+        "approach": "CSS Modules with BEM methodology and CSS custom properties for theming",
+        "bemMethodology": {
+            "enforced": true,
+            "purpose": "Provides clear, maintainable CSS class naming conventions",
+            "structure": {
+                "block": "Independent component (.button, .card, .navigation)",
+                "element": "Part of a block (.button__text, .card__header, .navigation__item)",
+                "modifier": "Different state or variant (.button--primary, .card--featured, .navigation--mobile)"
+            },
+            "naming": {
+                "block": "kebab-case (.custom-cursor, .work-section, .hero-scene)",
+                "element": "block__element (.custom-cursor__inner, .work-section__title)",
+                "modifier": "block--modifier or block__element--modifier (.custom-cursor--hover, .work-section__title--large)"
+            },
             "examples": {
-                "base": ".container",
-                "modifier": ".container--hidden, .container--large",
-                "element": ".container__header, .container__footer",
-                "state": ".container--is-active, .container--is-disabled"
+                "correct": [
+                    ".custom-cursor { /* Block */ }",
+                    ".custom-cursor__inner { /* Element */ }",
+                    ".custom-cursor__text { /* Element */ }",
+                    ".custom-cursor--hover { /* Block modifier */ }",
+                    ".custom-cursor__text--large { /* Element modifier */ }"
+                ],
+                "incorrect": [
+                    ".customCursor { /* Should be kebab-case */ }",
+                    ".cursor-inner { /* Should include block name */ }",
+                    ".custom-cursor-hover { /* Should use -- for modifier */ }"
+                ]
+            },
+            "rules": {
+                "singleBlock": "Each CSS module should focus on one main block",
+                "noNesting": "Avoid deep nesting - prefer flat BEM structure",
+                "semanticNames": "Use descriptive names that reflect purpose, not appearance",
+                "consistent": "Maintain consistent naming patterns across all components"
+            }
+        },
+        "cssModules": {
+            "naming": "BEM methodology with kebab-case",
+            "examples": {
+                "base": ".component-name",
+                "element": ".component-name__element",
+                "modifier": ".component-name--modifier",
+                "elementModifier": ".component-name__element--modifier"
             },
             "conditionalClasses": "Use clsx package for conditional styling",
-            "preferClassNames": "Always prefer CSS modules className over inline styles for better maintainability and performance"
+            "preferClassNames": "Always prefer CSS modules className over inline styles for better maintainability and performance",
+            "structure": {
+                "blockFirst": "Define the main block class first",
+                "elementsAfter": "Group element classes after the block",
+                "modifiersLast": "Define modifiers at the end",
+                "logicalGrouping": "Group related styles together with comments"
+            }
         },
         "customProperties": {
-            "colors": {
-                "primary": "--color-primary",
-                "secondary": "--color-secondary", 
-                "accent": "--color-accent",
-                "background": "--color-background",
-                "text": "--color-text"
+            "enforced": true,
+            "purpose": "Centralize design tokens for consistency and maintainability",
+            "location": "src/styles/variables.css",
+            "usage": "Prefer CSS variables over hardcoded values for all design properties",
+            "categories": {
+                "colors": {
+                    "primary": "--color-primary",
+                    "secondary": "--color-secondary", 
+                    "accent": "--color-accent",
+                    "background": "--color-background",
+                    "text": "--color-text",
+                    "componentSpecific": "Component-specific colors like --cursor-border-color"
+                },
+                "spacing": {
+                    "prefix": "--space-",
+                    "scale": "xs, sm, md, lg, xl, 2xl",
+                    "componentSpecific": "Component-specific spacing like --cursor-size, --navigation-padding"
+                },
+                "typography": {
+                    "sizes": "--font-size-sm, --font-size-base, --font-size-lg, --font-size-xl",
+                    "weights": "--font-weight-normal, --font-weight-medium, --font-weight-bold",
+                    "families": "--font-family-primary, --font-family-mono"
+                },
+                "animations": {
+                    "duration": "--duration-fast, --duration-normal, --duration-slow",
+                    "easing": "--ease-in, --ease-out, --ease-in-out",
+                    "componentSpecific": "Component-specific timing like --cursor-transition-duration"
+                },
+                "borders": {
+                    "radius": "--border-radius-sm, --border-radius-md, --border-radius-lg",
+                    "width": "--border-width-thin, --border-width-normal, --border-width-thick"
+                },
+                "shadows": {
+                    "elevation": "--shadow-sm, --shadow-md, --shadow-lg, --shadow-xl"
+                }
             },
-            "spacing": {
-                "prefix": "--space-",
-                "scale": "xs, sm, md, lg, xl, 2xl"
-            },
-            "typography": {
-                "sizes": "--font-size-sm, --font-size-base, --font-size-lg, --font-size-xl",
-                "weights": "--font-weight-normal, --font-weight-medium, --font-weight-bold"
-            },
-            "animations": {
-                "duration": "--duration-fast, --duration-normal, --duration-slow",
-                "easing": "--ease-in, --ease-out, --ease-in-out"
+            "rules": {
+                "noHardcodedValues": "Avoid hardcoded colors, sizes, and timing values in component styles",
+                "consistentNaming": "Use consistent naming patterns for related variables",
+                "semanticNames": "Name variables by purpose, not appearance (--primary-button-color not --blue-color)",
+                "fallbacks": "Provide fallback values for critical properties: var(--color-primary, #007bff)"
             }
         },
         "threeJsStyling": {
             "materials": "Define material properties as constants for reusability",
             "colors": "Use consistent color palette across 2D and 3D elements",
             "responsiveDesign": "Adjust camera settings and object scales for different screen sizes"
+        },
+        "enforcement": {
+            "bemLinting": "Use stylelint with BEM-specific rules to enforce naming conventions",
+            "cssVariables": "Prefer CSS variables over hardcoded values in all component styles",
+            "consistency": "Maintain consistent patterns across all CSS modules",
+            "documentation": "Document CSS variable purposes and usage in variables.css"
         }
     },
     "testing": {

@@ -22,22 +22,31 @@ import { WorkSection } from '@/components/ui/work-section';
 import { InterestsSection } from '@/components/ui/interests-section';
 import { TestimonialsSection } from '@/components/ui/testimonials-section';
 import { Logo } from '@/components/ui/logo';
+import { CustomCursor } from '@/components/ui/custom-cursor';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import Navigation from '@/components/ui/navigation';
 import styles from './app.module.css';
+import '@/styles/animations.css';
 
 export const App: React.FC = () => {
   return (
     <main className={styles.main}>
+      {/* Custom Cursor */}
+      <CustomCursor />
+      
+      {/* Floating Particles Background */}
+      <FloatingParticles count={30} />
+      
       {/* Navigation */}
       <Navigation />
 
       {/* Hero Section with 3D Animation */}
       <section id="hero" className={styles.hero} aria-label="Hero section with 3D animation">
         <div className={styles.heroContent}>
-          <div className={styles.logoContainer}>
+          <div className={`${styles.logoContainer} floating`}>
             <Logo size="lg" className={styles.heroLogo} />
           </div>
-          <h1 className={styles.title}>Robin Heij</h1>
+          <h1 className={`${styles.title} text-glow`}>Robin Heij</h1>
           <p className={styles.subtitle}>Creative Frontend Wizard</p>
           <p className={styles.tagline}>
             Building digital experiences that make people go "whoa!" 
@@ -47,13 +56,15 @@ export const App: React.FC = () => {
           <div className={styles.heroActions}>
             <button 
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-              className={styles.heroButton}
+              className={`${styles.heroButton} shimmer`}
+              data-cursor="SEE MAGIC"
             >
               See My Magic
             </button>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className={styles.heroButtonSecondary}
+              data-cursor="LET'S TALK"
             >
               Let's Chat
             </button>
