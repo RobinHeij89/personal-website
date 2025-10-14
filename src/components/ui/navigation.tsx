@@ -41,6 +41,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
   const navigationItems = [
     { label: 'About', id: 'about' },
     { label: 'Work', id: 'work' },
+    { label: 'Interests', id: 'interests' },
     { label: 'Testimonials', id: 'testimonials' },
     { label: 'Contact', id: 'contact' },
   ];
