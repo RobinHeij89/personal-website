@@ -1,31 +1,54 @@
 :root {
-  /* Colors */
-  --color-primary: #69d2e7;
-  --color-secondary: #a7dbd8;
-  --color-accent: #f38630;
-  --color-background: #ffffff;
-  --color-text: #333333;
-  --color-text-muted: #666666;
+  /* Colors - Enhanced with better contrast and new accent */
+  --color-primary: #EA401E;     /* Orange red primary */
+  --color-secondary: #B4A890;   /* Warm beige secondary */
+  --color-accent: #FFFFFF;      /* Pure white for high contrast */
+  --color-accent-secondary: #FFA500; /* Bright orange for highlights */
+  --color-background: #130705;  /* Very dark brown background */
+  --color-surface: #1E1E1E;     /* Dark gray surface */
+  --color-surface-light: #2A2A2A; /* Lighter surface for contrast */
+  --color-text: #FFFFFF;        /* Pure white for maximum contrast */
+  --color-text-muted: #B3B3B3;  /* Light gray for secondary text */
+  --color-text-dark: #130705;   /* Dark text for light backgrounds */
 
-  /* Spacing */
+  /* Spacing - Enhanced spacing system */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 5rem;
+  --space-5xl: 6rem;
 
-  /* Typography */
+  /* Typography - Geist font system for modern, clean look */
+  --font-family-primary: var(--font-geist-sans);
+  --font-family-mono: var(--font-geist-mono);
+  
+  --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.125rem;
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
 
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
 
   /* Animations */
   --duration-fast: 150ms;
@@ -36,10 +59,10 @@
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Borders */
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
+  /* Borders - Sharp, modern design with no radius */
+  --border-radius-sm: 0;
+  --border-radius-md: 0;
+  --border-radius-lg: 0;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

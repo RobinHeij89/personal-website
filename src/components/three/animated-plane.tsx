@@ -17,7 +17,7 @@
  *   position={[0, 0, -1]} 
  *   rotation={[0.1, 0, 0.2]}
  *   scale={1.5} 
- *   colors={["#69d2e7", "#a7dbd8", "#e0e4cc"]} 
+ *   colors={["#130705", "#1E1E1E", "#EA401E", "#B4A890", "#B3B3B3"]} 
  * />
  * ```
  */
@@ -39,7 +39,7 @@ export const AnimatedPlane: React.FC<AnimatedPlaneProps> = ({
   position = [0, 0, 0],
   rotation = [0, 0, 0],
   scale = 1.5,
-  colors = ["#1e3a8a", "#2563eb", "#ea580c", "#dc2626", "#7c2d12"]
+  colors = ["#130705", "#1E1E1E", "#EA401E", "#B4A890", "#B3B3B3"]
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   

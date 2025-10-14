@@ -1,0 +1,49 @@
+.logo {
+  display: inline-block;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Size variants */
+.sm {
+  width: 32px;
+  height: 32px;
+}
+
+.md {
+  width: 48px;
+  height: 48px;
+}
+
+.lg {
+  width: 64px;
+  height: 64px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lg {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .md {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sm {
+    width: 28px;
+    height: 28px;
+  }
+}

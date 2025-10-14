@@ -31,17 +31,17 @@ export const HeroScene: React.FC = () => {
       />
       
       {/* Additional subtle light from below */}
-      <directionalLight 
+            <pointLight 
         position={[-1, -1, -2]} 
         intensity={0.2}
-        color="#69d2e7"
+        color="#EA401E"
       />
       
       <AnimatedPlane 
         position={[0, 0, 0]} 
         rotation={[-0.1, 0, 0.15]}
         scale={3}
-        colors={["#F38181", "#FCE38A", "#EAFFD0", "#95E1D3", "#18322d"]}
+        colors={["#130705", "#1E1E1E", "#EA401E", "#B4A890", "#B3B3B3"]}
       />
     </>
   );
