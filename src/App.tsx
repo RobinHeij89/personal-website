@@ -15,17 +15,17 @@
  */
 
 import React from 'react';
-import { Scene3D } from '@/components/three/scene-3d';
-import { HeroScene } from '@/scenes/hero/components/hero-scene';
-import { HeroContent } from '@/components/ui/hero-content';
-import { AboutSection } from '@/components/ui/about-section';
-import { WorkSection } from '@/components/ui/work-section';
-import { InterestsSection } from '@/components/ui/interests';
-import { TestimonialsSection } from '@/components/ui/testimonials-section';
-import { CustomCursor } from '@/components/ui/custom-cursor';
-import Navigation from '@/components/ui/navigation';
-import { Footer } from '@/components/ui/footer';
-import { Button } from '@/components/ui/button';
+import { Scene3D } from '@/components/three/scene-3d/scene-3d';
+import { HeroScene } from '@/features/hero/components/hero-scene';
+import { HeroContent } from '@/features/hero/components/hero-content';
+import { AboutSection } from '@/features/about/components/about-section';
+import { WorkSection } from '@/features/work/components/work-section';
+import { InterestsSection } from '@/features/interests/components/interests-section';
+import { TestimonialsSection } from '@/features/testimonials/components/testimonials-section';
+import { CustomCursor } from '@/components/ui/custom-cursor/custom-cursor';
+import Navigation from '@/features/navigation/components/navigation';
+import { Footer } from '@/components/layout/footer/footer';
+import { Button } from '@/components/ui/button/button';
 import styles from './app.module.css';
 import '@/styles/animations.css';
 

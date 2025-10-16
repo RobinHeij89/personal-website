@@ -38,7 +38,7 @@ import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { useScrollTriggerAnimation } from '@/hooks/useAdvancedAnimations';
 import { InterestCard } from './interest-card';
-import { MusicCard, GamingCard, MTGCard, TechCard, GameDevCard, FamilyCard } from './cards';
+import { GamingCard, MTGCard, TechCard, GameDevCard, FamilyCard } from './cards';
 import styles from './interests-section.module.css';
 
 type Interest = {
@@ -217,7 +217,8 @@ export const InterestsSection: React.FC = () => {
 
   const renderCardContent = (interest: Interest) => {
     if (interest.backContent?.type === 'music') {
-      return <MusicCard />;
+      // return <MusicCard />; // TODO: Fix music card
+      return <div>Music content coming soon...</div>;
     }
 
     if (interest.backContent?.type === 'gaming') {

@@ -16,8 +16,8 @@
 
 import React from 'react';
 import clsx from 'clsx';
-import { Logo } from '@/components/ui/logo';
-import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/ui/logo/logo';
+import { Button } from '@/components/ui/button/button';
 import styles from './hero-content.module.css';
 
 export const HeroContent: React.FC = () => {

@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { SocialMediaLinks } from '@/components/ui/social-media-links';
+import { SocialMediaLinks } from '@/components/ui/social-media-links/social-media-links';
 import styles from './footer.module.css';
 
 export const Footer: React.FC = () => {

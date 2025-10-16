@@ -15,8 +15,8 @@
  */
 
 import React from 'react';
-import { AnimatedPlane } from '@/components/three/animated-plane';
-import { Particles } from '@/components/three/particles';
+import { AnimatedPlane } from './animated-plane';
+import { Particles } from '@/components/three/particles/particles';
 
 export const HeroScene: React.FC = () => {
   return (

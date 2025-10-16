@@ -38,7 +38,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useScrollAnimation, useMagneticHover } from '@/hooks/useAnimations';
-import { SocialMediaLinks } from '@/components/ui/social-media-links';
+import { SocialMediaLinks } from '@/components/ui/social-media-links/social-media-links';
 import styles from './about-section.module.css';
 
 export const AboutSection: React.FC = () => {

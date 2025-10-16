@@ -16,10 +16,8 @@
  */
 
 import { memo } from 'react';
-import { useSpotifyApi } from '@/hooks/useSpotifyApi';
 import { CarouselCard, CardItemLayout, CardContentGroup } from '../shared';
 import styles from './music-card.module.css';
-import type { LastFmTrack } from '@/services/lastFmService';
 
 const formatTimeAgo = (playedAt: string): string => {
   const date = new Date(playedAt);

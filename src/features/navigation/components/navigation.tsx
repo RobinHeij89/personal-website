@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { Logo } from '@/components/ui/logo';
+import { Logo } from '@/components/ui/logo/logo';
 import styles from './navigation.module.css';
 
 interface NavigationProps {
