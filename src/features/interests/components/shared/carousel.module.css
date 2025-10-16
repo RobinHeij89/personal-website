@@ -1,0 +1,113 @@
+/**
+ * Carousel Component Styles
+ * Generic carousel for interest cards with theme support
+ */
+
+.carousel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.carousel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.carousel__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-sm);
+}
+
+.carousel__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.carousel__nav_btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.carousel__nav_btn:hover {
+  transform: translateY(-1px);
+}
+
+.carousel__nav_btn:active {
+  transform: translateY(0);
+}
+
+/* Theme Colors */
+.carousel__nav_btn--purple {
+  background: rgba(138, 43, 226, 0.2);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.carousel__nav_btn--purple:hover {
+  background: rgba(138, 43, 226, 0.3);
+  border-color: rgba(138, 43, 226, 0.5);
+}
+
+.carousel__nav_btn--blue {
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.carousel__nav_btn--blue:hover {
+  background: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.carousel__nav_btn--green {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.carousel__nav_btn--green:hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.carousel__counter {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  padding: 0 var(--space-xs);
+}
+
+.carousel__content {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.carousel__item_container {
+  height: 100%;
+}
+
+.carousel__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}

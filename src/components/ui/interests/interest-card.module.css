@@ -1,0 +1,245 @@
+/* Interest Card Component - BEM Structure */
+
+.interest-card {
+  background: var(--color-surface);
+  border: var(--border-width-thin) solid var(--border-color-light);
+  padding: 0;
+  transition: all var(--duration-normal) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  height: 380px; /* Increased from 280px to give more space */
+  perspective: 1000px;
+}
+
+.interest-card--flippable {
+  cursor: pointer;
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(234, 64, 30, 0);
+  }
+  50% { 
+    box-shadow: 0 0 0 4px rgba(234, 64, 30, 0.1);
+  }
+}
+
+.interest-card--flippable:hover {
+  transform: scale(1.02);
+  animation: none; /* Stop pulse on hover */
+}
+
+/* Easter egg animation */
+.interest-card--easter-egg {
+  animation: partyTime 0.5s ease-in-out 6 alternate;
+}
+
+@keyframes partyTime {
+  0% { 
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    transform: scale(1.05) rotate(-2deg);
+    filter: hue-rotate(90deg);
+  }
+  50% { 
+    transform: scale(1.1) rotate(0deg);
+    filter: hue-rotate(180deg);
+  }
+  75% { 
+    transform: scale(1.05) rotate(2deg);
+    filter: hue-rotate(270deg);
+  }
+  100% { 
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.interest-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.interest-card--flipped .interest-card__inner {
+  transform: rotateY(180deg);
+}
+
+.interest-card__front,
+.interest-card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-xl);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.interest-card__back {
+  transform: rotateY(180deg);
+  background: var(--color-surface);
+  border: var(--border-width-thin) solid var(--color-primary);
+  padding: 0; /* Remove padding for flipped cards to give more space */
+}
+
+.interest-card:hover {
+  border-color: var(--color-primary);
+}
+
+.interest-card:hover .interest-card__front {
+  background: rgba(30, 30, 30, var(--opacity-muted));
+}
+
+.interest-card:hover .interest-card__front::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(234, 64, 30, 0.05), transparent);
+  pointer-events: none;
+}
+
+.interest-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.interest-card__icon {
+  font-size: var(--font-size-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(234, 64, 30, 0.1);
+  border: var(--border-width-thin) solid rgba(234, 64, 30, 0.2);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.interest-card:hover .interest-card__icon {
+  background: rgba(234, 64, 30, 0.2);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.interest-card__category {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.interest-card__title {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  margin: 0 0 var(--space-md) 0;
+  line-height: var(--line-height-snug);
+}
+
+.interest-card__description {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.interest-card__footer {
+  margin-top: auto;
+  position: relative;
+}
+
+.interest-card__decorative-line {
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), transparent);
+  transition: all var(--duration-normal) var(--ease-out);
+  margin-bottom: var(--space-sm);
+}
+
+.interest-card:hover .interest-card__decorative-line {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), transparent);
+}
+
+.interest-card__flip-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  opacity: 0;
+  transform: translateY(var(--space-sm));
+  transition: all var(--duration-normal) var(--ease-out);
+  font-weight: var(--font-weight-medium);
+  background: rgba(234, 64, 30, 0.1);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius);
+  border: var(--border-width-thin) solid rgba(234, 64, 30, 0.2);
+}
+
+.interest-card--flippable:hover .interest-card__flip-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.interest-card__flip-icon {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .interest-card {
+    height: 260px;
+  }
+  
+  .interest-card__front,
+  .interest-card__back {
+    padding: var(--space-lg);
+  }
+
+  /* Disable card flipping on mobile for better UX */
+  .interest-card--flippable {
+    cursor: default;
+  }
+
+  .interest-card--flippable:hover {
+    transform: none;
+  }
+
+  .interest-card__flip-hint {
+    display: none;
+  }
+
+  /* Show back content alongside front on mobile */
+  .interest-card--flippable .interest-card__back {
+    position: relative;
+    transform: none;
+    border-top: var(--border-width-thin) solid var(--color-primary);
+    margin-top: var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .interest-card {
+    height: auto;
+    min-height: 240px;
+  }
+}

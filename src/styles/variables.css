@@ -1,16 +1,16 @@
 :root {
-  /* Colors - Enhanced with better contrast and new accent */
-  --color-primary: #EA401E;     /* Orange red primary */
-  --color-secondary: #B4A890;   /* Warm beige secondary */
+  /* Colors - Enhanced teal/green theme inspired by modern design */
+  --color-primary: #10B981;     /* Emerald green primary */
+  --color-secondary: #22D3EE;   /* Bright cyan secondary */
   --color-accent: #FFFFFF;      /* Pure white for high contrast */
-  --color-accent-secondary: #FFA500; /* Bright orange for highlights */
-  --color-background: #130705;  /* Very dark brown background */
-  --color-background-overlay: rgba(19, 7, 5, 0.95); /* Background with opacity for navigation */
-  --color-surface: #1E1E1E;     /* Dark gray surface */
-  --color-surface-light: #2A2A2A; /* Lighter surface for contrast */
+  --color-accent-secondary: #F59E0B; /* Warm amber for highlights */
+  --color-background: #0D1B2A;  /* Deep navy blue background */
+  --color-background-overlay: rgba(13, 27, 42, 0.95); /* Background with opacity for navigation */
+  --color-surface: #1B2937;     /* Dark blue-gray surface */
+  --color-surface-light: #374151; /* Lighter surface for contrast */
   --color-text: #FFFFFF;        /* Pure white for maximum contrast */
-  --color-text-muted: #B3B3B3;  /* Light gray for secondary text */
-  --color-text-dark: #130705;   /* Dark text for light backgrounds */
+  --color-text-muted: #9CA3AF;  /* Cool gray for secondary text */
+  --color-text-dark: #0D1B2A;   /* Dark text for light backgrounds */
 
   /* Spacing - Enhanced spacing system */
   --space-xs: 0.25rem;
@@ -60,10 +60,10 @@
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Borders - Sharp, modern design with no radius */
-  --border-radius-sm: 0;
-  --border-radius-md: 0;
-  --border-radius-lg: 0;
+  /* Borders - Consistent 8px radius for modern, friendly design */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 8px;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

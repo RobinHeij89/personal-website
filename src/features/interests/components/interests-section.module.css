@@ -1,0 +1,555 @@
+/* Interests Section - BEM Structure */
+.interests-section {
+  padding: var(--space-5xl) 0;
+  background: var(--color-background);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(var(--space-lg));
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.interests-section--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.interests-section__content {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: 0 var(--section-padding-horizontal);
+}
+
+/* Header Section */
+.interests-section__header {
+  text-align: center;
+  margin-bottom: var(--space-5xl);
+}
+
+.interests-section__decorative-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.interests-section__symbol {
+  color: var(--color-primary);
+  font-size: 1.2em;
+  font-weight: var(--font-weight-bold);
+}
+
+.interests-section__subtitle {
+  color: var(--color-text-secondary);
+}
+
+.interests-section__title {
+  font-family: var(--font-family-primary);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--space-xl) 0;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+}
+
+.interests-section__intro {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-xl) auto;
+  font-weight: var(--font-weight-normal);
+}
+
+/* Category Filters */
+.interests-section__filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.interests-section__filter-btn {
+  background: none;
+  border: var(--border-width-thin) solid var(--color-border);
+  color: var(--color-text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: capitalize;
+}
+
+.interests-section__filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.interests-section__filter-btn--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-background);
+}
+
+.interests-section__filter-btn--active:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Interests Grid */
+.interests-section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-4xl);
+}
+
+.interests-section__card-wrapper {
+  opacity: 0;
+  transform: translateY(var(--space-lg));
+  animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Grid animations - only when section is visible */
+.interests-section.visible .interests-section__card-wrapper {
+  animation-play-state: running;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-lg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Easter Egg Notification Animations */
+@keyframes slideInNotification {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideOutNotification {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.8);
+  }
+}
+
+/* Card Back Styles */
+.interests-section__card-back-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--border-width-thin) solid var(--color-primary);
+}
+
+.interests-section__back-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+  margin-left: var(--space-sm);
+}
+
+.interests-section__back-icon {
+  font-size: var(--font-size-lg);
+}
+
+.interests-section__back-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+}
+
+.interests-section__now-playing {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.interests-section__refresh-btn {
+  background: none;
+  border: var(--border-width-thin) solid var(--color-primary);
+  color: var(--color-primary);
+  padding: var(--space-xs);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  font-size: var(--font-size-sm);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interests-section__refresh-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-background);
+  transform: rotate(180deg);
+}
+
+.interests-section__current-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: linear-gradient(135deg, rgba(234, 64, 30, 0.1), rgba(234, 64, 30, 0.05));
+  border: var(--border-width-thin) solid rgba(234, 64, 30, 0.2);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--space-md);
+}
+
+.interests-section__track-image {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.interests-section__track-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.interests-section__track-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+  min-width: 0;
+}
+
+.interests-section__current-track-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.interests-section__current-artist {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.interests-section__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: var(--color-text-secondary);
+  gap: var(--space-sm);
+}
+
+.interests-section__loading span:first-child {
+  font-size: var(--font-size-lg);
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+.interests-section__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  background: rgba(255, 193, 7, 0.1);
+  border: var(--border-width-thin) solid rgba(255, 193, 7, 0.3);
+  border-radius: var(--border-radius);
+  color: var(--color-text-secondary);
+  gap: var(--space-xs);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* Music Back Content */
+.interests-section__music-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex: 1;
+}
+
+.interests-section__music-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  background: rgba(234, 64, 30, 0.05);
+  border: var(--border-width-thin) solid rgba(234, 64, 30, 0.1);
+  border-radius: var(--border-radius);
+  transition: all var(--duration-fast) var(--ease-out);
+  text-decoration: none;
+  color: inherit;
+}
+
+.interests-section__music-item:hover {
+  background: rgba(234, 64, 30, 0.1);
+  border-color: rgba(234, 64, 30, 0.2);
+  transform: translateX(var(--space-xs));
+}
+
+.interests-section__music-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.interests-section__track-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+}
+
+.interests-section__artist-name {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.interests-section__play-count {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Gaming Back Content */
+.interests-section__games-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex: 1;
+}
+
+.interests-section__game-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  background: rgba(180, 168, 144, 0.05);
+  border: var(--border-width-thin) solid rgba(180, 168, 144, 0.1);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.interests-section__game-item:hover {
+  background: rgba(180, 168, 144, 0.1);
+  border-color: rgba(180, 168, 144, 0.2);
+}
+
+.interests-section__game-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.interests-section__game-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+}
+
+.interests-section__platform-name {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.interests-section__hours-played {
+  font-size: var(--font-size-xs);
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.interests-section__back-footer {
+  margin-top: auto;
+  text-align: center;
+  padding-top: var(--space-sm);
+  border-top: var(--border-width-thin) solid rgba(234, 64, 30, 0.2);
+}
+
+.interests-section__api-source {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Callout Section */
+.interests-section__callout-section {
+  text-align: center;
+  margin-top: var(--space-4xl);
+}
+
+.interests-section__callout {
+  background: linear-gradient(135deg, rgba(234, 64, 30, 0.1), rgba(180, 168, 144, 0.05));
+  border: var(--border-width-thin) solid rgba(234, 64, 30, 0.2);
+  padding: var(--space-3xl);
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.interests-section__callout::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.interests-section__callout:hover::before {
+  opacity: 0.1;
+}
+
+.interests-section__callout-text {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.interests-section__callout-text strong {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .interests-section {
+    padding: var(--space-4xl) 0;
+  }
+  
+  .interests-section__content {
+    padding: 0 var(--space-md);
+  }
+  
+  .interests-section__header {
+    margin-bottom: var(--space-4xl);
+  }
+  
+  .interests-section__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .interests-section__card {
+    padding: 0;
+    height: 260px;
+  }
+  
+  .interests-section__card-front,
+  .interests-section__card-back {
+    padding: var(--space-lg);
+  }
+  
+  .interests-section__callout {
+    padding: var(--space-xl);
+  }
+  
+  .interests-section__callout-text {
+    font-size: var(--font-size-base);
+  }
+  
+  .interests-section__decorative-header {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .interests-section__decorative-header .interests-section__symbol {
+    display: none;
+  }
+
+  /* Disable card flipping on mobile for better UX */
+  .interests-section__card--flippable {
+    cursor: default;
+  }
+
+  .interests-section__card--flippable:hover {
+    transform: none;
+  }
+
+  .interests-section__flip-hint {
+    display: none;
+  }
+
+  /* Show back content alongside front on mobile */
+  .interests-section__card--flippable .interests-section__card-back {
+    position: relative;
+    transform: none;
+    border-top: var(--border-width-thin) solid var(--color-primary);
+    margin-top: var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .interests-section {
+    padding: var(--space-3xl) 0;
+  }
+  
+  .interests-section__header {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .interests-section__intro {
+    font-size: var(--font-size-lg);
+  }
+
+  .interests-section__card {
+    height: auto;
+    min-height: 240px;
+  }
+
+  .interests-section__music-item,
+  .interests-section__game-item {
+    padding: var(--space-xs);
+  }
+
+  .interests-section__track-name,
+  .interests-section__game-name {
+    font-size: var(--font-size-xs);
+  }
+}

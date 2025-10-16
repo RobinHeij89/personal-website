@@ -79,3 +79,21 @@ export const useParallaxMouseMove = (strength = 0.1) => {
 
   return { ref, position };
 };
+
+export const useScrollParallax = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const updateScrollY = () => {
+      // Use requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
+        setScrollY(window.scrollY);
+      });
+    };
+
+    window.addEventListener('scroll', updateScrollY, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollY);
+  }, []);
+
+  return scrollY;
+};

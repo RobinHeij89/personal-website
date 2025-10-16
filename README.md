@@ -1,15 +1,94 @@
-# React + TypeScript + Vite
+# Personal Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern personal website built with React, TypeScript, Vite, and Three.js.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive 3D elements with Three.js and React Three Fiber
+- Custom cursor with hover effects
+- Responsive design with CSS modules
+- Modern animations with GSAP
+- TypeScript for type safety
 
-## React Compiler
+## Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+
+- Node.js (18+ recommended)
+- pnpm (preferred package manager)
+
+### Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
+
+## Coding Guidelines
+
+### CSS Class Management
+
+- **Multiple CSS classes** should be managed using the `clsx` package for conditional and dynamic class assignment
+- This ensures clean, readable, and maintainable class concatenation
+
+Example usage:
+```tsx
+import clsx from 'clsx';
+import styles from './component.module.css';
+
+// Simple conditional classes
+<div className={clsx(styles.base, isActive && styles.active)} />
+
+// Multiple conditions
+<div className={clsx(
+  styles.component,
+  {
+    [styles.loading]: isLoading,
+    [styles.error]: hasError,
+    [styles.disabled]: isDisabled
+  }
+)} />
+
+// With external classes
+<div className={clsx(styles.component, 'external-class', customClass)} />
+```
+
+### Component Structure
+
+- Use CSS Modules for component-specific styling
+- Follow BEM methodology for CSS class naming
+- Include comprehensive JSDoc comments for component documentation
+- Use TypeScript interfaces for props definition
+
+### File Organization
+
+- Components in `/src/components/` with subdirectories for `ui/` and `three/`
+- Custom hooks in `/src/hooks/`
+- Utilities in `/src/utils/`
+- Type definitions in `/src/types/`
+
+## Technology Stack
+
+## Technology Stack
+
+- **React 19** - UI library
+- **TypeScript** - Type safety and developer experience
+- **Vite** - Fast build tool and development server
+- **Three.js** - 3D graphics and animations
+- **React Three Fiber** - React renderer for Three.js
+- **GSAP** - High-performance animations
+- **CSS Modules** - Scoped styling
+- **clsx** - Conditional CSS class utility
+- **ESLint** - Code linting and formatting
 
 ## Expanding the ESLint configuration
 

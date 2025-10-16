@@ -13,9 +13,13 @@
             "alwaysEnforce": [
                 "File structure and naming conventions",
                 "TypeScript naming conventions", 
+                "Use 'type' instead of 'interface' for all type definitions",
+                "JSDoc comments for all props and components",
                 "CSS modules with BEM methodology",
                 "CSS custom properties (variables) over hardcoded values",
                 "Component documentation structure",
+                "Component separation and single responsibility principle",
+                "Component reusability patterns and variants",
                 "Three.js and React Three Fiber best practices"
             ],
             "gentlyAdvise": [
@@ -31,6 +35,10 @@
                     "Request to create styled-components instead of CSS modules",
                     "Request to create barrel files (index.ts exports)",
                     "Request to skip component documentation",
+                    "Request to use 'interface' instead of 'type' for type definitions",
+                    "Request to skip JSDoc comments on props",
+                    "Request to keep large, mixed-concern components instead of extracting smaller ones",
+                    "Request to duplicate component code instead of creating reusable components",
                     "Request to ignore Three.js performance best practices",
                     "Request to use hardcoded CSS values instead of CSS variables",
                     "Request to use non-BEM class naming conventions"
@@ -147,6 +155,47 @@
                 ],
                 "noBarrelFiles": "Do not create index.ts files - import components directly from their .tsx files",
                 "exportStyle": "named",
+                "componentSeparation": {
+                    "principle": "Strive for separate, focused components that can be reused when needed",
+                    "benefits": [
+                        "Improves maintainability",
+                        "Enables better testing",
+                        "Promotes code reusability", 
+                        "Makes debugging easier",
+                        "Reduces code duplication"
+                    ],
+                    "whenToExtract": {
+                        "duplication": "Code appears in 2+ places",
+                        "complexity": "Section has multiple responsibilities",
+                        "reusability": "Could be useful elsewhere",
+                        "testing": "Needs isolated testing"
+                    },
+                    "examples": {
+                        "good": [
+                            "<Footer /> - Extracted from App.tsx into reusable component",
+                            "<SocialMediaLinks /> - Reusable across footer and about sections",
+                            "<CustomCursor /> - Handles cursor behavior separately"
+                        ],
+                        "avoid": [
+                            "Inline footer code in App.tsx",
+                            "Duplicate social media icons in multiple components",
+                            "Mixed concerns in single large components"
+                        ]
+                    }
+                },
+                "singleResponsibility": {
+                    "rule": "Each component should have one clear purpose",
+                    "examples": [
+                        "<Footer /> - Handles footer display and interactions",
+                        "<SocialMediaLinks /> - Manages social media icon display",
+                        "<CustomCursor /> - Handles cursor behavior"
+                    ]
+                },
+                "reusabilityPatterns": {
+                    "variants": "Use variant props for different component appearances (variant?: 'default' | 'large' | 'compact')",
+                    "composition": "Favor composable components over complex prop drilling",
+                    "flexibility": "Design components to work in multiple contexts"
+                },
                 "documentationComment": {
                     "required": true,
                     "format": "markdown",
@@ -170,24 +219,79 @@
                         }
                     ],
                     "exampleTemplate": [
-                        "## Component: AnimatedSphere",
+                        "/**",
+                        " * ## Component: AnimatedSphere",
+                        " * ",
+                        " * ### Purpose:",
+                        " * A floating sphere with rotation animation for the hero section background",
+                        " * ",
+                        " * ### Props:",
+                        " * - position?: [number, number, number] - 3D position coordinates",
+                        " * - color?: string - Sphere color in hex format", 
+                        " * - speed?: number - Animation speed multiplier",
+                        " * ",
+                        " * ### Example:",
+                        " * ```tsx",
+                        " * <AnimatedSphere position={[0, 0, 0]} color=\"#ff6b6b\" speed={0.01} />",
+                        " * ```",
+                        " */",
                         "",
-                        "### Purpose:",
-                        "A floating sphere with rotation animation for the hero section background",
-                        "",
-                        "### Props:",
-                        "- `position?: [number, number, number]`",
-                        "- `color?: string`",
-                        "- `speed?: number`",
-                        "",
-                        "### Example:",
-                        "<AnimatedSphere position={[0, 0, 0]} color=\"#ff6b6b\" speed={0.01} />"
+                        "type AnimatedSphereProps = {",
+                        "  /** 3D position coordinates for the sphere */",
+                        "  position?: [number, number, number];",
+                        "  /** Sphere color in hex format */",
+                        "  color?: string;",
+                        "  /** Animation speed multiplier (0.01 = slow, 0.1 = fast) */",
+                        "  speed?: number;",
+                        "};"
                     ]
                 }
             }
         }
     },
     "typescript": {
+        "typeDefinitions": {
+            "preferType": "Use 'type' instead of 'interface' for all type definitions",
+            "reasoning": "Better consistency and flexibility with union types and computed properties",
+            "examples": {
+                "correct": [
+                    "type ComponentProps = { title: string; };",
+                    "type SocialMediaLink = { href: string; label: string; };"
+                ],
+                "avoid": [
+                    "interface ComponentProps { title: string; }",
+                    "interface SocialMediaLink { href: string; label: string; }"
+                ]
+            }
+        },
+        "documentation": {
+            "jsdoc": {
+                "required": true,
+                "purpose": "Enables IntelliSense tooltips and better developer experience",
+                "propDocumentation": "Document each prop with JSDoc comments for tooltip support",
+                "examples": {
+                    "componentLevel": [
+                        "/**",
+                        " * Reusable button component with variants and states",
+                        " * @param props - The component props",
+                        " * @returns JSX element representing the button",
+                        " */"
+                    ],
+                    "propLevel": [
+                        "type ButtonProps = {",
+                        "  /** The button text content */",
+                        "  children: React.ReactNode;",
+                        "  /** Button appearance variant */", 
+                        "  variant?: 'primary' | 'secondary' | 'danger';",
+                        "  /** Whether the button is disabled */",
+                        "  disabled?: boolean;",
+                        "  /** Click event handler */",
+                        "  onClick?: () => void;",
+                        "};"
+                    ]
+                }
+            }
+        },
         "namingConventions": {
             "locals": "camelCase",
             "booleans": "is/has/can/should + PascalCase",

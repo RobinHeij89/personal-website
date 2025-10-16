@@ -1,0 +1,104 @@
+/* Hero Content Component - BEM Structure */
+.hero-content {
+  position: relative;
+  z-index: var(--hero-z-index);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-2xl);
+  min-height: 100vh;
+}
+
+.hero-content__logo-container {
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-content__logo {
+  width: auto;
+  height: var(--hero-logo-height);
+  filter: drop-shadow(var(--glow-shadow));
+}
+
+.hero-content__title {
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-tight);
+}
+
+.hero-content__subtitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  margin-bottom: var(--space-xl);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.hero-content__tagline {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3xl);
+  max-width: 600px;
+  line-height: var(--line-height-relaxed);
+}
+
+.hero-content__fun-text {
+  color: var(--color-accent-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.hero-content__actions {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  .hero-content__title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .hero-content__subtitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .hero-content__tagline {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .hero-content__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content__logo {
+    height: calc(var(--hero-logo-height) * 0.8);
+  }
+  
+  .hero-content__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .hero-content__subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .hero-content__tagline {
+    font-size: var(--font-size-sm);
+  }
+}

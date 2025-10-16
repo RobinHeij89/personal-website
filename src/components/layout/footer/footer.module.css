@@ -1,0 +1,48 @@
+/**
+ * ## Styles: Footer Component
+ * 
+ * Footer component styling including social section, controller icon,
+ * and footer text with responsive design and hover effects.
+ */
+
+.footer__contact-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__social-section {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.footer__social-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer__controller-icon {
+  width: var(--contact-controller-width);
+  height: auto;
+  opacity: 0.8;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.footer__controller-icon:hover {
+  opacity: 1;
+  transform: scale(1.05) rotate(2deg);
+}
+
+.footer__footer-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin: 0;
+  font-style: italic;
+}

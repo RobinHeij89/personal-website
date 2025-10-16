@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useMagneticHover } from '@/hooks/useAnimations';
+import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
+import { Logo } from '@/components/ui/logo/logo';
 import styles from './navigation.module.css';
-import { Logo } from './logo';
 
 interface NavigationProps {
   className?: string;
@@ -11,7 +11,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const ctaRef = useMagneticHover<HTMLButtonElement>(0.15);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +54,13 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
   return (
     <>
-      <nav className={`${styles.navigation} ${isScrolled ? styles["navigation--scrolled"] : ''} ${className || ''}`}>
+      <nav className={clsx(
+        styles.navigation,
+        {
+          [styles["navigation--scrolled"]]: isScrolled
+        },
+        className
+      )}>
         <div className={styles["navigation__container"]}>
           {/* Logo */}
           <div className={styles["navigation__logo-container"]}>
@@ -76,6 +81,8 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                 <button
                   onClick={() => smoothScrollTo(item.id)}
                   className={styles["navigation__nav-link"]}
+                  data-cursor={item.label.toUpperCase()}
+                  data-cursor-type="button"
                 >
                   {item.label}
                 </button>
@@ -86,9 +93,10 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
           {/* Contact CTA */}
           <div className={styles["navigation__cta-container"]}>
             <button
-              ref={ctaRef}
               onClick={() => smoothScrollTo('contact')}
               className={styles["navigation__cta-button"]}
+              data-cursor="LET'S TALK"
+              data-cursor-type="cta"
             >
               Let's Talk
             </button>
@@ -100,9 +108,16 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className={`${styles["navigation__mobile-toggle"]} ${isMobileMenuOpen ? styles["navigation__mobile-toggle--active"] : ''}`}
+            className={clsx(
+              styles["navigation__mobile-toggle"],
+              {
+                [styles["navigation__mobile-toggle--active"]]: isMobileMenuOpen
+              }
+            )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            data-cursor={isMobileMenuOpen ? "CLOSE" : "MENU"}
+            data-cursor-type="button"
           >
             <span></span>
             <span></span>
@@ -120,7 +135,12 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`${styles["navigation__mobile-menu"]} ${isMobileMenuOpen ? styles["navigation__mobile-menu--open"] : ''}`}>
+      <div className={clsx(
+        styles["navigation__mobile-menu"],
+        {
+          [styles["navigation__mobile-menu--open"]]: isMobileMenuOpen
+        }
+      )}>
         <div className={styles["navigation__mobile-menu-content"]}>
           <div className={styles["navigation__mobile-nav-items"]}>
             {navigationItems.map((item, index) => (
@@ -128,6 +148,8 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                 key={item.id}
                 onClick={() => smoothScrollTo(item.id)}
                 className={styles["navigation__mobile-nav-link"]}
+                data-cursor={item.label.toUpperCase()}
+                data-cursor-type="button"
                 style={{ 
                   transitionDelay: `${index * 0.1}s`,
                   transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-100px)',
@@ -146,6 +168,8 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
             <button
               onClick={() => smoothScrollTo('contact')}
               className={styles["navigation__mobile-cta"]}
+              data-cursor="LET'S TALK"
+              data-cursor-type="cta"
             >
               Let's Talk
             </button>

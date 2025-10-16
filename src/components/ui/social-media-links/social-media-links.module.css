@@ -1,0 +1,70 @@
+/**
+ * ## Styles: SocialMediaLinks Component
+ * 
+ * Reusable social media links with responsive design
+ */
+
+/* Base component styles */
+.social-media-links {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-media-links__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border: var(--border-width-normal) solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-sm);
+  width: var(--contact-icon-size);
+  height: var(--contact-icon-size);
+}
+
+.social-media-links__link svg {
+  width: var(--contact-icon-inner-size);
+  height: var(--contact-icon-inner-size);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.social-media-links__link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.social-media-links__link:hover svg {
+  transform: scale(1.1);
+}
+
+/* Focus states for accessibility */
+.social-media-links__link:focus-visible {
+  outline: 2px solid var(--color-accent-secondary);
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .social-media-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-media-links__link {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .social-media-links__link svg {
+    width: 20px;
+    height: 20px;
+  }
+}
