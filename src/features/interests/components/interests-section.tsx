@@ -38,9 +38,8 @@ import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { useScrollTriggerAnimation } from '@/hooks/useAdvancedAnimations';
 import { InterestCard } from './interest-card';
-import { GamingCard, MTGCard, TechCard, GameDevCard, FamilyCard } from './cards';
+import { GamingCard, MTGCard, TechCard, GameDevCard, FamilyCard, MusicCard } from './cards';
 import styles from './interests-section.module.css';
-import { MusicCard } from '@/components/ui/interests/cards/music-card';
 
 type Interest = {
   id: string;
@@ -127,17 +126,6 @@ const interests: Interest[] = [
 export const InterestsSection: React.FC = () => {
   const { ref: sectionRef, isVisible } = useScrollTriggerAnimation();
   const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
-  const [easterEggCards, setEasterEggCards] = useState<Set<string>>(new Set());
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const clickCounts = useRef<Record<string, number>>({});
-
-  // Get unique categories
-  const categories = ['all', ...Array.from(new Set(interests.map(interest => interest.category)))];
-
-  // Filter interests based on selected category
-  const filteredInterests = selectedCategory === 'all' 
-    ? interests 
-    : interests.filter(interest => interest.category === selectedCategory);
 
   const handleCardFlip = (cardId: string) => {
     // Update flip state
@@ -150,70 +138,6 @@ export const InterestsSection: React.FC = () => {
       }
       return newSet;
     });
-
-    // Enhanced easter egg system
-    const currentCount = clickCounts.current[cardId] || 0;
-    const newCount = currentCount + 1;
-    clickCounts.current[cardId] = newCount;
-    
-    // Easter egg at 3 clicks (reduced from 5 for better UX)
-    if (newCount === 3) {
-      setEasterEggCards(prevEggs => new Set(prevEggs).add(cardId));
-      
-      // Show fun notification based on card
-      const messages = {
-        'music': '🎵 You found the hidden playlist! Currently jamming to some sick beats!',
-        'ps5-gaming': '🎮 Achievement Unlocked: Secret Gamer Discovered!',
-        'mtg': '✨ You activated my trap card! Welcome to the multiverse!',
-        'tech': '🔧 Console.log("You found the developer Easter egg!")'
-      };
-      
-      const message = messages[cardId as keyof typeof messages] || '🎉 You found a secret! Nice clicking skills!';
-      
-      // Create a temporary notification
-      const notification = document.createElement('div');
-      notification.textContent = message;
-      notification.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--color-primary);
-        color: var(--color-background);
-        padding: 16px 24px;
-        border-radius: 8px;
-        font-weight: 500;
-        z-index: 1000;
-        animation: slideInNotification 0.3s ease-out;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        max-width: 300px;
-        font-size: 14px;
-        line-height: 1.4;
-      `;
-      
-      document.body.appendChild(notification);
-      
-      // Reset click count
-      clickCounts.current[cardId] = 0;
-      
-      // Remove notification after 4 seconds
-      setTimeout(() => {
-        notification.style.animation = 'slideOutNotification 0.3s ease-in forwards';
-        setTimeout(() => {
-          if (document.body.contains(notification)) {
-            document.body.removeChild(notification);
-          }
-        }, 300);
-      }, 4000);
-      
-      // Remove easter egg after animation
-      setTimeout(() => {
-        setEasterEggCards(prevEggs => {
-          const newSet = new Set(prevEggs);
-          newSet.delete(cardId);
-          return newSet;
-        });
-      }, 3000);
-    }
   };
 
   const renderCardContent = (interest: Interest) => {
@@ -273,21 +197,6 @@ export const InterestsSection: React.FC = () => {
             outside the world of pixels and algorithms.
           </p>
           
-          {/* Category Filter */}
-          <div className={styles["interests-section__filters"]}>
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={clsx(
-                  styles["interests-section__filter-btn"],
-                  { [styles["interests-section__filter-btn--active"]]: selectedCategory === category }
-                )}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category === 'all' ? 'All' : category}
-              </button>
-            ))}
-          </div>
         </div>
         
         <div className={clsx(
@@ -297,9 +206,8 @@ export const InterestsSection: React.FC = () => {
             'visible': isVisible
           }
         )}>
-          {filteredInterests.map((interest, index) => {
+          {interests.map((interest, index) => {
             const isFlipped = flippedCards.has(interest.id);
-            const hasEasterEgg = easterEggCards.has(interest.id);
             
             return (
               <div
@@ -312,7 +220,6 @@ export const InterestsSection: React.FC = () => {
                 <InterestCard
                   interest={interest}
                   isFlipped={isFlipped}
-                  hasEasterEgg={hasEasterEgg}
                   isVisible={isVisible}
                   onFlip={handleCardFlip}
                 >

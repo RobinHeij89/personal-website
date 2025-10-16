@@ -55,8 +55,6 @@ interface CarouselCardProps {
   error?: string | null;
   /** Empty state message when no items */
   emptyMessage?: string;
-  /** Whether card has easter egg functionality */
-  hasEasterEgg?: boolean;
   /** Custom retry function for error state */
   onRetry?: () => void;
   /** Custom CSS class for card wrapper */
@@ -74,7 +72,6 @@ export const CarouselCard = memo(({
   isLoading = false,
   error = null,
   emptyMessage = "No items found",
-  hasEasterEgg = false,
   onRetry,
   className = ''
 }: CarouselCardProps) => {
@@ -128,7 +125,6 @@ export const CarouselCard = memo(({
     <InterestCard
       interest={interest}
       isFlipped={true}
-      hasEasterEgg={hasEasterEgg}
     >
       {cardContent}
     </InterestCard>

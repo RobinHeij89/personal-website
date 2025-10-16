@@ -105,7 +105,6 @@ export const GameDevCard = memo(() => {
       carouselTitle="Active Projects"
       theme="purple"
       items={projectItems}
-      hasEasterEgg={false}
       className={styles['gamedev-card']}
     />
   );
