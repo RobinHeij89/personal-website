@@ -20,7 +20,6 @@ import { lastFmService, type LastFmTrack } from '@/services/lastFmService';
 
 type MusicApiState = {
   recentTracks: LastFmTrack[];
-  currentTrack: LastFmTrack | null;
   isLoading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
@@ -29,7 +28,6 @@ type MusicApiState = {
 export const useSpotifyApi = (): MusicApiState => {
   const [state, setState] = useState<Omit<MusicApiState, 'refetch'>>({
     recentTracks: [],
-    currentTrack: null,
     isLoading: true,
     error: null
   });
@@ -39,14 +37,12 @@ export const useSpotifyApi = (): MusicApiState => {
       setState(prev => ({ ...prev, isLoading: true, error: null }));
       
       // Fetch recent tracks and current track in parallel
-      const [recentTracks, currentTrack] = await Promise.all([
-        lastFmService.getRecentTracks(6), // Get 6 recent tracks
-        lastFmService.getCurrentTrack()
+      const [recentTracks] = await Promise.all([
+        lastFmService.getRecentTracks(6)
       ]);
       
       setState({
         recentTracks,
-        currentTrack,
         isLoading: false,
         error: null
       });
@@ -61,15 +57,6 @@ export const useSpotifyApi = (): MusicApiState => {
 
   useEffect(() => {
     fetchMusicData();
-    
-    // Set up periodic refresh every 60 seconds for current track
-    const interval = setInterval(() => {
-      lastFmService.getCurrentTrack().then(currentTrack => {
-        setState(prev => ({ ...prev, currentTrack }));
-      }).catch(console.error);
-    }, 60000); // 60 seconds for Last.fm
-
-    return () => clearInterval(interval);
   }, [fetchMusicData]);
 
   return {

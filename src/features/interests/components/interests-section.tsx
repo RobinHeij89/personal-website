@@ -40,6 +40,7 @@ import { useScrollTriggerAnimation } from '@/hooks/useAdvancedAnimations';
 import { InterestCard } from './interest-card';
 import { GamingCard, MTGCard, TechCard, GameDevCard, FamilyCard } from './cards';
 import styles from './interests-section.module.css';
+import { MusicCard } from '@/components/ui/interests/cards/music-card';
 
 type Interest = {
   id: string;
@@ -174,7 +175,7 @@ export const InterestsSection: React.FC = () => {
       notification.textContent = message;
       notification.style.cssText = `
         position: fixed;
-        top: 20px;
+        bottom: 20px;
         right: 20px;
         background: var(--color-primary);
         color: var(--color-background);
@@ -217,8 +218,7 @@ export const InterestsSection: React.FC = () => {
 
   const renderCardContent = (interest: Interest) => {
     if (interest.backContent?.type === 'music') {
-      // return <MusicCard />; // TODO: Fix music card
-      return <div>Music content coming soon...</div>;
+      return <MusicCard />; 
     }
 
     if (interest.backContent?.type === 'gaming') {

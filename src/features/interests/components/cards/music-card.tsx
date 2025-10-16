@@ -32,9 +32,8 @@ const formatTimeAgo = (playedAt: string): string => {
   return `${Math.floor(diff / 86400)}d ago`;
 };
 
-const TrackItem = memo(({ track, isCurrent = false }: { track: LastFmTrack; isCurrent?: boolean }) => (
+const TrackItem = memo(({ track }: { track: LastFmTrack; }) => (
   <CardItemLayout
-    isActive={isCurrent}
     headerContent={
       <CardContentGroup direction="horizontal" spacing="sm">
         <div className={styles['music-card__track-image']}>
@@ -44,7 +43,7 @@ const TrackItem = memo(({ track, isCurrent = false }: { track: LastFmTrack; isCu
             <div className={styles['music-card__track-placeholder']}>🎵</div>
           )}
         </div>
-        <div className={styles['music-card__track-info']}>
+        <div className={styles['music-card__track-info']}>aaa
           <span className={styles['music-card__track-title']}>{track.name}</span>
           <span className={styles['music-card__track-artist']}>by {track.artist}</span>
         </div>
@@ -52,13 +51,9 @@ const TrackItem = memo(({ track, isCurrent = false }: { track: LastFmTrack; isCu
     }
     footer={
       <div className={styles['music-card__track-meta']}>
-        {isCurrent ? (
-          <span className={styles['music-card__now-playing']}>♪ Now Playing</span>
-        ) : (
-          <span className={styles['music-card__timestamp']}>
-            {formatTimeAgo(track.playedAt)}
-          </span>
-        )}
+        <span className={styles['music-card__timestamp']}>
+          {formatTimeAgo(track.playedAt)}
+        </span>
       </div>
     }
   >
@@ -69,15 +64,14 @@ const TrackItem = memo(({ track, isCurrent = false }: { track: LastFmTrack; isCu
 TrackItem.displayName = 'TrackItem';
 
 export const MusicCard = memo(() => {
-  const { recentTracks, currentTrack, isLoading, error } = useSpotifyApi();
+  const { recentTracks, isLoading, error } = useSpotifyApi();
 
-  // Combine current track and recent tracks for carousel
-  const allTracks = currentTrack ? [currentTrack, ...recentTracks] : recentTracks;
+  // Use recent tracks for carousel
+  const allTracks = recentTracks;
 
-  // Convert tracks to carousel items with proper current track indication
+  // Convert tracks to carousel items
   const trackItems = allTracks.map((track, index) => {
-    const isCurrentTrack = !!(currentTrack && track.name === currentTrack.name && track.artist === currentTrack.artist);
-    return <TrackItem key={`${track.name}-${track.artist}-${index}`} track={track} isCurrent={isCurrentTrack} />;
+    return <TrackItem key={`${track.name}-${track.artist}-${index}`} track={track}  />;
   });
 
   const musicInterest = {
@@ -99,7 +93,7 @@ export const MusicCard = memo(() => {
       title="🎵 Music"
       sourceBadge="Last.fm"
       sourceTooltip="Music listening data"
-      carouselTitle={currentTrack ? 'Now Playing & Recent' : 'Recent Tracks'}
+      carouselTitle="Recent Tracks"
       theme="purple"
       items={trackItems}
       isLoading={isLoading}
