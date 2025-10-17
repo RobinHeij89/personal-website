@@ -88,6 +88,7 @@
 
 .work-section__item:hover {
   background: rgba(255, 255, 255, 0.02);
+  z-index: 4; /* Above the hover image */
 }
 
 .work-section__card {
@@ -161,6 +162,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
+    display: inline;    width: fit-content;
   margin-bottom: var(--space-sm);
 }
 
@@ -186,7 +188,7 @@
   margin-bottom: var(--space-sm);
   line-height: var(--line-height-tight);
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.01em;    width: fit-content;
 }
 
 .work-section__project-details {
@@ -200,6 +202,7 @@
   color: var(--color-primary);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
+  display: inline;    width: fit-content;
   letter-spacing: 0.05em;
 }
 
@@ -228,6 +231,14 @@
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+
+.work-section__project-meta, .work-section__project-type, .work-section__project-title , .work-section__project-description {
+  display: inline;
+  width: fit-content;
+  border-radius: var(--border-radius-md);
+  padding:2px 6px;
 }
 
 /* Hover effects */
@@ -312,11 +323,11 @@
   pointer-events: none;
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  width: 100%; /* Fill the full width */
-  height: 100%; /* Fill the full height */
+  height: 200%; /* Fill the full height */
   background: white;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-xl);
+  aspect-ratio: 16/9;
   overflow: hidden; /* Ensure image doesn't overflow the container */
 }
 
@@ -339,29 +350,9 @@
   transform: scale(1.05);
 }
 
-/* Hover Image Functionality - Legacy (can be removed) */
-.work-section__hover-image {
-  position: fixed;
-  transform: translate(-50%, -50%);
-  z-index: 3; /* Between Three.js background (1) and content (5) */
-  pointer-events: none;
-  opacity: 0;
-  animation: fadeInHover 0.3s ease-out forwards;
-}
-
-.work-section__hover-img {
-  max-width: 400px;
-  max-height: 300px;
-  width: auto;
-  height: auto;
-  object-fit: cover;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-xl);
-  transition: transform 0.3s var(--ease-out);
-}
-
-.work-section__hover-image:hover .work-section__hover-img {
-  transform: scale(1.05);
+.work-section__item:hover .work-section__project-meta, .work-section__item:hover .work-section__project-type, .work-section__item:hover .work-section__project-title , .work-section__item:hover .work-section__project-description {
+  background: var(--color-background-overlay);
+  color: white;
 }
 
 @keyframes fadeInHover {

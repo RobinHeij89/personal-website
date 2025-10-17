@@ -82,16 +82,14 @@ export const CustomCursor: React.FC = () => {
 
   useEffect(() => {
     // Add cursor hover effects to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [data-cursor]');
+    const interactiveElements = document.querySelectorAll('a, button, [data-cursor-type]');
     
     const handleMouseEnter = (e: Event) => {
       const target = e.target as HTMLElement;
       setIsHovering(true);
       
       const cursorType = target.getAttribute('data-cursor-type') || '';
-      const cursorTextValue = target.getAttribute('data-cursor') || '';
       setCursorType(cursorType);
-      setCursorText(cursorTextValue);
 
       // If hovering over logo, get its position
       if (cursorType === 'logo') {

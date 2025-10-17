@@ -36,7 +36,7 @@ interface CardItemLayoutProps {
   /** Custom header content (overrides title + badges) */
   headerContent?: ReactNode;
   /** Main content area */
-  children: ReactNode;
+  children?: ReactNode;
   /** Optional footer content (progress, metadata, etc.) */
   footer?: ReactNode;
   /** Optional CSS class name for custom styling */
@@ -97,6 +97,7 @@ export const CardItemLayout = memo<CardItemLayoutProps>(({
       {headerElement}
       
       <div className={styles.cardItem__content}>
+        {headerContent}
         {children}
       </div>
       

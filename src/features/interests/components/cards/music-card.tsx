@@ -43,7 +43,7 @@ const TrackItem = memo(({ track }: { track: LastFmTrack; }) => (
             <div className={styles['music-card__track-placeholder']}>🎵</div>
           )}
         </div>
-        <div className={styles['music-card__track-info']}>aaa
+        <div className={styles['music-card__track-info']}>
           <span className={styles['music-card__track-title']}>{track.name}</span>
           <span className={styles['music-card__track-artist']}>by {track.artist}</span>
         </div>
@@ -56,9 +56,7 @@ const TrackItem = memo(({ track }: { track: LastFmTrack; }) => (
         </span>
       </div>
     }
-  >
-    <div></div>
-  </CardItemLayout>
+  />
 ));
 
 TrackItem.displayName = 'TrackItem';
@@ -99,7 +97,6 @@ export const MusicCard = memo(() => {
       isLoading={isLoading}
       error={error}
       emptyMessage="No tracks found"
-      hasEasterEgg={true}
       className={styles['music-card']}
     />
   );

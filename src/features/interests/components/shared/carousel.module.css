@@ -47,14 +47,6 @@
   color: var(--color-primary);
 }
 
-.carousel__nav_btn:hover {
-  transform: translateY(-1px);
-}
-
-.carousel__nav_btn:active {
-  transform: translateY(0);
-}
-
 /* Theme Colors */
 .carousel__nav_btn--purple {
   background: rgba(138, 43, 226, 0.2);

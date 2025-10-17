@@ -79,7 +79,7 @@ const interests: Interest[] = [
   },
   {
     id: "gaming",
-    title: "PS5 Gaming",
+    title: "Gaming",
     description: "From cinematic adventures to competitive multiplayer - gaming is where creativity meets technology",
     icon: "🎯",
     category: "Entertainment",

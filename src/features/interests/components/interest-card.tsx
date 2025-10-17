@@ -83,7 +83,6 @@ export const InterestCard: React.FC<InterestCardProps> = ({
         }
       )}
       onClick={handleCardClick}
-      data-cursor={interest.hasFlip ? "🔄 Click to flip!" : undefined}
     >
       <div className={styles["interest-card__inner"]}>
         {/* Front of card */}
@@ -106,6 +105,10 @@ export const InterestCard: React.FC<InterestCardProps> = ({
                 <span>
                   {interest.backContent?.type === 'music' && '🎵 Click to see my recent tracks!'}
                   {interest.backContent?.type === 'gaming' && '🎮 Click to see my recent games!'}
+                  {interest.backContent?.type === 'mtg' && '🃏 Click to see my MTG collection!'}
+                  {interest.backContent?.type === 'tech' && '💻 Click to see things that pique my interest!'}
+                  {interest.backContent?.type === 'gamedev' && '🎲 Click to see my game projects!'}
+                  {interest.backContent?.type === 'family' && '👨‍👩‍👧‍👦 Click to see what\'s taking up my time!'}
                   {!interest.backContent?.type && 'Click to see more'}
                 </span>
                 <span className={styles["interest-card__flip-icon"]}>↻</span>

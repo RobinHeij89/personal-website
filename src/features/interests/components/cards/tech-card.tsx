@@ -99,7 +99,6 @@ export const TechCard = memo(() => {
       carouselTitle="Current Learning"
       theme="blue"
       items={techItemsElements}
-      hasEasterEgg={false}
       className={styles['tech-card']}
     />
   );

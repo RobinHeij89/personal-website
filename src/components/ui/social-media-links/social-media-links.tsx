@@ -99,7 +99,6 @@ export const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
           rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           className={styles["social-media-links__link"]}
           aria-label={link.ariaLabel}
-          data-cursor={link.cursorText}
           data-cursor-type="button"
         >
           {link.icon}

@@ -84,7 +84,6 @@
 .interest-card__back {
   transform: rotateY(180deg);
   background: var(--color-surface);
-  border: var(--border-width-thin) solid var(--color-primary);
   padding: 0; /* Remove padding for flipped cards to give more space */
 }
 

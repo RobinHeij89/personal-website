@@ -1,0 +1,61 @@
+/**
+ * Carousel Component Styles
+ * Generic carousel for interest cards with theme support
+ */
+
+.card {
+  padding: var(--space-lg);
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+  overflow: hidden;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.source {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  color: var(--color-primary);
+}
+
+
+/* Theme Colors */
+.source--purple {
+  background: rgba(138, 43, 226, 0.2);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  color: rgba(138, 43, 226, 1);
+}
+
+.source--blue {
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: rgba(59, 130, 246, 1);
+}
+
+.source--green {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: rgba(34, 197, 94, 1);
+}

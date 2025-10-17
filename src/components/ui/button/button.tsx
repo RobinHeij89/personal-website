@@ -67,7 +67,6 @@ export const Button: React.FC<ButtonProps> = ({
       <a
         href={href}
         className={buttonClasses}
-        data-cursor={dataCursor}
         data-cursor-type="button"
         aria-disabled={disabled}
       >
@@ -81,7 +80,6 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       className={buttonClasses}
-      data-cursor={dataCursor}
       data-cursor-type="button"
       disabled={disabled}
     >

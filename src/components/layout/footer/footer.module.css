@@ -12,6 +12,8 @@
   gap: var(--space-xl);
   padding-top: var(--space-2xl);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-primary);
+
 }
 
 .footer__social-section {
@@ -33,6 +35,7 @@
   height: auto;
   opacity: 0.8;
   transition: all var(--duration-normal) var(--ease-out);
+  color: var(--color-primary);
 }
 
 .footer__controller-icon:hover {

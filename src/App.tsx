@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { Scene3D } from '@/components/three/scene-3d/scene-3d';
+import { Scene3D } from '@/components/three/scene-3d/scene-3d'; 
 import { HeroScene } from '@/features/hero/components/hero-scene';
 import { HeroContent } from '@/features/hero/components/hero-content';
 import { AboutSection } from '@/features/about/components/about-section';

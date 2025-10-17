@@ -2,7 +2,7 @@
  * ## Component: GamingCard
  * 
  * ### Purpose:
- * Specialized interest card displaying PS5 gaming data.
+ * Specialized interest card displaying gaming data.
  * Shows recent games, platform information, trophy progress, and playtime statistics.
  * 
  * ### Features:
@@ -17,10 +17,25 @@
  */
 
 import { memo } from 'react';
-import { usePS5Api } from '@/hooks/usePS5Api';
 import { CarouselCard, CardItemLayout, CardContentGroup } from '../shared';
 import styles from './gaming-card.module.css';
-import type { PS5Game } from '@/services/ps5Service';
+
+type Game = {
+  id: string;
+  name: string;
+  platform: 'PS5' | 'PS4' | 'PC';
+  image: string;
+  lastPlayedDate: Date;
+  totalPlayTime: string;
+  trophyProgress?: {
+    platinum: number;
+    gold: number;
+    silver: number;
+    bronze: number;
+  };
+  external_url: string;
+  isCurrentlyPlaying?: boolean;
+};
 
 const formatPlaytimeHours = (playtime: string): string => {
   // Extract hours from playtime string like "45h 23m" or "127h 45m"
@@ -31,7 +46,7 @@ const formatPlaytimeHours = (playtime: string): string => {
   return playtime;
 };
 
-const GameItem = memo(({ game, isCurrent = false }: { game: PS5Game; isCurrent?: boolean }) => (
+const GameItem = memo(({ game, isCurrent = false }: { game: Game; isCurrent?: boolean }) => (
   <CardItemLayout
     isActive={isCurrent}
     headerContent={
@@ -48,11 +63,6 @@ const GameItem = memo(({ game, isCurrent = false }: { game: PS5Game; isCurrent?:
           <span className={styles['gaming-card__game-title']}>{game.name}</span>
           <div className={styles['gaming-card__game-meta']}>
             <span className={styles['gaming-card__playtime']}>{formatPlaytimeHours(game.totalPlayTime)}</span>
-            {isCurrent && (
-              <span className={styles['gaming-card__playing-indicator']}>
-                🎮 Recently Played
-              </span>
-            )}
           </div>
         </div>
       </CardContentGroup>
@@ -83,16 +93,50 @@ const GameItem = memo(({ game, isCurrent = false }: { game: PS5Game; isCurrent?:
         </CardContentGroup>
       )
     }
-  >
-    <div></div>
-  </CardItemLayout>
+  />
 ));
 
 GameItem.displayName = 'GameItem';
 
 export const GamingCard = memo(() => {
-  const { recentGames, isLoading, error, refetch } = usePS5Api();
+  // const { recentGames, isLoading, error, refetch } = usePS5Api();
 
+
+  const recentGames: Game[] = [
+    {
+      id: '1',
+      name: 'The Last of Us Part II',
+      platform: 'PS5',
+      image: '/games/the-last-of-us-2.jpg',
+      lastPlayedDate: new Date('2024-09-10T18:00:00Z'),
+      totalPlayTime: '45h 23m',
+      trophyProgress: { platinum: 1, gold: 2, silver: 8, bronze: 20 },
+      external_url: 'https://psnprofiles.com/the-last-of-us-part-ii',
+      isCurrentlyPlaying: false
+    },
+    {
+      id: '2',
+      name: 'God of War Ragnarök',
+      platform: 'PS5',
+      image: '/games/god-of-war-ragnarok.jpg',
+      lastPlayedDate: new Date('2024-08-05T20:15:00Z'),
+      totalPlayTime: '60h 10m',
+      trophyProgress: { platinum: 1, gold: 4, silver: 12, bronze: 30 },
+      external_url: 'https://psnprofiles.com/god-of-war-ragnarok',
+      isCurrentlyPlaying: false
+    },
+    {
+      id: '3',
+      name: 'Factorio',
+      platform: 'PC',
+      image: '/games/factorio.jpg',
+      lastPlayedDate: new Date('2024-10-01T22:45:00Z'),
+      totalPlayTime: '127h 45m',
+      external_url: 'https://www.factorio.com/',
+      isCurrentlyPlaying: false
+    }
+  ];
+  
   // Convert games to carousel items
   const gameItems = recentGames.map((game, index) => (
     <GameItem key={`${game.id}-${index}`} game={game} />
@@ -114,17 +158,15 @@ export const GamingCard = memo(() => {
   return (
     <CarouselCard
       interest={gamingInterest}
-      title="🎮 PS5 Gaming"
-      sourceBadge="PSN Profile"
-      sourceTooltip="PlayStation gaming data"
+      title="🎮 Gaming"
+      sourceBadge="My favorites"
+      sourceTooltip="Gaming data"
       carouselTitle="Recent Games"
       theme="green"
       items={gameItems}
-      isLoading={isLoading}
-      error={error}
+      isLoading={false}
+      error={undefined}
       emptyMessage="No games found"
-      hasEasterEgg={true}
-      onRetry={refetch}
       className={styles['gaming-card']}
     />
   );

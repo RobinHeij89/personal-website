@@ -67,7 +67,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
             <button
               onClick={() => smoothScrollTo('top')}
               className={styles["navigation__logo-button"]}
-              data-cursor="HOME"
               data-cursor-type="logo"
             >
               <Logo className={styles["navigation__logo"]} />
@@ -81,7 +80,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                 <button
                   onClick={() => smoothScrollTo(item.id)}
                   className={styles["navigation__nav-link"]}
-                  data-cursor={item.label.toUpperCase()}
                   data-cursor-type="button"
                 >
                   {item.label}
@@ -95,7 +93,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
             <button
               onClick={() => smoothScrollTo('contact')}
               className={styles["navigation__cta-button"]}
-              data-cursor="LET'S TALK"
               data-cursor-type="cta"
             >
               Let's Talk
@@ -116,7 +113,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
-            data-cursor={isMobileMenuOpen ? "CLOSE" : "MENU"}
             data-cursor-type="button"
           >
             <span></span>
@@ -148,7 +144,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                 key={item.id}
                 onClick={() => smoothScrollTo(item.id)}
                 className={styles["navigation__mobile-nav-link"]}
-                data-cursor={item.label.toUpperCase()}
                 data-cursor-type="button"
                 style={{ 
                   transitionDelay: `${index * 0.1}s`,
@@ -168,7 +163,6 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
             <button
               onClick={() => smoothScrollTo('contact')}
               className={styles["navigation__mobile-cta"]}
-              data-cursor="LET'S TALK"
               data-cursor-type="cta"
             >
               Let's Talk
