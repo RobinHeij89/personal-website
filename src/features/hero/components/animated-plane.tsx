@@ -25,6 +25,7 @@
 import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useScrollParallax } from '@/hooks/useAdvancedAnimations';
+import { ShaderDebug } from '@/components/three/debug';
 import * as THREE from 'three';
 import vertexShader from '@/assets/shaders/vertex.glsl?raw';
 import fragmentShader from '@/assets/shaders/fragment.glsl?raw';
@@ -44,7 +45,7 @@ export const AnimatedPlane: React.FC<AnimatedPlaneProps> = ({
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const scrollY = useScrollParallax();
-  
+
   const uniforms = useMemo(() => ({
     time: { value: 0 },
     progress: { value: 0 },
@@ -54,7 +55,7 @@ export const AnimatedPlane: React.FC<AnimatedPlaneProps> = ({
     texture1: { value: null }
   }), [colors]);
 
-  const shaderMaterial = useMemo(() => 
+  const shaderMaterial = useMemo(() =>
     new THREE.ShaderMaterial({
       side: THREE.DoubleSide,
       uniforms,
@@ -68,27 +69,30 @@ export const AnimatedPlane: React.FC<AnimatedPlaneProps> = ({
   useFrame((state) => {
     if (meshRef.current && shaderMaterial.uniforms) {
       const time = state.clock.elapsedTime;
-      shaderMaterial.uniforms.time.value = time/25;
+      shaderMaterial.uniforms.time.value = time / 25;
       shaderMaterial.uniforms.progress.value = (Math.sin(time * 0.4) + 1) / 2; // 0 to 1 oscillation
-      
+
       // Update resolution for responsive behavior
       const { width, height } = state.size;
       shaderMaterial.uniforms.resolution.value.set(width, height, width / height, height / width);
       shaderMaterial.uniforms.pixels.value.set(width, height);
-      
+
       // Apply very subtle parallax to the background plane
       const parallaxY = scrollY * 0.005; // Barely noticeable parallax for background
       const parallaxZ = scrollY * 0.001; // Minimal depth movement
-      
+
       meshRef.current.position.y = position[1] + parallaxY;
       meshRef.current.position.z = position[2] + parallaxZ;
     }
   });
 
   return (
-    <mesh ref={meshRef} position={position} rotation={rotation} scale={scale}>
-      <planeGeometry args={[2, 2, 128, 128]} />
-      <primitive object={shaderMaterial} />
-    </mesh>
+    <>
+      <mesh ref={meshRef} position={position} rotation={rotation} scale={scale}>
+        <planeGeometry args={[2, 2, 128, 128]} />
+        <primitive object={shaderMaterial} />
+      </mesh>
+      <ShaderDebug material={shaderMaterial} name="Animated Plane Shader" />
+    </>
   );
 };
