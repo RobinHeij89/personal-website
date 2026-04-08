@@ -1,172 +1,89 @@
 :root {
-  /* Colors - Enhanced teal/green theme inspired by modern design */
-  --color-primary: #10B981;     /* Emerald green primary */
-  --color-secondary: #22D3EE;   /* Bright cyan secondary */
-  --color-accent: #FFFFFF;      /* Pure white for high contrast */
-  --color-accent-secondary: #F59E0B; /* Warm amber for highlights */
-  --color-background: #0D1B2A;  /* Deep navy blue background */
-  --color-background-overlay: rgba(13, 27, 42, 0.95); /* Background with opacity for navigation */
-  --color-surface: #1B2937;     /* Dark blue-gray surface */
-  --color-surface-light: #374151; /* Lighter surface for contrast */
-  --color-text: #FFFFFF;        /* Pure white for maximum contrast */
-  --color-text-muted: #9CA3AF;  /* Cool gray for secondary text */
-  --color-text-dark: #0D1B2A;   /* Dark text for light backgrounds */
+  /* Colors */
+  --rh-ds-color-bg:        #EEEEEE;
+  --rh-ds-color-text:      #030303;
+  --rh-ds-color-text-dark: #1E1E1E;
+  --rh-ds-color-accent:    #EA401E;
+  --rh-ds-color-white:     #FFFFFF;
+  --rh-ds-color-border:    rgba(3, 3, 3, 0.12);
 
-  /* Spacing - Enhanced spacing system */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 5rem;
-  --space-5xl: 6rem;
+  /* Spacing */
+  --rh-ds-space-xs:  0.25rem;
+  --rh-ds-space-sm:  0.5rem;
+  --rh-ds-space-md:  1rem;
+  --rh-ds-space-lg:  1.5rem;
+  --rh-ds-space-xl:  2rem;
+  --rh-ds-space-2xl: 3rem;
+  --rh-ds-space-3xl: 4rem;
+  --rh-ds-space-4xl: 5rem;
+  --rh-ds-space-5xl: 6rem;
 
-  /* Typography - Geist font system for modern, clean look */
-  --font-family-primary: var(--font-geist-sans);
-  --font-family-mono: var(--font-geist-mono);
-  
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 2rem;
-  --font-size-4xl: 2.5rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 4rem;
+  /* Typography */
+  --rh-ds-font-primary: 'Geist', sans-serif;
+  --rh-ds-font-mono:    'Geist Mono', monospace;
 
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  --rh-ds-font-size-xs:   0.75rem;
+  --rh-ds-font-size-sm:   0.875rem;
+  --rh-ds-font-size-base: 1rem;
+  --rh-ds-font-size-lg:   1.125rem;
+  --rh-ds-font-size-xl:   1.25rem;
+  --rh-ds-font-size-2xl:  1.5rem;
+  --rh-ds-font-size-3xl:  2rem;
+  --rh-ds-font-size-4xl:  2.5rem;
+  --rh-ds-font-size-5xl:  3rem;
+  --rh-ds-font-size-6xl:  4rem;
 
-  --line-height-tight: 1.25;
-  --line-height-snug: 1.375;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
-  --line-height-loose: 2;
+  --rh-ds-font-weight-light:     300;
+  --rh-ds-font-weight-normal:    400;
+  --rh-ds-font-weight-medium:    500;
+  --rh-ds-font-weight-semibold:  600;
+  --rh-ds-font-weight-bold:      700;
+  --rh-ds-font-weight-extrabold: 800;
+
+  --rh-ds-line-height-tight:   1.25;
+  --rh-ds-line-height-snug:    1.375;
+  --rh-ds-line-height-normal:  1.5;
+  --rh-ds-line-height-relaxed: 1.625;
+  --rh-ds-line-height-loose:   2;
 
   /* Animations */
-  --duration-fast: 300ms;
-  --duration-normal: 500ms;
-  --duration-slow: 700ms;
+  --rh-ds-duration-fast:   200ms;
+  --rh-ds-duration-normal: 400ms;
+  --rh-ds-duration-slow:   600ms;
 
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --rh-ds-ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --rh-ds-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --rh-ds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Borders - Consistent 8px radius for modern, friendly design */
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 8px;
+  /* Borders */
+  --rh-ds-border-radius-sm: 4px;
+  --rh-ds-border-radius-md: 8px;
+  --rh-ds-border-radius-lg: 16px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --rh-ds-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --rh-ds-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --rh-ds-shadow-lg: 0 20px 40px -20px rgba(27, 31, 37, 0.25);
 
-  /* Cursor */
-  --cursor-size: 40px;
-  --cursor-size-hover-min-width: 80px;
-  --cursor-size-hover-height: 40px;
-  --cursor-border-width: 2px;
-  --cursor-border-radius: 20px;
-  --cursor-border-radius-circle: 50%;
-  --cursor-padding: var(--space-sm) var(--space-md);
-  --cursor-backdrop-blur: blur(5px);
-  --cursor-z-index: 9999;
+  /* Layout */
+  --rh-ds-max-width: 1440px;
+  --rh-ds-nav-height: 72px;
+  --rh-ds-nav-z-index: 1000;
 
-  /* Layout & Grid */
-  --max-width-content: 1400px;
-  --max-width-narrow: 1200px;
-  --max-width-hero-content: 800px;
-  --grid-gap-small: var(--space-md);
-  --grid-gap-medium: var(--space-xl);
-  --grid-gap-large: var(--space-2xl);
-
-  /* Components */
-  --header-height: 80px;
-  --header-height-scrolled: 64px;
-  --section-padding-vertical: var(--space-5xl);
-  --section-padding-horizontal: var(--space-lg);
-  
-  /* Hero Section */
-  --hero-min-height: calc(100vh - var(--header-height));
-  --hero-content-max-width: var(--max-width-hero-content);
-  
-  /* Contact Section */
-  --contact-content-max-width: var(--max-width-hero-content);
-  --contact-icon-size: 48px;
-  --contact-icon-size-mobile: 40px;
-  --contact-icon-inner-size: 24px;
-  --contact-icon-inner-size-mobile: 20px;
-  --contact-controller-width: 160px;
-  
-  /* Work Section */
-  --work-item-padding: var(--space-2xl) 0;
-  --work-number-width: 80px;
-  --work-logo-width: 160px;
-  
-  /* About Section */
-  --about-image-max-width: 280px;
-  
-  /* Z-Index Layers */
-  --hero-z-index: 10;
-  --particles-z-index: 2;
-
-  /* Navigation */
-  --nav-logo-height: 40px;
-  --nav-logo-height-scrolled: 32px;
-  --nav-backdrop-blur: blur(20px);
-  --nav-z-index: 1000;
-  
-  /* Logo Sizes */
-  --logo-size-small: 32px;
-  --logo-size-medium: 48px;
-  --logo-size-large: 64px;
-  --logo-size-small-mobile: 28px;
-  --logo-size-medium-mobile: 40px;
-  --logo-size-large-mobile: 48px;
-  
-  /* Backdrop Effects */
-  --backdrop-blur-light: blur(5px);
-  --backdrop-blur-medium: blur(10px);
-  --backdrop-blur-heavy: blur(20px);
-  
-  /* Opacity Values */
-  --opacity-disabled: 0.6;
-  --opacity-muted: 0.8;
-  --opacity-subtle: 0.9;
-  --opacity-overlay: 0.95;
-  
-  /* Border Styles */
-  --border-width-thin: 1px;
-  --border-width-normal: 2px;
-  --border-width-thick: 3px;
-  --border-color-light: rgba(255, 255, 255, 0.1);
-  --border-color-medium: rgba(255, 255, 255, 0.2);
-  --border-color-strong: rgba(255, 255, 255, 0.3);
-  
-  /* Breakpoints */
-  --breakpoint-mobile: 768px;
-  --breakpoint-tablet: 1024px;
-  --breakpoint-desktop: 1200px;
-  --breakpoint-wide: 1400px;
+  /* Breakpoints (for reference in JS) */
+  --rh-ds-breakpoint-mobile:  768px;
+  --rh-ds-breakpoint-tablet:  1024px;
+  --rh-ds-breakpoint-desktop: 1200px;
+  --rh-ds-breakpoint-wide:    1440px;
 }
 
-/* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --duration-fast: 0ms;
-    --duration-normal: 0ms;
-    --duration-slow: 0ms;
+    --rh-ds-duration-fast:   0ms;
+    --rh-ds-duration-normal: 0ms;
+    --rh-ds-duration-slow:   0ms;
   }
-  
+
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
