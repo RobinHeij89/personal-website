@@ -1,0 +1,221 @@
+/* Hero section */
+.hero {
+  min-height: calc(100vh - var(--rh-ds-nav-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rh-ds-space-3xl) var(--rh-ds-space-xl);
+  gap: var(--rh-ds-space-xl);
+}
+
+/* Layout wrapper: card + photo side by side */
+.hero__layout {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* ─── Main card ─────────────────────────────────────────── */
+.hero__card {
+  position: relative;
+  background: var(--rh-ds-color-accent);
+  /* Postage stamp shape: inset corner circles via radial-gradient mask */
+  --corner-r: 8px;
+  -webkit-mask-image:
+    radial-gradient(circle at 0 0,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 0, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 0 100%,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 100%, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px));
+  -webkit-mask-composite: destination-in;
+  mask-image:
+    radial-gradient(circle at 0 0,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 0, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 0 100%,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 100%, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px));
+  mask-composite: intersect;
+  padding: var(--rh-ds-space-3xl) var(--rh-ds-space-3xl) var(--rh-ds-space-2xl);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 0;
+  min-height: 480px;
+}
+
+/* Vertical divider line between left column and content */
+.hero__divider {
+  position: absolute;
+  left: 200px;
+  top: var(--rh-ds-space-xl);
+  bottom: var(--rh-ds-space-xl);
+  width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Logo watermark — left column, top */
+.hero__watermark {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: flex-start;
+  padding-right: var(--rh-ds-space-2xl);
+  opacity: 0.6;
+  /* Invert logo to white */
+  filter: brightness(0) invert(1);
+}
+
+/* Available as — left column, bottom */
+.hero__available {
+  grid-column: 1;
+  grid-row: 2;
+  padding-right: var(--rh-ds-space-2xl);
+  padding-top: var(--rh-ds-space-xl);
+}
+
+.hero__available_label {
+  font-size: var(--rh-ds-font-size-xs);
+  font-weight: var(--rh-ds-font-weight-bold);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--rh-ds-space-xs);
+}
+
+.hero__available_role {
+  font-size: var(--rh-ds-font-size-xs);
+  font-weight: var(--rh-ds-font-weight-bold);
+  color: var(--rh-ds-color-white);
+  line-height: var(--rh-ds-line-height-loose);
+}
+
+/* Content area — right column, spans both rows */
+.hero__content {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  padding-left: var(--rh-ds-space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rh-ds-space-lg);
+}
+
+.hero__name {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--rh-ds-font-weight-bold);
+  color: var(--rh-ds-color-white);
+  letter-spacing: -0.02em;
+  line-height: var(--rh-ds-line-height-tight);
+}
+
+/* Role list */
+.hero__roles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--rh-ds-space-xs);
+}
+
+.hero__role {
+  display: flex;
+  align-items: center;
+  gap: var(--rh-ds-space-sm);
+  font-size: var(--rh-ds-font-size-base);
+  font-weight: var(--rh-ds-font-weight-normal);
+  color: var(--rh-ds-color-text);
+  line-height: var(--rh-ds-line-height-loose);
+}
+
+.hero__bullet {
+  flex-shrink: 0;
+  color: var(--rh-ds-color-text);
+  opacity: 0.6;
+}
+
+/* ─── Photo card ────────────────────────────────────────── */
+.hero__photo {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 260px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  /* Matching postage-stamp corners */
+  --corner-r: 8px;
+  -webkit-mask-image:
+    radial-gradient(circle at 0 0,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 0, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 0 100%,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 100%, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px));
+  -webkit-mask-composite: destination-in;
+  mask-image:
+    radial-gradient(circle at 0 0,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 0, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 0 100%,    transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px)),
+    radial-gradient(circle at 100% 100%, transparent var(--corner-r), #000 calc(var(--corner-r) + 0.5px));
+  mask-composite: intersect;
+}
+
+.hero__photo_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ─── Scroll indicator ──────────────────────────────────── */
+.hero__scroll {
+  color: var(--rh-ds-color-text);
+  opacity: 0.4;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero__photo {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4/3;
+    margin: 0 auto;
+  }
+
+  .hero__layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--rh-ds-space-lg);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: var(--rh-ds-space-xl) var(--rh-ds-space-md);
+  }
+
+  .hero__card {
+    grid-template-columns: 1fr;
+    padding: var(--rh-ds-space-xl) var(--rh-ds-space-lg);
+  }
+
+  .hero__divider {
+    display: none;
+  }
+
+  .hero__watermark,
+  .hero__available {
+    display: none;
+  }
+
+  .hero__content {
+    grid-column: 1;
+    padding-left: 0;
+  }
+}

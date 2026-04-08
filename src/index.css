@@ -1,6 +1,8 @@
 @import './styles/variables.css';
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -8,44 +10,35 @@ html,
 body,
 #root {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
-  font-family: var(--font-family-primary);
-  color: var(--color-text);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
+}
+
+body {
+  background: var(--rh-ds-color-bg);
+  color: var(--rh-ds-color-text);
+  font-family: var(--rh-ds-font-primary);
+  font-size: var(--rh-ds-font-size-base);
+  font-weight: var(--rh-ds-font-weight-normal);
+  line-height: var(--rh-ds-line-height-normal);
   letter-spacing: -0.01em;
-  font-feature-settings: 'cv01', 'cv02', 'cv03', 'cv04';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--color-background);
-  font-size: var(--font-size-base);
-}
-
-/* Modern text styles */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
+  font-weight: var(--rh-ds-font-weight-bold);
+  line-height: var(--rh-ds-line-height-tight);
   letter-spacing: -0.02em;
   margin: 0;
 }
 
 p {
   margin: 0;
-  line-height: var(--line-height-relaxed);
+  line-height: var(--rh-ds-line-height-relaxed);
 }
 
-/* Code and monospace elements */
-code, pre, kbd, samp {
-  font-family: var(--font-family-mono);
-  font-feature-settings: normal;
-}
-
-/* Accessibility improvements */
 button,
 a {
   outline: 2px solid transparent;
@@ -54,5 +47,5 @@ a {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--rh-ds-color-accent);
 }

@@ -48,7 +48,6 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   href,
   className,
-  dataCursor,
   disabled = false,
 }) => {
   const buttonClasses = clsx(
