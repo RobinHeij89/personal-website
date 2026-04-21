@@ -1,0 +1,98 @@
+.works { padding: 160px 56px; }
+
+.works__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 96px;
+}
+
+.works__heading {
+  font-family: var(--rh-ds-font-sans);
+  font-size: clamp(80px, 10vw, 140px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--rh-ds-color-text);
+}
+
+.works__heading em {
+  font-style: normal;
+  color: var(--rh-ds-color-accent);
+}
+
+.works__count {
+  font-family: var(--rh-ds-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rh-ds-color-muted);
+}
+
+/* Brands grid */
+.brands {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--rh-ds-color-mid);
+}
+
+.brand {
+  padding: 40px 0 40px 28px;
+  border-right: 1px solid var(--rh-ds-color-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+.brand:last-child { border-right: none; }
+
+.brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--rh-ds-color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand:hover::after { transform: scaleX(1); }
+
+.brand__num {
+  font-family: var(--rh-ds-font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(3,3,3,0.28);
+}
+
+.brand__name {
+  font-family: var(--rh-ds-font-sans);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--rh-ds-color-text);
+  transition: color 0.2s;
+}
+
+.brand:hover .brand__name { color: var(--rh-ds-color-accent); }
+
+@media (max-width: 900px) {
+  .works { padding: 80px 24px; }
+  .brands { grid-template-columns: repeat(3, 1fr); }
+  .brand:nth-child(3) { border-right: none; }
+  .brand:nth-child(6) { border-right: none; }
+}
+
+@media (max-width: 480px) {
+  .brands { grid-template-columns: repeat(2, 1fr); }
+  .brand:nth-child(2n) { border-right: none; }
+  .brand:nth-child(3) { border-right: 1px solid var(--rh-ds-color-mid); }
+  .brand:nth-child(6) { border-right: 1px solid var(--rh-ds-color-mid); }
+}

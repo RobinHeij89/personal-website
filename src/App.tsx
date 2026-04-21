@@ -1,20 +1,25 @@
 import React from 'react';
 import Navigation from '@/features/navigation/components/navigation';
 import { Hero } from '@/features/hero/components/hero';
-import styles from './App.module.css';
+import { IntroSection } from '@/features/intro/components/intro-section';
+import { WorksSection } from '@/features/works/components/works-section';
+import { ContactSection } from '@/features/contact/components/contact-section';
+import { Footer } from '@/components/layout/footer/footer';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import '@/styles/animations.css';
 
 const App: React.FC = () => {
+  useScrollReveal();
+
   return (
-    <div className={styles.app}>
+    <>
       <Navigation />
-      <main className={styles.main}>
-        <Hero />
-        <section id="about" className={styles.section} aria-label="About" />
-        <section id="works" className={styles.section} aria-label="Works" />
-        <section id="contact" className={styles.section} aria-label="Contact" />
-      </main>
-    </div>
+      <Hero />
+      <IntroSection />
+      <WorksSection />
+      <ContactSection />
+      <Footer />
+    </>
   );
 };
 
