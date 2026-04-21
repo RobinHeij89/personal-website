@@ -1,103 +1,72 @@
-import React from 'react';
-import { Logo } from '@/components/ui/logo/logo';
+import React, { useEffect, useRef } from 'react';
 import styles from './hero.module.css';
 
-const roles = [
-  'Senior creative front-end developer',
-  'Indie game developer',
-  'Developer with a design background',
-  'Developer with leadership skills',
-  'Coach',
-  'Team player',
-  'But above all a dad of 2 girls.',
-];
-
-const availableAs = [
-  'Senior Front-end Developer',
-  'Tech Lead',
-  'Design System Developer',
+const meta = [
+  { label: 'Discipline', value: 'Creative Front-end', hi: false },
+  { label: 'Role',       value: 'Tech Lead',          hi: true  },
+  { label: 'Based in',  value: 'Netherlands',         hi: false },
+  { label: 'Status',    value: 'Available',           hi: true  },
+  { label: 'Since',     value: '2009',                hi: false },
 ];
 
 export const Hero: React.FC = () => {
+  const photoRef = useRef<HTMLDivElement>(null);
+  const BASE_ROTATE = -1.5;
+
+  useEffect(() => {
+    const wrap = photoRef.current;
+    if (!wrap) return;
+    let raf: number;
+
+    const onMove = (e: MouseEvent) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = wrap.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / window.innerWidth;
+        const dy = (e.clientY - cy) / window.innerHeight;
+        const rotY = dx * 18;
+        const rotX = -dy * 14;
+        wrap.style.transform = `rotate(${BASE_ROTATE}deg) perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      });
+    };
+    const onLeave = () => {
+      wrap.style.transform = `rotate(${BASE_ROTATE}deg)`;
+    };
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseleave', onLeave);
+    return () => {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseleave', onLeave);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
-    <section id="hero" className={styles.hero} aria-label="Hero">
-      <div className={styles.hero__layout}>
-        {/* Main card */}
-        <div className={styles.hero__card}>
-          {/* Grid dividers */}
-          <div className={styles.hero__divider} aria-hidden="true" />
-
-          {/* Logo watermark */}
-          <div className={styles.hero__watermark} aria-hidden="true">
-            <Logo size="lg" />
-          </div>
-
-          {/* Content area (right of divider) */}
-          <div className={styles.hero__content}>
-            <h1 className={styles.hero__name}>Robin Heij</h1>
-            <ul className={styles.hero__roles} aria-label="Roles">
-              {roles.map((role) => (
-                <li key={role} className={styles.hero__role}>
-                  <RoleBullet />
-                  {role}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Available as (bottom left) */}
-          <div className={styles.hero__available}>
-            <p className={styles.hero__available_label}>Available as:</p>
-            {availableAs.map((role) => (
-              <p key={role} className={styles.hero__available_role}>{role}</p>
-            ))}
-          </div>
-        </div>
-
-        {/* Photo card */}
-        <div className={styles.hero__photo} aria-label="Photo of Robin Heij">
-          <img
-            src="/robin.jpg"
-            alt="Robin Heij"
-            className={styles.hero__photo_img}
-          />
-        </div>
+    <section id="about" className={styles.hero}>
+      {/* Polaroid photo */}
+      <div className={styles.hero__photo} ref={photoRef}>
+        <img src="/robin.jpg" alt="Robin Heij" className={styles.hero__photo_img} />
+        <span className={styles.hero__photo_caption}>Robin Heij — NL</span>
       </div>
 
-      {/* Scroll indicator */}
-      <div className={styles.hero__scroll} aria-hidden="true">
-        <ScrollArrow />
+      {/* Giant name */}
+      <div className={styles.hero__name}>
+        <span className={`${styles.hero__line} reveal-left`} style={{ transitionDelay: '100ms' }}>ROBIN</span>
+        <span className={`${styles.hero__line} ${styles['hero__line--accent']} reveal-right`} style={{ transitionDelay: '200ms' }}>HEIJ</span>
+      </div>
+
+      {/* Meta row */}
+      <div className={`${styles.hero__meta} stagger`}>
+        {meta.map(({ label, value, hi }) => (
+          <div key={label} className={styles.hero__meta_col}>
+            <span className={styles.hero__meta_label}>{label}</span>
+            <span className={`${styles.hero__meta_value}${hi ? ` ${styles['hero__meta_value--hi']}` : ''}`}>{value}</span>
+          </div>
+        ))}
       </div>
     </section>
   );
 };
-
-const RoleBullet: React.FC = () => (
-  <svg
-    className={styles.hero__bullet}
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    aria-hidden="true"
-  >
-    <circle cx="8" cy="8" r="3" fill="currentColor" />
-  </svg>
-);
-
-const ScrollArrow: React.FC = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="8 12 12 16 16 12" />
-    <line x1="12" y1="8" x2="12" y2="16" />
-  </svg>
-);

@@ -1,51 +1,25 @@
 @import './styles/variables.css';
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--rh-ds-color-bg);
   color: var(--rh-ds-color-text);
-  font-family: var(--rh-ds-font-primary);
-  font-size: var(--rh-ds-font-size-base);
-  font-weight: var(--rh-ds-font-weight-normal);
-  line-height: var(--rh-ds-line-height-normal);
-  letter-spacing: -0.01em;
+  font-family: var(--rh-ds-font-sans);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--rh-ds-font-weight-bold);
-  line-height: var(--rh-ds-line-height-tight);
-  letter-spacing: -0.02em;
-  margin: 0;
-}
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+p { margin: 0; }
 
-p {
-  margin: 0;
-  line-height: var(--rh-ds-line-height-relaxed);
-}
-
-button,
-a {
+button, a {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-
-button:focus-visible,
-a:focus-visible {
+button:focus-visible, a:focus-visible {
   outline: 2px solid var(--rh-ds-color-accent);
 }
