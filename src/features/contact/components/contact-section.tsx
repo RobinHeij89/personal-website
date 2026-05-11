@@ -6,12 +6,12 @@ export const ContactSection: React.FC = () => (
     <div className={styles.contact__left}>
       <h2 className={styles.contact__headline}>
         Get in<br />touch.
-        <em>Now.</em>
+        <em>And work together.</em>
       </h2>
       <div className={styles.contact__cols}>
         <div className={styles.contact__col}>
           <span className={styles.contact__col_label}>Direct</span>
-          <a href="mailto:robin@robinheij.nl" className={styles.contact__link}>robin@robinheij.nl</a>
+          <a href="mailto:info@robinheij.nl" className={styles.contact__link}>info@robinheij.nl</a>
           <a href="tel:+31618917987" className={styles.contact__link}>+31 6 18 91 79 87</a>
         </div>
         <div className={styles.contact__col}>

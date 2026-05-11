@@ -3,10 +3,10 @@ import styles from './hero.module.css';
 
 const meta = [
   { label: 'Discipline', value: 'Creative Front-end', hi: false },
-  { label: 'Role',       value: 'Tech Lead',          hi: true  },
-  { label: 'Based in',  value: 'Netherlands',         hi: false },
-  { label: 'Status',    value: 'Available',           hi: true  },
-  { label: 'Since',     value: '2009',                hi: false },
+  { label: 'Role', value: 'Tech Lead', hi: true },
+  { label: 'Based in', value: 'Netherlands', hi: false },
+  { label: 'Status', value: 'Available', hi: true },
+  { label: 'Since', value: '2009', hi: false },
 ];
 
 export const Hero: React.FC = () => {
@@ -48,8 +48,8 @@ export const Hero: React.FC = () => {
     <section id="about" className={styles.hero}>
       {/* Polaroid photo */}
       <div className={styles.hero__photo} ref={photoRef}>
-        <img src="/robin.jpg" alt="Robin Heij" className={styles.hero__photo_img} />
-        <span className={styles.hero__photo_caption}>Robin Heij — NL</span>
+        <img src="/robin2.jpg" alt="Robin Heij" className={styles.hero__photo_img} />
+        <span className={styles.hero__photo_caption}>Robin Heij</span>
       </div>
 
       {/* Giant name */}
