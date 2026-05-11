@@ -29,6 +29,19 @@
   color: var(--rh-ds-color-muted);
 }
 
-@media (max-width: 600px) {
-  .footer { padding: 24px; }
+/* ── Tablet ── */
+@media (width <= 1024px) {
+  .footer {
+    padding: 24px 32px;
+  }
+}
+
+/* ── Mobile ── */
+@media (width <= 640px) {
+  .footer {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }

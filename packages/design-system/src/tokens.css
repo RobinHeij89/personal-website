@@ -1,0 +1,48 @@
+:root {
+  /* Colors */
+  --rh-ds-color-bg:      #EEEEEE;
+  --rh-ds-color-text:    #030303;
+  --rh-ds-color-accent:  #D84E30;
+  --rh-ds-color-mid:     rgba(3, 3, 3, 0.18);
+  --rh-ds-color-muted:   rgba(3, 3, 3, 0.35);
+  --rh-ds-color-subtle:  rgba(3, 3, 3, 0.25);
+  --rh-ds-color-white:   #FFFFFF;
+
+  /* Typography */
+  --rh-ds-font-sans: 'Geist', sans-serif;
+  --rh-ds-font-mono: 'Geist Mono', monospace;
+
+  /* Layout */
+  --rh-ds-nav-height:  72px;
+  --rh-ds-nav-z-index: 100;
+
+  /* Spacing scale (4px base) */
+  --rh-ds-space-1:  0.25rem;   /*  4px */
+  --rh-ds-space-2:  0.5rem;    /*  8px */
+  --rh-ds-space-3:  0.75rem;   /* 12px */
+  --rh-ds-space-4:  1rem;      /* 16px */
+  --rh-ds-space-5:  1.25rem;   /* 20px */
+  --rh-ds-space-6:  1.5rem;    /* 24px */
+  --rh-ds-space-8:  2rem;      /* 32px */
+  --rh-ds-space-10: 2.5rem;    /* 40px */
+  --rh-ds-space-12: 3rem;      /* 48px */
+  --rh-ds-space-14: 3.5rem;    /* 56px */
+  --rh-ds-space-16: 4rem;      /* 64px */
+  --rh-ds-space-20: 5rem;      /* 80px */
+  --rh-ds-space-24: 6rem;      /* 96px */
+  --rh-ds-space-28: 7rem;      /* 112px */
+  --rh-ds-space-32: 8rem;      /* 128px */
+  --rh-ds-space-40: 10rem;     /* 160px */
+
+  /* Breakpoints (for reference in JS; use CSS custom media in CSS) */
+  --rh-ds-bp-sm: 640px;
+  --rh-ds-bp-md: 1024px;
+  --rh-ds-bp-lg: 1280px;
+
+  /* Motion */
+  --rh-ds-duration-fast:   200ms;
+  --rh-ds-duration-normal: 400ms;
+  --rh-ds-duration-slow:   600ms;
+  --rh-ds-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --rh-ds-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+}
