@@ -1,0 +1,14 @@
+{
+  "name": "@robinheij/design-system",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Design tokens and base styles for robinheij.nl",
+  "style": "src/index.css",
+  "exports": {
+    ".": "./src/index.css",
+    "./tokens": "./src/tokens.css"
+  },
+  "files": [
+    "src"
+  ]
+}

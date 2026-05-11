@@ -34,3 +34,11 @@
 .stagger.visible > *:nth-child(5) { transition-delay: 320ms; }
 .stagger.visible > *:nth-child(6) { transition-delay: 400ms; }
 .stagger.visible > *:nth-child(7) { transition-delay: 480ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right, .stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

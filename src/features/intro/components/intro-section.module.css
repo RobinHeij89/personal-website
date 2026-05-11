@@ -66,11 +66,35 @@
   letter-spacing: 0.08em;
 }
 
-@media (max-width: 768px) {
+/* ── Tablet ── */
+@media (width <= 1024px) {
   .intro {
+    padding: 100px 32px;
     grid-template-columns: 1fr;
-    gap: 64px;
-    padding: 80px 24px;
+    gap: 56px;
   }
-  .intro__right { padding-left: 0; }
+
+  .intro__right {
+    padding-left: 0;
+  }
+}
+
+/* ── Mobile ── */
+@media (width <= 640px) {
+  .intro {
+    padding: 80px 20px;
+    gap: 48px;
+  }
+
+  .intro__statement {
+    font-size: 22px;
+  }
+
+  .intro__right {
+    gap: 36px;
+  }
+
+  .descriptor__list li {
+    font-size: 12px;
+  }
 }
