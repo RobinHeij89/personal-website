@@ -1,0 +1,39 @@
+.banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  z-index: 101; /* sits above nav (z-index: 100) */
+  background: #F8E119;
+  color: #231F20;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.banner__track {
+  display: flex;
+  width: max-content;
+  animation: rh-marquee 32s linear infinite;
+}
+
+.banner__content {
+  display: block;
+  font-family: var(--rh-ds-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+@keyframes rh-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner__track { animation: none; }
+}

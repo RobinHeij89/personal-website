@@ -6,7 +6,7 @@ export const IntroSection: React.FC = () => (
     <div className={`${styles.intro__statement} reveal`}>
       <strong>Senior creative front-end developer</strong>
       {' '}with a design background and leadership experience.
-      Indie game developer, coach, team player — and above all, a dad of 2 girls.
+      Coach, team player, hobby game developer — and above all, a dad of 2 girls.
     </div>
 
     <div className={styles.intro__right}>
@@ -24,8 +24,17 @@ export const IntroSection: React.FC = () => (
         <ul className={styles.descriptor__list}>
           <li>Creative development <span>—</span></li>
           <li>Design systems <span>—</span></li>
-          <li>Indie game development <span>—</span></li>
           <li>Leadership &amp; coaching <span>—</span></li>
+        </ul>
+      </div>
+
+      <div className={styles.descriptor}>
+        <p className={styles.descriptor__label}>Hobbies and interests</p>
+        <ul className={styles.descriptor__list}>
+          <li>Indie game development <span>—</span></li>
+          <li>Music production <span>—</span></li>
+          <li>Craftbeer <span>—</span></li>
+          <li>Playstation<span>—</span></li>
         </ul>
       </div>
     </div>

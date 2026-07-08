@@ -1,11 +1,11 @@
 :root {
   /* Colors */
-  --rh-ds-color-bg:      #EEEEEE;
-  --rh-ds-color-text:    #030303;
-  --rh-ds-color-accent:  #D84E30;
-  --rh-ds-color-mid:     rgba(3, 3, 3, 0.18);
-  --rh-ds-color-muted:   rgba(3, 3, 3, 0.35);
-  --rh-ds-color-subtle:  rgba(3, 3, 3, 0.25);
+  --rh-ds-color-bg:      #FFFFFF;
+  --rh-ds-color-text:    #001621;
+  --rh-ds-color-accent:  #FF4103;
+  --rh-ds-color-mid:     rgba(0, 22, 33, 0.18);
+  --rh-ds-color-muted:   rgba(0, 22, 33, 0.35);
+  --rh-ds-color-subtle:  rgba(0, 22, 33, 0.25);
   --rh-ds-color-white:   #FFFFFF;
 
   /* Typography */
@@ -45,4 +45,13 @@
   --rh-ds-duration-slow:   600ms;
   --rh-ds-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --rh-ds-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --rh-ds-color-bg:     #0D1419;
+  --rh-ds-color-text:   #F0F4F7;
+  --rh-ds-color-accent: #FF4103;
+  --rh-ds-color-mid:    rgba(240, 244, 247, 0.12);
+  --rh-ds-color-muted:  rgba(240, 244, 247, 0.40);
+  --rh-ds-color-subtle: rgba(240, 244, 247, 0.22);
 }

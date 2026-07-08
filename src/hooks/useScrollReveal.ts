@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 
 export function useScrollReveal() {
   useEffect(() => {
-    const selectors = '.reveal, .reveal-left, .reveal-right, .stagger';
+    const selectors = '.reveal, .reveal-left, .reveal-right, .reveal-bottom, .stagger';
     const els = document.querySelectorAll<HTMLElement>(selectors);
 
-    // Hero elements animate on load
-    window.addEventListener('load', () => {
-      document.querySelectorAll<HTMLElement>('#about .reveal-left, #about .reveal-right, #about .stagger')
+    // Hero elements animate in immediately on mount (next frame so the
+    // transition plays). Don't rely on `window.load` — it may have already
+    // fired by the time React mounts, leaving the hero stuck at opacity 0.
+    const revealHero = () =>
+      document.querySelectorAll<HTMLElement>('#about .reveal, #about .reveal-left, #about .reveal-right, #about .reveal-bottom, #about .stagger')
         .forEach(el => el.classList.add('visible'));
-    }, { once: true });
+    const heroRaf = requestAnimationFrame(revealHero);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -24,6 +26,9 @@ export function useScrollReveal() {
       if (!el.closest('#about')) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(heroRaf);
+      observer.disconnect();
+    };
   }, []);
 }

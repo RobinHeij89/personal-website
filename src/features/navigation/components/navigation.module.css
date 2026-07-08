@@ -1,47 +1,27 @@
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 36px; left: 0; right: 0;
   z-index: var(--rh-ds-nav-z-index);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 22px 56px;
-  mix-blend-mode: multiply;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 28px 56px;
+  background: transparent;
 }
 
-.nav__logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: var(--rh-ds-color-text);
-}
-
-.nav__logo img { width: 28px; height: auto; }
-
-.nav__name {
-  font-family: var(--rh-ds-font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
+/* ── Menu links (left) ── */
 .nav__links {
+  grid-column: 1;
+  justify-self: start;
   display: flex;
-  gap: 48px;
-  margin-left: auto;
+  gap: 36px;
   list-style: none;
 }
 
 .nav__links a {
-  font-family: var(--rh-ds-font-mono);
-  font-size: 10px;
+  font-family: var(--rh-ds-font-sans);
+  font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--rh-ds-color-text);
   text-decoration: none;
   transition: color 0.2s;
@@ -49,7 +29,111 @@
 
 .nav__links a:hover { color: var(--rh-ds-color-accent); }
 
+/* ── Logo (centered) ── */
+.nav__logo {
+  grid-column: 2;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--rh-ds-color-text);
+}
+
+.nav__mark { width: 54px; height: auto; }
+
+.nav__name {
+  font-family: var(--rh-ds-font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── Right cluster: theme toggle + contact ── */
+.nav__right {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Theme toggle button */
+.nav__theme {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--rh-ds-color-text);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+  border-radius: 4px;
+}
+
+.nav__theme:hover { opacity: 1; }
+
+.nav__theme svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Contact button (dark pill) */
+.nav__contact {
+  font-family: var(--rh-ds-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rh-ds-color-text);
+  border: 0.5px solid var(--rh-ds-color-text);
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav__contact::before {
+  content: "";
+  background: var(--rh-ds-color-accent);
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 2px;
+  aspect-ratio: 1/1;
+  transition: width 0.2s linear;
+  border-radius: 999px;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+.nav__contact:hover::before { width: 300px; }
+
+/* ── Mobile ── */
 @media (max-width: 600px) {
-  .nav { padding: 18px 24px; }
-  .nav__links { gap: 24px; }
+  .nav { padding: 18px 20px; top: 36px; }
+  .nav__links { display: none; }
+  .nav__mark { width: 42px; }
+  .nav__name { font-size: 11px; letter-spacing: 0.26em; }
+  .nav__right { gap: 10px; }
+  .nav__contact {
+    padding: 11px 22px;
+    font-size: 12px;
+  }
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .nav__mark { filter: invert(1); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .nav__theme,
+  .nav__contact::before { transition: none; }
 }

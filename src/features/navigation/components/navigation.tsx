@@ -1,17 +1,51 @@
 import React from 'react';
 import styles from './navigation.module.css';
 
-const Navigation: React.FC = () => (
+type Props = {
+  theme: 'light' | 'dark';
+  onThemeToggle: () => void;
+};
+
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
+const SunIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+);
+
+const Navigation: React.FC<Props> = ({ theme, onThemeToggle }) => (
   <nav className={styles.nav}>
-    <a href="#about" className={styles.nav__logo}>
-      <img src="/logo.svg" alt="RH" width={28} />
-      <span className={styles.nav__name}>Robin Heij</span>
-    </a>
     <ul className={styles.nav__links}>
       <li><a href="#about">About</a></li>
       <li><a href="#works">Works</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
+    <a href="#about" className={styles.nav__logo}>
+      <img src="/logo.svg" alt="Robin" className={styles.nav__mark} />
+      <span className={styles.nav__name}>ROBIN</span>
+    </a>
+    <div className={styles.nav__right}>
+      <button
+        className={styles.nav__theme}
+        onClick={onThemeToggle}
+        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      >
+        {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+      </button>
+      <a href="#contact" className={styles.nav__contact}>Contact</a>
+    </div>
   </nav>
 );
 

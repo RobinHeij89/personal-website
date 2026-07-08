@@ -1,74 +1,55 @@
 .hero {
   position: relative;
   min-height: 100vh;
-  padding: 0 56px;
+  padding: 320px 56px 80px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 80px;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
   overflow: hidden;
 }
 
-/* ── Giant name ── */
-.hero__name {
+/* ── Promise (DEPT-style statement) ── */
+.hero__promise {
   position: relative;
   z-index: 2;
-}
-
-.hero__line {
-  display: block;
+  margin-top: 32px;
+  max-width: 620px;
   font-family: var(--rh-ds-font-sans);
-  font-size: clamp(120px, 17vw, 240px);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   color: var(--rh-ds-color-text);
-  white-space: nowrap;
-  user-select: none;
 }
 
-.hero__line--accent { color: var(--rh-ds-color-accent); }
+.hero__promise em {
+  font-style: normal;
+  color: var(--rh-ds-color-accent);
+}
 
-/* ── Polaroid photo ── */
+/* ── Image (original 2:3 aspect ratio) — opens up on scroll ── */
 .hero__photo {
-  position: absolute;
-  right: 10vw;
-  bottom: 12vh;
-  z-index: 9;
-  background: #fff;
-  padding: 10px 10px 36px 10px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.1);
-  transform: rotate(-1.5deg);
-  transform-style: preserve-3d;
-  perspective: 800px;
-  cursor: default;
-  transition: box-shadow 0.3s ease;
-  will-change: transform;
-}
-
-.hero__photo:hover {
-  box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12);
+  --p: 0;
+  position: relative;
+  z-index: 1;
+  margin-top: 56px;
+  width: 100%;
+  max-width: 420px;
+  clip-path: inset(calc((1 - var(--p)) * 12%) calc((1 - var(--p)) * 20%) round 4px);
+  transform: scale(calc(0.9 + var(--p) * 0.1));
+  transform-origin: center;
+  will-change: clip-path, transform;
 }
 
 .hero__photo_img {
   display: block;
-  width: 300px;
-  height: 400px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 6;
   object-fit: cover;
-  object-position: center 8%;
-  pointer-events: none;
   filter: contrast(1.02);
-}
-
-.hero__photo_caption {
-  display: block;
-  text-align: center;
-  font-family: var(--rh-ds-font-mono);
-  font-size: 12px;
-  color: rgba(3,3,3,0.4);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 16px;
 }
 
 /* ── Meta row ── */
@@ -76,17 +57,20 @@
   position: relative;
   z-index: 3;
   display: flex;
+  justify-content: center;
   gap: 56px;
   margin-top: 48px;
   padding-top: 24px;
   border-top: 1px solid var(--rh-ds-color-mid);
   width: 100%;
+  max-width: 640px;
 }
 
 .hero__meta_col {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  text-align: left;
 }
 
 .hero__meta_label {
@@ -114,21 +98,15 @@
 /* ── Tablet ── */
 @media (width <= 1024px) {
   .hero {
-    padding: 0 32px 60px;
+    padding: 240px 32px 60px;
   }
 
   .hero__line {
-    font-size: clamp(80px, 16vw, 140px);
+    font-size: clamp(72px, 14vw, 140px);
   }
 
   .hero__photo {
-    right: 4%;
-    bottom: 60px;
-  }
-
-  .hero__photo_img {
-    width: 220px;
-    height: 300px;
+    max-width: 360px;
   }
 
   .hero__meta {
@@ -137,35 +115,29 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo {
+    clip-path: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
 /* ── Mobile ── */
 @media (width <= 640px) {
   .hero {
-    padding: 100px 20px 40px;
+    padding: 120px 20px 40px;
     min-height: auto;
-    justify-content: flex-start;
-  }
-
-  .hero__photo {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    align-self: center;
-    margin: 0 auto 40px;
-    transform: rotate(-1.5deg);
-  }
-
-  .hero__photo_img {
-    width: 220px;
-    height: 280px;
-  }
-
-  .hero__photo_caption {
-    font-size: 8px;
   }
 
   .hero__line {
-    font-size: clamp(56px, 18vw, 96px);
+    font-size: clamp(52px, 17vw, 96px);
     letter-spacing: -0.02em;
+  }
+
+  .hero__photo {
+    margin-top: 40px;
+    max-width: 280px;
   }
 
   .hero__meta {
@@ -186,11 +158,5 @@
 
   .hero__meta_value {
     font-size: 11px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__photo {
-    transform: rotate(-1.5deg) !important;
   }
 }

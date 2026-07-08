@@ -1,0 +1,25 @@
+/* ── Grand centered headline ── */
+.hero__name {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__line {
+  display: block;
+  font-family: var(--rh-ds-font-sans);
+  font-size: clamp(60px, 15vw, 120px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  color: var(--rh-ds-color-text);
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.hero__line--accent { color: var(--rh-ds-color-accent); }
+
+.hero__char{
+  display: inline-block;
+}

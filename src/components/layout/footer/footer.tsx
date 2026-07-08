@@ -3,10 +3,10 @@ import styles from './footer.module.css';
 
 export const Footer: React.FC = () => (
   <footer className={styles.footer}>
-    <div className={styles.footer__logo}>
-      <img src="/logo.svg" alt="RH" width={22} />
-      <span>Robin Heij</span>
-    </div>
-    <p>© 2026 — robinheij.nl</p>
+    <a href="#about" className={styles.footer__logo}>
+      <img src="/logo.svg" alt="Robin" className={styles.footer__mark} />
+      <span className={styles.footer__name}>ROBIN</span>
+    </a>
+    <p className={styles.footer__copy}>© 2026 — robinheij.nl</p>
   </footer>
 );
