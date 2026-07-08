@@ -22,7 +22,7 @@ export const ContactSection: React.FC = () => (
       </div>
     </div>
 
-    <div className={`${styles.contact__right} reveal-right`}>
+    <div className={`${styles.contact__right} reveal-right`} data-cursor="photo">
       <img src="/robin.jpg" alt="Robin Heij" />
     </div>
   </section>

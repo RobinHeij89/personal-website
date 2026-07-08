@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '@/features/navigation/components/navigation';
 import { AvailabilityBanner } from '@/features/availability/components/availability-banner';
+import { CustomCursor } from '@/components/ui/custom-cursor/custom-cursor';
 import { Hero } from '@/features/hero/components/hero';
 import { IntroSection } from '@/features/intro/components/intro-section';
 import { WorksSection } from '@/features/works/components/works-section';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <CustomCursor />
       <AvailabilityBanner />
       <Navigation theme={theme} onThemeToggle={toggle} />
       <Hero />

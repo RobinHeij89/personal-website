@@ -111,6 +111,7 @@ export const WorksSection: React.FC = () => {
               key={name}
               className={`${styles.brand} ${isActive ? styles['brand--active'] : ''}`}
               title={name}
+              data-cursor="brand"
               onPointerEnter={(e) => { if (e.pointerType === 'mouse') setHoveredName(name); }}
               onPointerLeave={(e) => { if (e.pointerType === 'mouse') setHoveredName(null); }}
               onClick={() => setPinnedName(prev => prev === name ? null : name)}

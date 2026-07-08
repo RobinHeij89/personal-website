@@ -1,0 +1,85 @@
+/* Hidden on touch devices — only shown when a fine pointer (mouse) is present */
+@media (pointer: coarse) {
+  .wrapper { display: none; }
+}
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  /* Starts hidden off-screen; JS controls opacity on enter/leave */
+}
+
+/* ── Visual dot / shape ── */
+.cursor {
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rh-ds-color-accent);
+  box-shadow: inset 0 0 0 0 var(--rh-ds-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    width     0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    height    0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ── Nav state: grows + shows arrow, transparent with border ── */
+.cursor[data-state="nav"] {
+  width: 52px;
+  height: 52px;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
+}
+
+.cursor[data-state="nav"] .label {
+  color: var(--rh-ds-color-accent);
+}
+
+/* ── Photo state: grows + shows HI ── */
+.cursor[data-state="photo"] {
+  width: 96px;
+  height: 96px;
+}
+
+/* ── Brand state: transparent box with orange border
+      width/height are set by JS to match the hovered element ── */
+.cursor[data-state="brand"] {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
+  overflow: visible;
+}
+
+/* ── Label (arrow / HI text) ── */
+.label {
+  font-family: var(--rh-ds-font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.cursor[data-state="nav"] .label,
+.cursor[data-state="photo"] .label {
+  opacity: 1;
+}
+
+/* ── Respect reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .cursor { transition: none; }
+}

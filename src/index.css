@@ -11,6 +11,11 @@ html {
   html { scroll-behavior: auto; }
 }
 
+/* Hide native cursor on mouse devices — replaced by CustomCursor */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
 body {
   background: var(--rh-ds-color-bg);
   color: var(--rh-ds-color-text);

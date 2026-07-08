@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
       </p>
 
       {/* Smaller rectangular image — unmasks on scroll */}
-      <div className={styles.hero__photo} ref={photoRef}>
+      <div className={styles.hero__photo} ref={photoRef} data-cursor="photo">
         <img src="/robin2.jpg" alt="Robin Heij" className={styles.hero__photo_img} />
       </div>
 
