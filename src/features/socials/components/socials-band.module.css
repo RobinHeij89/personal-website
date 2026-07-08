@@ -18,7 +18,7 @@
   width: 100%;
   height: calc(22px * 25);
   color: var(--rh-ds-color-accent);
-  opacity: 0.9;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -42,7 +42,7 @@
   margin: 0 auto;
   display: grid;
   place-items: center;
-  background: white;
+  background: var(--rh-ds-color-bg);
   border-radius: 50%;
 }
 
