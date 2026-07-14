@@ -1,19 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './custom-cursor.module.css';
 
-type State = 'default' | 'nav' | 'photo' | 'brand';
+type State = 'default' | 'nav' | 'photo';
 
 const LABEL: Record<State, string> = {
   default: '',
   nav: '→',
   photo: 'HI',
-  brand: '',
 };
 
 export const CustomCursor: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Only run on mouse-capable devices
@@ -22,7 +22,8 @@ export const CustomCursor: React.FC = () => {
     const wrapper = wrapperRef.current;
     const visual = visualRef.current;
     const label = labelRef.current;
-    if (!wrapper || !visual || !label) return;
+    const box = boxRef.current;
+    if (!wrapper || !visual || !label || !box) return;
 
     let mx = -200;
     let my = -200;
@@ -30,11 +31,10 @@ export const CustomCursor: React.FC = () => {
     let activeBrandEl: HTMLElement | null = null;
     let raf = 0;
 
-    // RAF loop: keep wrapper on mouse in all non-brand states
+    // The cursor always tracks the mouse — including over brands, where the
+    // outline box is a separate element rather than the cursor itself.
     const loop = () => {
-      if (state !== 'brand') {
-        wrapper.style.transform = `translate(${mx}px, ${my}px)`;
-      }
+      wrapper.style.transform = `translate(${mx}px, ${my}px)`;
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -44,47 +44,37 @@ export const CustomCursor: React.FC = () => {
       label.textContent = LABEL[newState];
     };
 
+    const syncBox = () => {
+      if (!activeBrandEl) return;
+      const rect = activeBrandEl.getBoundingClientRect();
+      box.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
+      box.style.width = `${rect.width}px`;
+      box.style.height = `${rect.height}px`;
+    };
+
     const enterBrand = (el: HTMLElement) => {
       if (activeBrandEl === el) return;
+      const isFirst = activeBrandEl === null;
       activeBrandEl = el;
-      state = 'brand'; // stop RAF from updating wrapper
 
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-
-      // Slide wrapper to element centre (one-shot CSS transition)
-      wrapper.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-      wrapper.style.transform = `translate(${cx}px, ${cy}px)`;
-
-      // Grow visual to element dimensions (CSS transition on visual handles this)
-      visual.style.width = `${rect.width}px`;
-      visual.style.height = `${rect.height}px`;
-      applyVisual('brand');
+      // On first entry place the box directly instead of sliding it in from
+      // wherever it was left; afterwards it glides between brands.
+      if (isFirst) box.style.transition = 'none';
+      syncBox();
+      if (isFirst) {
+        void box.offsetWidth;
+        box.style.transition = '';
+      }
+      box.setAttribute('data-active', 'true');
     };
 
-    const exitBrand = (nextState: State) => {
-      state = nextState;
+    const exitBrand = () => {
+      if (!activeBrandEl) return;
       activeBrandEl = null;
-
-      // Snap wrapper back to mouse — RAF takes over immediately
-      wrapper.style.transition = 'none';
-
-      // Let CSS transitions shrink visual back to its CSS-defined size
-      visual.style.width = '';
-      visual.style.height = '';
-      applyVisual(nextState);
+      box.removeAttribute('data-active');
     };
 
-    const setState = (newState: State, brandEl?: HTMLElement) => {
-      if (newState === 'brand' && brandEl) {
-        enterBrand(brandEl);
-        return;
-      }
-      if (state === 'brand') {
-        exitBrand(newState);
-        return;
-      }
+    const setState = (newState: State) => {
       if (state === newState) return;
       state = newState;
       applyVisual(newState);
@@ -93,17 +83,6 @@ export const CustomCursor: React.FC = () => {
     const onMouseMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
-
-      // Keep brand overlay in sync during scroll or resize
-      if (state === 'brand' && activeBrandEl) {
-        const rect = activeBrandEl.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        wrapper.style.transition = 'none';
-        wrapper.style.transform = `translate(${cx}px, ${cy}px)`;
-        visual.style.width = `${rect.width}px`;
-        visual.style.height = `${rect.height}px`;
-      }
     };
 
     const onMouseOver = (e: MouseEvent) => {
@@ -112,8 +91,14 @@ export const CustomCursor: React.FC = () => {
       const photo = t.closest('[data-cursor="photo"]');
       const clickable = t.closest('a[href], button, [role="button"]');
 
-      if (brand) setState('brand', brand);
-      else if (photo) setState('photo');
+      if (brand) {
+        enterBrand(brand);
+        setState('default');
+        return;
+      }
+
+      exitBrand();
+      if (photo) setState('photo');
       else if (clickable) setState('nav');
       else setState('default');
     };
@@ -129,6 +114,8 @@ export const CustomCursor: React.FC = () => {
     document.addEventListener('mouseover', onMouseOver, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
     document.addEventListener('mouseenter', onMouseEnter);
+    window.addEventListener('scroll', syncBox, { passive: true });
+    window.addEventListener('resize', syncBox);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -136,14 +123,19 @@ export const CustomCursor: React.FC = () => {
       document.removeEventListener('mouseover', onMouseOver);
       document.removeEventListener('mouseleave', onMouseLeave);
       document.removeEventListener('mouseenter', onMouseEnter);
+      window.removeEventListener('scroll', syncBox);
+      window.removeEventListener('resize', syncBox);
     };
   }, []);
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
-      <div ref={visualRef} className={styles.cursor} data-state="default">
-        <span ref={labelRef} className={styles.label} />
+    <>
+      <div ref={boxRef} className={styles.box} aria-hidden="true" />
+      <div ref={wrapperRef} className={styles.wrapper}>
+        <div ref={visualRef} className={styles.cursor} data-state="default">
+          <span ref={labelRef} className={styles.label} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

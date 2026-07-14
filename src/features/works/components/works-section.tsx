@@ -105,11 +105,11 @@ export const WorksSection: React.FC = () => {
 
       <div className={`${styles.brands} stagger`}>
         {clients.map(({ name, logo }) => {
-          const isActive = activeName === name;
+          const isPinned = pinnedName === name;
           return (
             <div
               key={name}
-              className={`${styles.brand} ${isActive ? styles['brand--active'] : ''}`}
+              className={`${styles.brand} ${isPinned ? styles['brand--pinned'] : ''}`}
               title={name}
               data-cursor="brand"
               onPointerEnter={(e) => { if (e.pointerType === 'mouse') setHoveredName(name); }}

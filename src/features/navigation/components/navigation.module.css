@@ -19,6 +19,8 @@
 }
 
 .nav__links a {
+  position: relative;
+  display: inline-block;
   font-family: var(--rh-ds-font-sans);
   font-size: 15px;
   font-weight: 500;
@@ -29,16 +31,44 @@
 
 .nav__links a:hover { color: var(--rh-ds-color-accent); }
 
-/* ── Logo (centered) ── */
+/* Active dot — absolutely placed so toggling it never shifts the label */
+.nav__links a::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rh-ds-color-accent);
+  opacity: 0;
+  transform: translateY(-50%) scale(0);
+  transition: opacity 0.2s var(--rh-ds-ease-out),
+    transform 0.2s var(--rh-ds-ease-out);
+}
+
+.nav__links a[aria-current]::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ── Logo (centered) ──
+   Sits on a solid disc so it never visually collides with the page content
+   scrolling underneath the fixed header. */
 .nav__logo {
   grid-column: 2;
   justify-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   text-decoration: none;
   color: var(--rh-ds-color-text);
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--rh-ds-color-bg);
 }
 
 .nav__mark { width: 54px; height: auto; }
@@ -116,10 +146,38 @@
 
 .nav__contact:hover::before { width: 300px; }
 
+/* Active dot, inside the pill. Uses ::after because ::before is the hover fill.
+   Sits in the pill's left padding, so the label never moves. */
+.nav__contact::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rh-ds-color-accent);
+  opacity: 0;
+  transform: translateY(-50%) scale(0);
+  transition: opacity 0.2s var(--rh-ds-ease-out),
+    transform 0.2s var(--rh-ds-ease-out),
+    background 0.2s var(--rh-ds-ease-out);
+}
+
+.nav__contact[aria-current]::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* The hover fill is the same orange, which would swallow the dot — match the
+   label colour instead so it stays readable. */
+.nav__contact:hover::after { background: var(--rh-ds-color-text); }
+
 /* ── Mobile ── */
 @media (max-width: 600px) {
   .nav { padding: 18px 20px; top: 36px; }
   .nav__links { display: none; }
+  .nav__logo { width: 88px; height: 88px; }
   .nav__mark { width: 42px; }
   .nav__name { font-size: 11px; letter-spacing: 0.26em; }
   .nav__right { gap: 10px; }
@@ -127,6 +185,9 @@
     padding: 11px 22px;
     font-size: 12px;
   }
+
+  /* Tighter pill padding — keep the dot clear of the label */
+  .nav__contact::after { left: 9px; }
 }
 
 /* ── Dark mode ── */
@@ -135,5 +196,7 @@
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .nav__theme,
-  .nav__contact::before { transition: none; }
+  .nav__contact::before,
+  .nav__contact::after,
+  .nav__links a::before { transition: none; }
 }

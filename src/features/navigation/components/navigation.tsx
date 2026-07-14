@@ -1,10 +1,14 @@
 import React from 'react';
+import { useActiveSection } from '@/hooks/useActiveSection';
 import styles from './navigation.module.css';
 
 type Props = {
   theme: 'light' | 'dark';
   onThemeToggle: () => void;
 };
+
+// Module-level so the reference stays stable across renders.
+const SECTION_IDS = ['about', 'works', 'contact'];
 
 const MoonIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -26,27 +30,32 @@ const SunIcon = () => (
   </svg>
 );
 
-const Navigation: React.FC<Props> = ({ theme, onThemeToggle }) => (
-  <nav className={styles.nav}>
-    <ul className={styles.nav__links}>
-      <li><a href="#about">About</a></li>
-      <li><a href="#works">Works</a></li>
-    </ul>
-    <a href="#about" className={styles.nav__logo}>
-      <img src="/logo.svg" alt="Robin" className={styles.nav__mark} />
-      <span className={styles.nav__name}>ROBIN</span>
-    </a>
-    <div className={styles.nav__right}>
-      <button
-        className={styles.nav__theme}
-        onClick={onThemeToggle}
-        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-      >
-        {theme === 'light' ? <MoonIcon /> : <SunIcon />}
-      </button>
-      <a href="#contact" className={styles.nav__contact}>Contact</a>
-    </div>
-  </nav>
-);
+const Navigation: React.FC<Props> = ({ theme, onThemeToggle }) => {
+  const active = useActiveSection(SECTION_IDS);
+  const current = (id: string) => (active === id ? 'location' : undefined);
+
+  return (
+    <nav className={styles.nav}>
+      <ul className={styles.nav__links}>
+        <li><a href="#about" aria-current={current('about')}>About</a></li>
+        <li><a href="#works" aria-current={current('works')}>Works</a></li>
+      </ul>
+      <a href="#about" className={styles.nav__logo}>
+        <img src="/logo.svg" alt="Robin" className={styles.nav__mark} />
+        <span className={styles.nav__name}>ROBIN</span>
+      </a>
+      <div className={styles.nav__right}>
+        <button
+          className={styles.nav__theme}
+          onClick={onThemeToggle}
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        >
+          {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+        </button>
+        <a href="#contact" className={styles.nav__contact} aria-current={current('contact')}>Contact</a>
+      </div>
+    </nav>
+  );
+};
 
 export default Navigation;

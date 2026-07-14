@@ -64,8 +64,21 @@
     filter 0.25s var(--rh-ds-ease-out);
 }
 
+/* Pinned (clicked) keeps its border on every device */
+.brand--pinned {
+  box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
+}
+
+/* Touch devices have no custom cursor, so hover needs its own border here.
+   On desktop the cursor's outline box provides it instead — no double border. */
+@media (pointer: coarse) {
+  .brand:hover {
+    box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
+  }
+}
+
 .brand:hover .brand__logo,
-.brand--active .brand__logo {
+.brand--pinned .brand__logo {
   opacity: 1;
   filter: none;
 }
@@ -84,7 +97,7 @@
 }
 
 .brand:hover .brand__fallback,
-.brand--active .brand__fallback { color: var(--rh-ds-color-accent); }
+.brand--pinned .brand__fallback { color: var(--rh-ds-color-accent); }
 
 /* Deliverables label — shown on logo hover/click, styled like hero promise */
 .works__deliverables {

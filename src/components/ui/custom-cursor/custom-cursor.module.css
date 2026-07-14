@@ -1,7 +1,31 @@
 /* Hidden on touch devices — only shown when a fine pointer (mouse) is present */
 @media (pointer: coarse) {
-  .wrapper { display: none; }
+  .wrapper,
+  .box { display: none; }
 }
+
+/* ── Brand outline box ──
+   A separate element from the cursor, so the cursor stays visible on the
+   mouse while this box outlines the hovered brand. */
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 99998;
+  opacity: 0;
+  box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    width     0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    height    0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.25s ease;
+  will-change: transform, width, height;
+}
+
+.box[data-active="true"] { opacity: 1; }
 
 .wrapper {
   position: fixed;
@@ -33,31 +57,21 @@
     box-shadow 0.3s ease;
 }
 
-/* ── Nav state: grows + shows arrow, transparent with border ── */
+/* ── Nav state: filled orange circle with a white arrow ── */
 .cursor[data-state="nav"] {
-  width: 52px;
-  height: 52px;
-  background: transparent;
-  box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
+  width: 44px;
+  height: 44px;
+  background: var(--rh-ds-color-accent);
 }
 
 .cursor[data-state="nav"] .label {
-  color: var(--rh-ds-color-accent);
+  color: var(--rh-ds-color-white);
 }
 
 /* ── Photo state: grows + shows HI ── */
 .cursor[data-state="photo"] {
   width: 96px;
   height: 96px;
-}
-
-/* ── Brand state: transparent box with orange border
-      width/height are set by JS to match the hovered element ── */
-.cursor[data-state="brand"] {
-  border-radius: 0;
-  background: transparent;
-  box-shadow: inset 0 0 0 2px var(--rh-ds-color-accent);
-  overflow: visible;
 }
 
 /* ── Label (arrow / HI text) ── */
@@ -81,5 +95,6 @@
 
 /* ── Respect reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .cursor { transition: none; }
+  .cursor,
+  .box { transition: none; }
 }
