@@ -5,7 +5,7 @@ type Deliverables = { bold: string; rest: string };
 
 // Logos live in /public/client-logos as small SVGs. Missing files fall back
 // to the brand name automatically (see onError below).
-const clients: { name: string; logo: string; deliverables: Deliverables }[] = [
+const clients: { name: string; logo: string; deliverables: Deliverables, url?: string }[] = [
   {
     name: 'BUUT',
     logo: '/client-logos/buut.svg',
@@ -13,6 +13,7 @@ const clients: { name: string; logo: string; deliverables: Deliverables }[] = [
       bold: 'Marketing website rebuild.',
       rest: 'Design system, a11y, CMS-agnostic API layer, testing, SEO & geo — front-end development.',
     },
+    url: 'https://www.buut.com/'
   },
   {
     name: 'Heineken',
@@ -53,6 +54,7 @@ const clients: { name: string; logo: string; deliverables: Deliverables }[] = [
       bold: 'New B2B website, built from scratch.',
       rest: 'Front-end development.',
     },
+    url: 'https://www.avikofoodservice.nl/',
   },
   {
     name: 'Davidoff',
@@ -93,6 +95,7 @@ export const WorksSection: React.FC = () => {
 
   const activeName = hoveredName ?? pinnedName;
   const activeDeliverables = clients.find(c => c.name === activeName)?.deliverables ?? null;
+  const activeUrl = clients.find(c => c.name === activeName)?.url ?? null;
 
   return (
     <section id="works" className={styles.works}>
@@ -134,6 +137,9 @@ export const WorksSection: React.FC = () => {
           ? <><strong>{activeDeliverables.bold}</strong>{' '}{activeDeliverables.rest}</>
           : ' '
         }
+        {activeUrl ? <><br /><a href={activeUrl || ''} target="_blank" rel="noopener noreferrer">
+          View here
+        </a></> : ''}
       </p>
     </section>
   );

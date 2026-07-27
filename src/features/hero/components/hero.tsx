@@ -4,7 +4,7 @@ import { NameRevealer } from './name-revealer';
 
 const meta = [
   { label: 'Discipline', value: 'Creative Front-end', hi: false },
-  { label: 'Based in', value: 'Netherlands', hi: false },
+  { label: 'Based in', value: 'the Netherlands', hi: false },
   { label: 'Status', value: 'Available', hi: true },
   { label: 'Since', value: '2009', hi: false },
 ];

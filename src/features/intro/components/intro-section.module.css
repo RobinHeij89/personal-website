@@ -60,11 +60,51 @@
 
 .descriptor__list li:first-child { border-top: 1px solid var(--rh-ds-color-mid); }
 
-.descriptor__list li span {
+.descriptor__list li span.descriptor__number {
   font-size: 9px;
   color: var(--rh-ds-color-subtle);
   letter-spacing: 0.08em;
 }
+
+.char{
+  display: inline-block;
+  height: 1lh;
+  width: 1ch;
+  overflow: hidden;
+  position: relative;
+
+  & span {
+    position: absolute;
+    inset: 0 0 0 0;
+    transition: transform 0.5s steps(2, end);
+    
+    &:first-child{
+      transform: translateY(0);
+    }
+    &:nth-child(2){
+      transform: translateY(100%);
+    }
+    &:last-child{
+      color: var(--rh-ds-color-orange);
+      transform: translateY(300%);
+    }
+  }
+}
+
+.descriptor__list li:hover {
+  & span {
+    &:first-child{
+      transform: translateY(-200%);
+    }
+    &:nth-child(2){
+      transform: translateY(-100%);
+    }
+    &:last-child{
+      transform: translateY(0);
+    }
+  }
+}
+
 
 /* ── Tablet ── */
 @media (width <= 1024px) {
