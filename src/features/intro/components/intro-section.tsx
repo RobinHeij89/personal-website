@@ -39,7 +39,7 @@ export const IntroSection: React.FC = () => {
             {availableAs.map((item, index) => (
               <li key={index}>
                 <p>
-                  {item.split('').map((char: string, charIndex: number) => {
+                  {item.split('').map((char: string, _charIndex: number) => {
                     const randomDelay = Math.floor(Math.random() * 250); // Random delay between 500ms and 1500ms
                     const randomChar = arrayOfHTMLChars[Math.floor(Math.random() * arrayOfHTMLChars.length)];
                     return (
