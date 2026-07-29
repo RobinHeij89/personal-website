@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './hero.module.css';
 import { NameRevealer } from './name-revealer';
+import { Reveal, RevealGroup } from '@/components/ui/reveal/reveal';
 
 const meta = [
   { label: 'Discipline', value: 'Creative Front-end', hi: false },
@@ -48,10 +49,10 @@ export const Hero: React.FC = () => {
       <NameRevealer firstName='Robin' lastName='Heij' />
 
       {/* Promise — personal statement */}
-      <p className={`${styles.hero__promise} reveal`} style={{ transitionDelay: '300ms' }}>
+      <Reveal as="p" className={styles.hero__promise} delay={300}>
         I&rsquo;m a front-end developer working where <em>design</em> meets <em>code</em> &mdash;
         turning ambitious ideas into products people actually love to use.
-      </p>
+      </Reveal>
 
       {/* Smaller rectangular image — unmasks on scroll */}
       <div className={styles.hero__photo} ref={photoRef} data-cursor="photo">
@@ -59,14 +60,14 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Meta row */}
-      <div className={`${styles.hero__meta} stagger`}>
-        {meta.map(({ label, value, hi }) => (
-          <div key={label} className={styles.hero__meta_col}>
+      <RevealGroup className={styles.hero__meta} staggerMs={80}>
+        {meta.map(({ label, value, hi }, index) => (
+          <Reveal key={label} index={index} className={styles.hero__meta_col}>
             <span className={styles.hero__meta_label}>{label}</span>
             <span className={`${styles.hero__meta_value}${hi ? ` ${styles['hero__meta_value--hi']}` : ''}`}>{value}</span>
-          </div>
+          </Reveal>
         ))}
-      </div>
+      </RevealGroup>
     </section>
   );
 };

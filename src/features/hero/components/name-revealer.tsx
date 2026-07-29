@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import styles from './name-revealer.module.css'
+import { Reveal, RevealGroup } from '@/components/ui/reveal/reveal';
 
 type Props = {
   firstName: string;
@@ -8,16 +8,31 @@ type Props = {
 
 export const NameRevealer = (props: Props) => {
   const { firstName, lastName } = props;
+  const chars = firstName.split('');
+
   return (
     <div className={styles.hero__name}>
-      <span className={`${styles.hero__line}`} style={{ transitionDelay: '100ms' }}>
-        {firstName.split("").map((char, index) => (
-          <span key={index} className={clsx(styles.hero__char, 'reveal-bottom')} style={{ transitionDelay: `${index * 50 + 100}ms` }}>
+      <RevealGroup as="span" className={styles.hero__line} staggerMs={50}>
+        {chars.map((char, index) => (
+          <Reveal
+            key={index}
+            as="span"
+            index={index}
+            variant="bottom"
+            className={styles.hero__char}
+          >
             {char}
-          </span>
+          </Reveal>
         ))}
-      </span>
-      <span className={`${styles.hero__line} ${styles['hero__line--accent']} reveal-right`} style={{ transitionDelay: '200ms' }}>{lastName}</span>
+      </RevealGroup>
+      <Reveal
+        as="span"
+        variant="right"
+        delay={200}
+        className={`${styles.hero__line} ${styles['hero__line--accent']}`}
+      >
+        {lastName}
+      </Reveal>
     </div>
   );
 };
