@@ -122,6 +122,12 @@
   font-weight: 700;
 }
 
+.works__deliverables a {
+  color: var(--rh-ds-color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ── Dark mode ── */
 [data-theme="dark"] .brand__logo {
   filter: grayscale(1) invert(1);

@@ -8,12 +8,10 @@ import { WorksSection } from '@/features/works/components/works-section';
 import { ContactSection } from '@/features/contact/components/contact-section';
 import { SocialsBand } from '@/features/socials/components/socials-band';
 import { Footer } from '@/components/layout/footer/footer';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { useTheme } from '@/hooks/useTheme';
 import '@/styles/animations.css';
 
 const App: React.FC = () => {
-  useScrollReveal();
   const { theme, toggle } = useTheme();
 
   return (

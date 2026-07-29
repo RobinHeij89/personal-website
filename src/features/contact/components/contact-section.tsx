@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './contact-section.module.css';
+import { Reveal } from '@/components/ui/reveal/reveal';
 
 export const ContactSection: React.FC = () => (
   <section id="contact" className={styles.contact}>
@@ -22,8 +23,8 @@ export const ContactSection: React.FC = () => (
       </div>
     </div>
 
-    <div className={`${styles.contact__right} reveal-right`} data-cursor="photo">
+    <Reveal variant="right" className={styles.contact__right} data-cursor="photo">
       <img src="/robin.jpg" alt="Robin Heij" />
-    </div>
+    </Reveal>
   </section>
 );
