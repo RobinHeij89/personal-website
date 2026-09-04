@@ -91,29 +91,6 @@
   gap: 16px;
 }
 
-/* Theme toggle button */
-.nav__theme {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--rh-ds-color-text);
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.65;
-  transition: opacity 0.2s;
-  border-radius: 4px;
-}
-
-.nav__theme:hover { opacity: 1; }
-
-.nav__theme svg {
-  width: 18px;
-  height: 18px;
-  display: block;
-}
-
 /* Contact button (dark pill) */
 .nav__contact {
   font-family: var(--rh-ds-font-sans);
@@ -195,7 +172,6 @@
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .nav__theme,
   .nav__contact::before,
   .nav__contact::after,
   .nav__links a::before { transition: none; }

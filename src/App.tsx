@@ -1,19 +1,16 @@
 import React from 'react';
+import { CustomCursor, useScrollReveal, useTheme } from '@robinheij89/design-system';
 import Navigation from '@/features/navigation/components/navigation';
 import { AvailabilityBanner } from '@/features/availability/components/availability-banner';
-import { CustomCursor } from '@/components/ui/custom-cursor/custom-cursor';
 import { Hero } from '@/features/hero/components/hero';
 import { IntroSection } from '@/features/intro/components/intro-section';
 import { WorksSection } from '@/features/works/components/works-section';
 import { ContactSection } from '@/features/contact/components/contact-section';
 import { SocialsBand } from '@/features/socials/components/socials-band';
 import { Footer } from '@/components/layout/footer/footer';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { useTheme } from '@/hooks/useTheme';
-import '@/styles/animations.css';
 
 const App: React.FC = () => {
-  useScrollReveal();
+  useScrollReveal('#about');
   const { theme, toggle } = useTheme();
 
   return (

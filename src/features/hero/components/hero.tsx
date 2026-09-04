@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { NameRevealer } from '@robinheij89/design-system';
 import styles from './hero.module.css';
-import { NameRevealer } from './name-revealer';
 
 const meta = [
   { label: 'Discipline', value: 'Creative Front-end', hi: false },
