@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './intro-section.module.css';
+import { Reveal } from '@/components/ui/reveal/reveal';
 
 export const IntroSection: React.FC = () => {
 
@@ -26,11 +27,11 @@ export const IntroSection: React.FC = () => {
 
   return (
     <section id="intro" className={styles.intro}>
-      <div className={`${styles.intro__statement} reveal`}>
+      <Reveal className={styles.intro__statement}>
         <strong>Senior creative front-end developer</strong>
         {' '}with a design background and leadership experience.
         Coach, team player, hobby game developer — and above all, a dad of 2 girls.
-      </div>
+      </Reveal>
 
       <div className={styles.intro__right}>
         <div className={styles.descriptor}>

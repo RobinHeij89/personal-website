@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './works-section.module.css';
+import { Reveal, RevealGroup } from '@/components/ui/reveal/reveal';
 
 type Deliverables = { bold: string; rest: string };
 
@@ -99,19 +100,21 @@ export const WorksSection: React.FC = () => {
 
   return (
     <section id="works" className={styles.works}>
-      <div className={`${styles.works__header} reveal`}>
+      <Reveal className={styles.works__header}>
         <h2 className={styles.works__heading}>
           Selected<br /><em>Clients</em>
         </h2>
         <span className={styles.works__count}>{String(clients.length).padStart(2, '0')} brands</span>
-      </div>
+      </Reveal>
 
-      <div className={`${styles.brands} stagger`}>
-        {clients.map(({ name, logo }) => {
+      <RevealGroup className={styles.brands} staggerMs={70}>
+        {clients.map(({ name, logo }, index) => {
           const isPinned = pinnedName === name;
           return (
-            <div
+            <Reveal
               key={name}
+              index={index}
+              variant="bottom"
               className={`${styles.brand} ${isPinned ? styles['brand--pinned'] : ''}`}
               title={name}
               data-cursor="brand"
@@ -127,10 +130,10 @@ export const WorksSection: React.FC = () => {
                 onError={handleLogoError}
               />
               <span className={styles.brand__fallback}>{name}</span>
-            </div>
+            </Reveal>
           );
         })}
-      </div>
+      </RevealGroup>
 
       <p className={`${styles.works__deliverables} ${activeDeliverables ? styles['works__deliverables--visible'] : ''}`}>
         {activeDeliverables

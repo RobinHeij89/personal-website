@@ -1,0 +1,40 @@
+/* Reveal animations — driven by the useAnimationQueue hook (see <Reveal>).
+   Duration / delay / easing are overridable per item via CSS custom
+   properties set by the Reveal component; the values below are the defaults. */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-bottom {
+  --reveal-duration: 0.8s;
+  --reveal-delay: 0s;
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  opacity: 0;
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease) var(--reveal-delay),
+    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay);
+}
+
+.reveal { transform: translateY(32px); }
+.reveal-left { transform: translateX(-48px); }
+.reveal-right { transform: translateX(48px); }
+.reveal-bottom { transform: translateY(48px); }
+
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-bottom.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-bottom {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
