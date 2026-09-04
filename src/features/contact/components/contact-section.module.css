@@ -53,6 +53,14 @@
 .contact__right {
   height: 640px;
   overflow: hidden;
+  border-radius: 4px;
+}
+
+@supports (corner-shape: squircle) {
+  .contact__right {
+    border-radius: calc(4px * var(--rh-ds-squircle-multiplier));
+    corner-shape: squircle;
+  }
 }
 
 .contact__right img {
