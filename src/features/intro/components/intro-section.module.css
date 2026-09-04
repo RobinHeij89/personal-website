@@ -29,12 +29,6 @@
 
 /* Descriptor blocks */
 .descriptor__label {
-  font-family: var(--rh-ds-font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--rh-ds-color-muted);
   margin-bottom: 16px;
 }
 

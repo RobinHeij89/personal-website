@@ -7,29 +7,10 @@
   margin-bottom: 96px;
 }
 
-/* Same typography as the name revealer (ROBIN / HEIJ) */
-.works__heading {
-  font-family: var(--rh-ds-font-sans);
-  font-size: clamp(60px, 15vw, 120px);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
-  color: var(--rh-ds-color-text);
-  text-transform: uppercase;
-}
-
-.works__heading em {
-  font-style: normal;
-  color: var(--rh-ds-color-accent);
-}
-
+/* Typography for both the heading and the count label comes from
+   DisplayHeading/Eyebrow — only the count's size differs from Eyebrow's default. */
 .works__count {
-  font-family: var(--rh-ds-font-mono);
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--rh-ds-color-muted);
 }
 
 /* Logo wall */
@@ -99,33 +80,16 @@
 .brand:hover .brand__fallback,
 .brand--pinned .brand__fallback { color: var(--rh-ds-color-accent); }
 
-/* Deliverables label — shown on logo hover/click, styled like hero promise */
+/* Deliverables label — shown on logo hover/click; typography from Lead */
 .works__deliverables {
   margin-top: 40px;
   min-height: 3.5em;
-  font-family: var(--rh-ds-font-sans);
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: var(--rh-ds-color-text);
-  max-width: 620px;
   opacity: 0;
   transition: opacity 0.25s var(--rh-ds-ease-out);
 }
 
 .works__deliverables--visible {
   opacity: 1;
-}
-
-.works__deliverables strong {
-  font-weight: 700;
-}
-
-.works__deliverables a {
-  color: var(--rh-ds-color-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 /* ── Dark mode ── */
@@ -159,10 +123,6 @@
     padding: 100px 32px;
   }
 
-  .works__heading {
-    font-size: clamp(52px, 9vw, 100px);
-  }
-
   .works__header {
     margin-bottom: 56px;
   }
@@ -183,11 +143,6 @@
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 56px;
-  }
-
-  .works__heading {
-    font-size: clamp(42px, 12vw, 72px);
-    letter-spacing: -0.02em;
   }
 
   .brands {

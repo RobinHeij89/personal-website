@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DisplayHeading, Eyebrow, Lead } from '@robinheij89/design-system';
 import styles from './works-section.module.css';
 import { Reveal, RevealGroup } from '@/components/ui/reveal/reveal';
 
@@ -101,10 +102,10 @@ export const WorksSection: React.FC = () => {
   return (
     <section id="works" className={styles.works}>
       <Reveal className={styles.works__header}>
-        <h2 className={styles.works__heading}>
+        <DisplayHeading size="xl">
           Selected<br /><em>Clients</em>
-        </h2>
-        <span className={styles.works__count}>{String(clients.length).padStart(2, '0')} brands</span>
+        </DisplayHeading>
+        <Eyebrow as="span" className={styles.works__count}>{String(clients.length).padStart(2, '0')} brands</Eyebrow>
       </Reveal>
 
       <RevealGroup className={styles.brands} staggerMs={70}>
@@ -135,7 +136,7 @@ export const WorksSection: React.FC = () => {
         })}
       </RevealGroup>
 
-      <p className={`${styles.works__deliverables} ${activeDeliverables ? styles['works__deliverables--visible'] : ''}`}>
+      <Lead className={`${styles.works__deliverables} ${activeDeliverables ? styles['works__deliverables--visible'] : ''}`}>
         {activeDeliverables
           ? <><strong>{activeDeliverables.bold}</strong>{' '}{activeDeliverables.rest}</>
           : ' '
@@ -143,7 +144,7 @@ export const WorksSection: React.FC = () => {
         {activeUrl ? <><br /><a href={activeUrl || ''} target="_blank" rel="noopener noreferrer">
           View here
         </a></> : ''}
-      </p>
+      </Lead>
     </section>
   );
 };

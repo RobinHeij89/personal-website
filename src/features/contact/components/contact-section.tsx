@@ -1,22 +1,23 @@
 import React from 'react';
+import { DisplayHeading, Eyebrow } from '@robinheij89/design-system';
 import styles from './contact-section.module.css';
 import { Reveal } from '@/components/ui/reveal/reveal';
 
 export const ContactSection: React.FC = () => (
   <section id="contact" className={styles.contact}>
     <div className={styles.contact__left}>
-      <h2 className={styles.contact__headline}>
+      <DisplayHeading size="lg" className={styles.contact__headline}>
         Get in<br />touch.
         <em>And work together.</em>
-      </h2>
+      </DisplayHeading>
       <div className={styles.contact__cols}>
         <div className={styles.contact__col}>
-          <span className={styles.contact__col_label}>Direct</span>
+          <Eyebrow as="span" className={styles.contact__col_label}>Direct</Eyebrow>
           <a href="mailto:info@robinheij.nl" className={styles.contact__link}>info@robinheij.nl</a>
           <a href="tel:+31618917987" className={styles.contact__link}>+31 6 18 91 79 87</a>
         </div>
         <div className={styles.contact__col}>
-          <span className={styles.contact__col_label}>Social</span>
+          <Eyebrow as="span" className={styles.contact__col_label}>Social</Eyebrow>
           <a href="https://www.linkedin.com/in/robinheij89/" target="_blank" rel="noreferrer" className={styles.contact__link}>LinkedIn</a>
           <a href="https://www.instagram.com/brooobiin/" target="_blank" rel="noreferrer" className={styles.contact__link}>Instagram</a>
         </div>

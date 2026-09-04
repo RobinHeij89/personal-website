@@ -14,19 +14,9 @@
   gap: 64px;
 }
 
-.contact__headline {
-  font-family: var(--rh-ds-font-sans);
-  font-size: clamp(52px, 5.5vw, 80px);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--rh-ds-color-text);
-}
-
+/* Base typography from DisplayHeading — only the line-break behavior is local */
 .contact__headline em {
-  font-style: normal;
   display: block;
-  color: var(--rh-ds-color-accent);
 }
 
 .contact__cols {
@@ -44,12 +34,6 @@
 }
 
 .contact__col_label {
-  font-family: var(--rh-ds-font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--rh-ds-color-muted);
   margin-bottom: 4px;
 }
 
@@ -102,10 +86,6 @@
   .contact {
     padding: 0 20px 64px;
     gap: 36px;
-  }
-
-  .contact__headline {
-    font-size: clamp(44px, 12vw, 64px);
   }
 
   .contact__cols {

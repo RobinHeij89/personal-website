@@ -10,46 +10,19 @@
   overflow: hidden;
 }
 
-/* ── Promise (DEPT-style statement) ── */
+/* ── Promise (DEPT-style statement) — typography from Lead ── */
 .hero__promise {
   position: relative;
   z-index: 2;
   margin-top: 32px;
-  max-width: 620px;
-  font-family: var(--rh-ds-font-sans);
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: var(--rh-ds-color-text);
 }
 
-.hero__promise em {
-  font-style: normal;
-  color: var(--rh-ds-color-accent);
-}
-
-/* ── Image (original 2:3 aspect ratio) — opens up on scroll ── */
+/* ── Image (original 2:3 aspect ratio) — unmask mechanics from ScrollUnmaskImage ── */
 .hero__photo {
-  --p: 0;
   position: relative;
   z-index: 1;
   margin-top: 56px;
-  width: 100%;
   max-width: 420px;
-  clip-path: inset(calc((1 - var(--p)) * 12%) calc((1 - var(--p)) * 20%) round 4px);
-  transform: scale(calc(0.9 + var(--p) * 0.1));
-  transform-origin: center;
-  will-change: clip-path, transform;
-}
-
-.hero__photo_img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 6;
-  object-fit: cover;
-  filter: contrast(1.02);
 }
 
 /* ── Meta row ── */
@@ -73,15 +46,6 @@
   text-align: left;
 }
 
-.hero__meta_label {
-  font-family: var(--rh-ds-font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--rh-ds-color-muted);
-}
-
 .hero__meta_value {
   font-family: var(--rh-ds-font-mono);
   font-size: 12px;
@@ -101,10 +65,6 @@
     padding: 240px 32px 60px;
   }
 
-  .hero__line {
-    font-size: clamp(72px, 14vw, 140px);
-  }
-
   .hero__photo {
     max-width: 360px;
   }
@@ -115,24 +75,11 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__photo {
-    clip-path: none !important;
-    transform: none !important;
-    will-change: auto;
-  }
-}
-
 /* ── Mobile ── */
 @media (width <= 640px) {
   .hero {
     padding: 120px 20px 40px;
     min-height: auto;
-  }
-
-  .hero__line {
-    font-size: clamp(52px, 17vw, 96px);
-    letter-spacing: -0.02em;
   }
 
   .hero__photo {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Eyebrow } from '@robinheij89/design-system';
 import styles from './intro-section.module.css';
 import { Reveal } from '@/components/ui/reveal/reveal';
 
@@ -35,7 +36,7 @@ export const IntroSection: React.FC = () => {
 
       <div className={styles.intro__right}>
         <div className={styles.descriptor}>
-          <p className={styles.descriptor__label}>Available as</p>
+          <Eyebrow as="p" className={styles.descriptor__label}>Available as</Eyebrow>
           <ul className={styles.descriptor__list}>
             {availableAs.map((item, index) => (
               <li key={index}>
@@ -59,7 +60,7 @@ export const IntroSection: React.FC = () => {
         </div>
 
         <div className={styles.descriptor}>
-          <p className={styles.descriptor__label}>Expertise</p>
+          <Eyebrow as="p" className={styles.descriptor__label}>Expertise</Eyebrow>
           <ul className={styles.descriptor__list}>
             {expertise.map((item, index) => (
               <li key={index}>
@@ -70,7 +71,7 @@ export const IntroSection: React.FC = () => {
         </div>
 
         <div className={styles.descriptor}>
-          <p className={styles.descriptor__label}>Hobbies and interests</p>
+          <Eyebrow as="p" className={styles.descriptor__label}>Hobbies and interests</Eyebrow>
           <ul className={styles.descriptor__list}>
             {hobbies.map((item, index) => (
               <li key={index}>
