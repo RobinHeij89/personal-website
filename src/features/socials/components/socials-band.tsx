@@ -13,7 +13,7 @@ const links: SocialLink[] = [
     ),
   },
   {
-    href: 'https://www.instagram.com/rooobiin89/',
+    href: 'https://www.instagram.com/brooobiin/',
     ariaLabel: 'Instagram Profile',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
