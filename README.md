@@ -65,7 +65,12 @@ import styles from './component.module.css';
 ### Component Structure
 
 - Use CSS Modules for component-specific styling
-- Follow BEM methodology for CSS class naming
+- Prefer native CSS nesting over BEM naming (`.block__element--modifier`) — CSS
+  Modules already scope class names per file, and nesting expresses the
+  hierarchy directly, so BEM's naming convention is redundant here. See
+  [@robinheij89/design-system's CONTRIBUTING.md](https://github.com/RobinHeij89/design-system/blob/main/CONTRIBUTING.md)
+  for the full convention (this repo's own components still use BEM-style
+  names in places and haven't been migrated yet)
 - Include comprehensive JSDoc comments for component documentation
 - Use TypeScript interfaces for props definition
 
