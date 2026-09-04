@@ -4,8 +4,6 @@ import { SiteFooter } from '@robinheij89/design-system';
 export const Footer: React.FC = () => (
   <SiteFooter
     href="#about"
-    logoSrc="/logo.svg"
-    logoAlt="Robin"
     siteName="ROBIN"
     copyright="© 2026 — robinheij.nl"
   />
