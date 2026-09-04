@@ -107,6 +107,13 @@
   overflow: hidden;
 }
 
+@supports (corner-shape: squircle) {
+  .nav__contact {
+    border-radius: calc(999px * var(--rh-ds-squircle-multiplier));
+    corner-shape: squircle;
+  }
+}
+
 .nav__contact::before {
   content: "";
   background: var(--rh-ds-color-accent);

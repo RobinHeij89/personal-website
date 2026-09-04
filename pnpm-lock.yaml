@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@robinheij89/design-system':
-        specifier: ^0.6.0
-        version: 0.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^0.6.1
+        version: 0.6.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -686,8 +686,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@robinheij89/design-system@0.6.0':
-    resolution: {integrity: sha512-rQKjLgF+ch4OsjvVwLMtSFekxVBeTy+6mu6N3FyPlqnZMxfWXv6PNYHUd5qhJAe/SmV6yChR1jlDHNKgiWG5WQ==, tarball: https://npm.pkg.github.com/download/@robinheij89/design-system/0.6.0/dff5dfc1f546e9ea769511fb2fefe20566f74fbf}
+  '@robinheij89/design-system@0.6.1':
+    resolution: {integrity: sha512-4Wei6AK/i6TCwrJZf9MNOhfmvViAcBh4i7/09dxFoOnvJ9PjGsKkwtkTZjRL1pmvDIy7zKbYwUYw3lzLZOPJ6Q==, tarball: https://npm.pkg.github.com/download/@robinheij89/design-system/0.6.1/1dec7877b50765d93beb2fc1d93c944298099f46}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -2258,7 +2258,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@robinheij89/design-system@0.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@robinheij89/design-system@0.6.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       clsx: 2.1.1
       react: 19.2.0
