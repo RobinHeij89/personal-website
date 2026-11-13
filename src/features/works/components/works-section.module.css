@@ -16,13 +16,13 @@
 /* Logo wall */
 .brands {
   display: grid;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   border-top: 1px solid var(--rh-ds-color-mid);
   border-left: 1px solid var(--rh-ds-color-mid);
 }
 
 .brand {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 1;
   display: grid;
   place-items: center;
   padding: 24px;
@@ -117,7 +117,7 @@
   }
 }
 
-/* ── Tablet — 5 columns ── */
+/* ── Tablet ── */
 @media (width <= 1024px) {
   .works {
     padding: 100px 32px;
@@ -127,12 +127,12 @@
     margin-bottom: 56px;
   }
 
-  .brands {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .brand {
+    aspect-ratio: 3 / 2;
   }
 }
 
-/* ── Mobile — 3 columns ── */
+/* ── Mobile — 2 columns ── */
 @media (width <= 640px) {
   .works {
     padding: 80px 20px;
@@ -146,7 +146,7 @@
   }
 
   .brands {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .brand {
