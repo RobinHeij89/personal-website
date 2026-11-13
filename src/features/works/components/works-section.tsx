@@ -9,6 +9,15 @@ type Deliverables = { bold: string; rest: string };
 // to the brand name automatically (see onError below).
 const clients: { name: string; logo: string; deliverables: Deliverables, url?: string }[] = [
   {
+    name: 'KPN',
+    logo: '/client-logos/kpn.svg',
+    deliverables: {
+      bold: 'kpn.com — building and evolving the consumer website.',
+      rest: 'Co-owning a large monorepo with the design system and shared features for app and web, WCAG accessibility — front-end development.',
+    },
+    url: 'https://www.kpn.com/'
+  },
+  {
     name: 'BUUT',
     logo: '/client-logos/buut.svg',
     deliverables: {

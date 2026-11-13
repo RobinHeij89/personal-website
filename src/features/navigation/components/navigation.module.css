@@ -1,6 +1,6 @@
 .nav {
   position: fixed;
-  top: 36px; left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   z-index: var(--rh-ds-nav-z-index);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -159,7 +159,7 @@
 
 /* ── Mobile ── */
 @media (max-width: 600px) {
-  .nav { padding: 18px 20px; top: 36px; }
+  .nav { padding: 18px 20px; top: 0; }
   .nav__links { display: none; }
   .nav__logo { width: 88px; height: 88px; }
   .nav__mark { width: 42px; }
