@@ -41,11 +41,11 @@ export const IntroSection: React.FC = () => {
             {availableAs.map((item, index) => (
               <li key={index}>
                 <p>
-                  {item.split('').map((char: string, _charIndex: number) => {
+                  {item.split('').map((char: string, charIndex: number) => {
                     const randomDelay = Math.floor(Math.random() * 250); // Random delay between 500ms and 1500ms
                     const randomChar = arrayOfHTMLChars[Math.floor(Math.random() * arrayOfHTMLChars.length)];
                     return (
-                      <div className={styles.char}>
+                      <div key={charIndex} className={styles.char}>
                         <span style={{ transitionDelay: `${randomDelay}ms` }}>{char}</span>
                         <span style={{ transitionDelay: `${randomDelay}ms` }}>{randomChar}</span>
                         <span style={{ transitionDelay: `${randomDelay}ms` }}>{char}</span>
